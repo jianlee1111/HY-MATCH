@@ -38,25 +38,35 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      crossAxisAlignment: CrossAlignment.baseline,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: [
-                        Text(
-                          "${appState.currentGlucose.toInt()}",
-                          style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.amber),
+                    // 큰 숫자(48sp) + "mg/dL" + 배지가 한 줄에 다 안 들어가 넘치던 부분
+                    // -> Flexible + FittedBox로 감싸서 공간이 부족하면 숫자 쪽이 자동으로 줄어들게 함
+                    Flexible(
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.centerLeft,
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              "${appState.currentGlucose.toInt()}",
+                              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.amber),
+                            ),
+                            const SizedBox(width: 6),
+                            const Text("mg/dL", style: TextStyle(color: Colors.white70, fontSize: 16)),
+                          ],
                         ),
-                        const SizedBox(width: 6),
-                        const Text("mg/dL", style: TextStyle(color: Colors.white70, fontSize: 16)),
-                      ],
+                      ),
                     ),
+                    const SizedBox(width: 8),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.amber.withOpacity(0.2),
+                        color: Colors.amber.withValues(alpha: 0.2),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Row(
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Icon(Icons.circle, color: Colors.amber, size: 8),
                           SizedBox(width: 4),
@@ -79,13 +89,14 @@ class HomeScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.circle, color: Color(0xFF26B089), size: 8),
-                          const SizedBox(width: 6),
-                          const Text("측정 시점: ", style: TextStyle(color: Colors.white70, fontSize: 13)),
-                          const Text("식후 1시간 15분", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
-                          const Text(" · 저녁 식사 기준", style: TextStyle(color: Colors.white70, fontSize: 13)),
+                      Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.center,
+                        children: const [
+                          Icon(Icons.circle, color: Color(0xFF26B089), size: 8),
+                          SizedBox(width: 6),
+                          Text("측정 시점: ", style: TextStyle(color: Colors.white70, fontSize: 13)),
+                          Text("식후 1시간 15분", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
+                          Text(" · 저녁 식사 기준", style: TextStyle(color: Colors.white70, fontSize: 13)),
                         ],
                       ),
                       const SizedBox(height: 8),

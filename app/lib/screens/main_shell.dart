@@ -23,7 +23,7 @@ class MainShell extends StatelessWidget {
           children: [
             // Top Bar (Demo Banner, Mode Switcher, Reset)
             _buildTopHeaderBar(context, appState),
-            
+
             // Status Warning Bar
             _buildStatusWarningBanner(context, appState),
 
@@ -34,7 +34,7 @@ class MainShell extends StatelessWidget {
                   // Left Navigation Drawer / Sidebar
                   _buildSidebar(context, appState),
                   const VerticalDivider(width: 1, color: Color(0xFF23322E)),
-                  
+
                   // Main Screen Body according to active tab or mode
                   Expanded(
                     child: appState.currentRoleMode == 1
@@ -71,8 +71,15 @@ class MainShell extends StatelessWidget {
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
               ),
               const SizedBox(width: 6),
-              const Text("자가관리 앱 프로토타입", style: TextStyle(color: Colors.grey, fontSize: 12)),
-              const Spacer(),
+              // 고정폭 텍스트가 화면을 밀어내던 원인 -> Expanded + ellipsis로 남는 공간만 사용하도록 변경
+              Expanded(
+                child: Text(
+                  "자가관리 앱 프로토타입",
+                  style: const TextStyle(color: Colors.grey, fontSize: 12),
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
+                ),
+              ),
               // Patient App / Medical Portal Switcher
               Container(
                 decoration: BoxDecoration(
@@ -80,13 +87,14 @@ class MainShell extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     _roleButton("환자 앱", 0, appState),
-                    _roleButton("의료진 포털", 1, appState),
+                    _roleButton("의료진", 1, appState),
                   ],
                 ),
               ),
-              const SizedBox(width: 12),
+              const SizedBox(width: 8),
               OutlinedButton(
                 onPressed: () {
                   appState.resetDemoData();
@@ -97,9 +105,11 @@ class MainShell extends StatelessWidget {
                 style: OutlinedButton.styleFrom(
                   side: const BorderSide(color: Colors.grey),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  minimumSize: Size.zero,
+                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),
-                child: const Text("데모 초기화", style: TextStyle(color: Colors.white, fontSize: 12)),
+                child: const Text("초기화", style: TextStyle(color: Colors.white, fontSize: 12)),
               ),
             ],
           ),
@@ -113,7 +123,7 @@ class MainShell extends StatelessWidget {
     return GestureDetector(
       onTap: () => appState.setRoleMode(roleIndex),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFF26B089) : Colors.transparent,
           borderRadius: BorderRadius.circular(20),
@@ -123,7 +133,7 @@ class MainShell extends StatelessWidget {
           style: TextStyle(
             color: isSelected ? Colors.black : Colors.white70,
             fontWeight: FontWeight.bold,
-            fontSize: 13,
+            fontSize: 12,
           ),
         ),
       ),
@@ -142,11 +152,15 @@ class MainShell extends StatelessWidget {
         children: [
           const Icon(Icons.circle, color: Colors.amber, size: 10),
           const SizedBox(width: 8),
-          Text(
-            "현재 상태: 고혈당 (${appState.currentGlucose.toInt()} mg/dL) — 대응 가이드 보기",
-            style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 13),
+          Expanded(
+            child: Text(
+              "현재 상태: 고혈당 (${appState.currentGlucose.toInt()} mg/dL) — 대응 가이드 보기",
+              style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 13),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ),
-          const Spacer(),
+          const SizedBox(width: 8),
           const Icon(Icons.arrow_forward, color: Colors.amber, size: 16),
         ],
       ),
@@ -177,25 +191,31 @@ class MainShell extends StatelessWidget {
               color: isSelected ? const Color(0xFF1B3B32) : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),
-            child: ListTile(
-              dense: true,
-              leading: Icon(
-                navItems[index]['icon'] as IconData,
-                color: isSelected ? const Color(0xFF26B089) : Colors.white60,
-                size: 20,
-              ),
-              title: Text(
-                navItems[index]['label'] as String,
-                style: TextStyle(
-                  color: isSelected ? Colors.white : Colors.white60,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  fontSize: 13,
+            // ListTile은 자기 배경/잉크 효과를 가장 가까운 Material 위에 그리는데
+            // 색깔 있는 Container 안에 바로 있으면 그 효과가 안 보인다는 경고가 남 -> Material로 감쌈
+            child: Material(
+              color: Colors.transparent,
+              child: ListTile(
+                dense: true,
+                leading: Icon(
+                  navItems[index]['icon'] as IconData,
+                  color: isSelected ? const Color(0xFF26B089) : Colors.white60,
+                  size: 20,
                 ),
+                title: Text(
+                  navItems[index]['label'] as String,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.white60,
+                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                    fontSize: 13,
+                  ),
+                ),
+                onTap: () {
+                  appState.setRoleMode(0); // Switch to patient app mode
+                  appState.setTabIndex(index);
+                },
               ),
-              onTap: () {
-                appState.setRoleMode(0); // Switch to patient app mode
-                appState.setTabIndex(index);
-              },
             ),
           );
         },

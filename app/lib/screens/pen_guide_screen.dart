@@ -57,24 +57,33 @@ class PenGuideScreen extends StatelessWidget {
             child: GridView.builder(
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3,
-                childAspectRatio: 2.2,
+                // 2.2였던 값이 카드를 너무 납작하게 만들어서 텍스트가 30px씩 넘쳤음 -> 세로로 더 길게
+                childAspectRatio: 1.05,
                 crossAxisSpacing: 12,
                 mainAxisSpacing: 12,
               ),
               itemCount: pens.length,
               itemBuilder: (context, index) {
                 return Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
                   decoration: BoxDecoration(
                     color: const Color(0xFF16221F),
                     borderRadius: BorderRadius.circular(12),
                     border: Border.all(color: const Color(0xFF23322E)),
                   ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const Icon(Icons.cleaning_services_outlined, color: Color(0xFF26B089), size: 20),
-                      const SizedBox(height: 4),
-                      Text(pens[index], style: const TextStyle(color: Colors.white, fontSize: 12, fontWeight: FontWeight.bold)),
+                      const SizedBox(height: 6),
+                      Text(
+                        pens[index],
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 );

@@ -27,18 +27,20 @@ class MyInfoScreen extends StatelessWidget {
             child: Column(
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _infoTile("이름", appState.patientName),
-                    _infoTile("당뇨 유형", appState.diabetesType),
+                    Expanded(child: _infoTile("이름", appState.patientName)),
+                    const SizedBox(width: 12),
+                    Expanded(child: _infoTile("당뇨 유형", appState.diabetesType)),
                   ],
                 ),
                 const SizedBox(height: 16),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    _infoTile("생년월일", appState.birthDate),
-                    _infoTile("등록일", appState.regDate),
+                    Expanded(child: _infoTile("생년월일", appState.birthDate)),
+                    const SizedBox(width: 12),
+                    Expanded(child: _infoTile("등록일", appState.regDate)),
                   ],
                 ),
               ],
@@ -81,7 +83,11 @@ class MyInfoScreen extends StatelessWidget {
       children: [
         Text(label, style: const TextStyle(color: Colors.white60, fontSize: 12)),
         const SizedBox(height: 4),
-        Text(value, style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold)),
+        Text(
+          value,
+          overflow: TextOverflow.ellipsis,
+          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }

@@ -16,16 +16,23 @@ class TrendScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text("혈당 추세", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
-                  const SizedBox(height: 4),
-                  Text("목표범위 ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL", style: const TextStyle(color: Colors.white60, fontSize: 12)),
-                ],
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text("혈당 추세", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+                    const SizedBox(height: 4),
+                    Text(
+                      "목표범위 ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(color: Colors.white60, fontSize: 12),
+                    ),
+                  ],
+                ),
               ),
+              const SizedBox(width: 8),
               OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(side: const BorderSide(color: Colors.white38)),
@@ -83,16 +90,15 @@ class TrendScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Legend Bar
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                  // Legend Bar - 좁은 화면에서 4개가 한 줄에 안 들어갈 수 있어 Wrap으로 변경
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 12,
+                    runSpacing: 6,
                     children: [
                       _legendItem(Colors.red, "중증 저혈당"),
-                      const SizedBox(width: 12),
                       _legendItem(Colors.orange, "저혈당"),
-                      const SizedBox(width: 12),
                       _legendItem(const Color(0xFF26B089), "정상범위"),
-                      const SizedBox(width: 12),
                       _legendItem(Colors.amber, "고혈당"),
                     ],
                   )
@@ -121,6 +127,7 @@ class TrendScreen extends StatelessWidget {
 
   Widget _legendItem(Color color, String label) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Icon(Icons.circle, color: color, size: 8),
         const SizedBox(width: 4),

@@ -33,7 +33,6 @@ class HyMatchApp extends StatelessWidget {
           primary: Color(0xFF26B089),
           secondary: Color(0xFF26B089),
           surface: Color(0xFF16221F),
-          background: Color(0xFF0F1715),
           error: Color(0xFFE53935),
         ),
         appBarTheme: const AppBarTheme(

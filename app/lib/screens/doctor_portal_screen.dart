@@ -20,8 +20,10 @@ class DoctorPortalScreen extends StatelessWidget {
             children: [
               const Padding(
                 padding: EdgeInsets.all(12.0),
-                style: TextStyle(color: Colors.white60, fontSize: 11),
-                child: Text("담당 환자 (3)"),
+                child: Text(
+                  "담당 환자 (3)",
+                  style: TextStyle(color: Colors.white60, fontSize: 11),
+                ),
               ),
               _patientTile("김민지", "2형 · 1985-03-12", true),
               _patientTile("이도현", "2형 · 1972-11-02", false),
@@ -38,19 +40,32 @@ class DoctorPortalScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("김민지", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+                const Text(
+                  "김민지",
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
                 const SizedBox(height: 2),
-                const Text("2형 · 여 · 1985-03-12", style: TextStyle(color: Colors.white60, fontSize: 12)),
+                const Text(
+                  "2형 · 여 · 1985-03-12",
+                  style: TextStyle(color: Colors.white60, fontSize: 12),
+                ),
                 const SizedBox(height: 16),
 
                 // Doctor Sub-Tabs (개요, 추세, 처방/계획, 이행률)
-                Row(
-                  children: [
-                    _subTab("개요", 0, appState),
-                    _subTab("추세", 1, appState),
-                    _subTab("처방/계획", 2, appState),
-                    _subTab("이행률", 3, appState),
-                  ],
+                SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      _subTab("개요", 0, appState),
+                      _subTab("추세", 1, appState),
+                      _subTab("처방/계획", 2, appState),
+                      _subTab("이행률", 3, appState),
+                    ],
+                  ),
                 ),
                 const SizedBox(height: 20),
 
@@ -75,9 +90,20 @@ class DoctorPortalScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(name, style: TextStyle(color: isSelected ? Colors.white : Colors.white70, fontWeight: FontWeight.bold, fontSize: 13)),
+              // 환자 이름이 길어지면 옆의 점 아이콘과 겹쳐 넘칠 수 있어 Expanded로 방어
+              Expanded(
+                child: Text(
+                  name,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    color: isSelected ? Colors.white : Colors.white70,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 13,
+                  ),
+                ),
+              ),
+              const SizedBox(width: 4),
               const Icon(Icons.circle, color: Colors.amber, size: 8),
             ],
           ),
@@ -94,9 +120,14 @@ class DoctorPortalScreen extends StatelessWidget {
       onTap: () => appState.setDoctorSubTabIndex(index),
       child: Container(
         margin: const EdgeInsets.only(right: 16),
-        padding: const EdgeInsets.vertical(6),
+        padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
-          border: Border(bottom: BorderSide(color: isSelected ? const Color(0xFF26B089) : Colors.transparent, width: 2)),
+          border: Border(
+            bottom: BorderSide(
+              color: isSelected ? const Color(0xFF26B089) : Colors.transparent,
+              width: 2,
+            ),
+          ),
         ),
         child: Text(
           title,
@@ -112,7 +143,7 @@ class DoctorPortalScreen extends StatelessWidget {
 
   Widget _getDoctorTabContent(AppState appState) {
     if (appState.doctorSubTabIndex == 3) {
-      // 이행률 View (from user screenshot image_115b87.png)
+      // 이행률 View
       return Column(
         children: [
           Row(
@@ -134,14 +165,17 @@ class DoctorPortalScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("발생시각                 상태                 응답시간", style: TextStyle(color: Colors.white38, fontSize: 11)),
+                const Text(
+                  "발생시각                상태                응답시간",
+                  style: TextStyle(color: Colors.white38, fontSize: 11),
+                ),
                 const Divider(color: Color(0xFF23322E)),
                 _historyRow("2026-08-14 21:56", "이행", "6분"),
                 _historyRow("2026-08-13 21:56", "이행", "22분"),
                 _historyRow("2026-08-12 21:56", "미이행", "—"),
               ],
             ),
-          )
+          ),
         ],
       );
     }
@@ -162,7 +196,14 @@ class DoctorPortalScreen extends StatelessWidget {
               children: [
                 const Text("최근 측정값", style: TextStyle(color: Colors.white60, fontSize: 12)),
                 const SizedBox(height: 8),
-                Text("${appState.currentGlucose.toInt()} mg/dL", style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold, color: Colors.amber)),
+                Text(
+                  "${appState.currentGlucose.toInt()} mg/dL",
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.amber,
+                  ),
+                ),
                 const Text("2026-08-16 19:45", style: TextStyle(color: Colors.white38, fontSize: 11)),
               ],
             ),
@@ -184,16 +225,22 @@ class DoctorPortalScreen extends StatelessWidget {
                 Row(
                   children: [
                     Expanded(
-                      child: TextField(
-                        controller: TextEditingController(text: appState.targetLow.toInt().toString()),
-                        decoration: const InputDecoration(labelText: "저혈당 기준", border: OutlineInputBorder()),
+                      child: TextFormField(
+                        initialValue: appState.targetLow.toInt().toString(),
+                        decoration: const InputDecoration(
+                          labelText: "저혈당 기준",
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: TextField(
-                        controller: TextEditingController(text: appState.targetHigh.toInt().toString()),
-                        decoration: const InputDecoration(labelText: "고혈당 기준", border: OutlineInputBorder()),
+                      child: TextFormField(
+                        initialValue: appState.targetHigh.toInt().toString(),
+                        decoration: const InputDecoration(
+                          labelText: "고혈당 기준",
+                          border: OutlineInputBorder(),
+                        ),
                       ),
                     ),
                   ],
@@ -201,8 +248,13 @@ class DoctorPortalScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF26B089)),
-                  child: const Text("저장 (새 버전으로 이력 관리)", style: TextStyle(color: Colors.black)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF26B089),
+                  ),
+                  child: const Text(
+                    "저장 (새 버전으로 이력 관리)",
+                    style: TextStyle(color: Colors.black),
+                  ),
                 ),
               ],
             ),
@@ -215,7 +267,10 @@ class DoctorPortalScreen extends StatelessWidget {
   Widget _doctorStat(String title, String val) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(color: const Color(0xFF16221F), borderRadius: BorderRadius.circular(12)),
+      decoration: BoxDecoration(
+        color: const Color(0xFF16221F),
+        borderRadius: BorderRadius.circular(12),
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -234,7 +289,13 @@ class DoctorPortalScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(time, style: const TextStyle(color: Colors.white70, fontSize: 12)),
-          Text(status, style: TextStyle(color: status == "이행" ? Colors.greenAccent : Colors.redAccent, fontSize: 12)),
+          Text(
+            status,
+            style: TextStyle(
+              color: status == "이행" ? Colors.greenAccent : Colors.redAccent,
+              fontSize: 12,
+            ),
+          ),
           Text(resp, style: const TextStyle(color: Colors.white70, fontSize: 12)),
         ],
       ),
