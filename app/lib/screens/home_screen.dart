@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 import '../services/app_state.dart';
+import '../theme/app_theme.dart';
+import '../theme/glucose_status.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -10,27 +12,29 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
     final dateStr = DateFormat('yyyy-MM-dd HH:mm').format(appState.lastMeasuredTime);
+    final status = GlucoseStatus.fromValue(appState.currentGlucose, appState.targetLow, appState.targetHigh);
+
+    final history = appState.history;
+    final inRange = history.where((r) => r.value >= appState.targetLow && r.value <= appState.targetHigh).length;
+    final tirPercent = history.isEmpty ? 0 : ((inRange / history.length) * 100).round();
 
     return SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            "안녕하세요, ${appState.patientName}님",
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
-          ),
+          Text("안녕하세요, ${appState.patientName}님", style: AppText.title()),
           const SizedBox(height: 4),
-          const Text("최근 측정과 오늘의 안내를 확인하세요.", style: TextStyle(color: Colors.white60, fontSize: 13)),
+          Text("최근 측정과 오늘의 안내를 확인하세요.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
-          // Main Glucose Status Card
+          // Hero Card
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFF23322E)),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,8 +42,6 @@ class HomeScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // 큰 숫자(48sp) + "mg/dL" + 배지가 한 줄에 다 안 들어가 넘치던 부분
-                    // -> Flexible + FittedBox로 감싸서 공간이 부족하면 숫자 쪽이 자동으로 줄어들게 함
                     Flexible(
                       child: FittedBox(
                         fit: BoxFit.scaleDown,
@@ -48,91 +50,111 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.baseline,
                           textBaseline: TextBaseline.alphabetic,
                           children: [
-                            Text(
-                              "${appState.currentGlucose.toInt()}",
-                              style: const TextStyle(fontSize: 48, fontWeight: FontWeight.bold, color: Colors.amber),
-                            ),
+                            Text("${appState.currentGlucose.toInt()}", style: AppText.hero(color: status.color)),
                             const SizedBox(width: 6),
-                            const Text("mg/dL", style: TextStyle(color: Colors.white70, fontSize: 16)),
+                            Text("mg/dL", style: AppText.body(color: AppColors.textSecondary)),
                           ],
                         ),
                       ),
                     ),
                     const SizedBox(width: 8),
                     Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.amber.withValues(alpha: 0.2),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Row(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 7),
+                      decoration: BoxDecoration(color: status.softColor, borderRadius: BorderRadius.circular(14)),
+                      child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(Icons.circle, color: Colors.amber, size: 8),
-                          SizedBox(width: 4),
-                          Text("고혈당", style: TextStyle(color: Colors.amber, fontSize: 12, fontWeight: FontWeight.bold)),
+                          Icon(status.icon, color: status.color, size: 16),
+                          const SizedBox(width: 5),
+                          Text(status.label, style: TextStyle(color: status.color, fontSize: 13, fontWeight: FontWeight.w700)),
                         ],
                       ),
                     ),
                   ],
                 ),
-                Text("$dateStr 측정", style: const TextStyle(color: Colors.white38, fontSize: 12)),
+                const SizedBox(height: 4),
+                Text("$dateStr 측정", style: AppText.caption(color: AppColors.textMuted)),
                 const SizedBox(height: 16),
 
-                // Guide Sub-Box
                 Container(
                   padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    color: const Color(0xFF0F1816),
+                    color: AppColors.surfaceAlt,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Wrap(
-                        crossAxisAlignment: WrapCrossAlignment.center,
-                        children: const [
-                          Icon(Icons.circle, color: Color(0xFF26B089), size: 8),
-                          SizedBox(width: 6),
-                          Text("측정 시점: ", style: TextStyle(color: Colors.white70, fontSize: 13)),
-                          Text("식후 1시간 15분", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 13)),
-                          Text(" · 저녁 식사 기준", style: TextStyle(color: Colors.white70, fontSize: 13)),
+                      Row(
+                        children: [
+                          const Icon(Icons.schedule_rounded, size: 16, color: AppColors.textSecondary),
+                          const SizedBox(width: 6),
+                          Expanded(
+                            child: Text(
+                              "측정 시점: 식후 1시간 15분 · 저녁 식사 기준",
+                              style: AppText.caption(color: AppColors.textSecondary),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
                         ],
                       ),
-                      const SizedBox(height: 8),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1B3B32),
-                          borderRadius: BorderRadius.circular(6),
-                        ),
-                        child: const Text("식후 목표(180 미만) 이내", style: TextStyle(color: Color(0xFF26B089), fontSize: 11)),
-                      ),
-                      const SizedBox(height: 8),
-                      const Text(
-                        "식후 혈당은 정상 범위입니다",
-                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white),
-                      ),
+                      const SizedBox(height: 10),
+                      Text("식후 혈당은 정상 범위입니다", style: AppText.sectionTitle()),
                       const SizedBox(height: 4),
-                      const Text(
-                        "식사 후 혈당은 어느 정도 오르는 것이 자연스럽습니다. ADA 식후 목표(180 mg/dL 미만) 이내이므로 특별한 조치가 필요하지 않습니다.",
-                        style: TextStyle(color: Colors.white60, fontSize: 12, height: 1.4),
+                      Text(
+                        "식사 후 혈당은 어느 정도 오르는 것이 자연스럽습니다. 식후 목표(180 mg/dL 미만) 이내이므로 지금은 별도 조치가 필요하지 않습니다.",
+                        style: AppText.body(color: AppColors.textSecondary),
                       ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 16),
+
+                Row(
+                  children: [
+                    Icon(Icons.timelapse_rounded, size: 18, color: AppColors.primary),
+                    const SizedBox(width: 8),
+                    Expanded(
+                      child: Text("최근 측정 중 목표범위 내 비율", style: AppText.body(weight: FontWeight.w700)),
+                    ),
+                    Text("$tirPercent%", style: AppText.bodyStrong(color: AppColors.primary)),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(6),
+                  child: LinearProgressIndicator(
+                    value: tirPercent / 100,
+                    minHeight: 10,
+                    backgroundColor: AppColors.surfaceAlt,
+                    color: AppColors.primary,
+                  ),
+                ),
+                const SizedBox(height: 20),
+
+                // Quick Action — 원터치로 바로 측정 또는 펜 촬영으로 이동
+                Row(
+                  children: [
+                    Expanded(
+                      child: SizedBox(
+                        height: 56,
+                        child: ElevatedButton.icon(
+                          onPressed: () => appState.setTabIndex(1),
+                          icon: const Icon(Icons.water_drop_outlined),
+                          label: const Text("새 혈당 측정 시작"),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton.icon(
-                    onPressed: () => appState.setTabIndex(1), // Go to Measure tab
-                    icon: const Icon(Icons.water_drop_outlined, color: Colors.black),
-                    label: const Text("새 측정 시작", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF26B089),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    ),
+                  height: 56,
+                  child: OutlinedButton.icon(
+                    onPressed: () => appState.setTabIndex(5),
+                    icon: const Icon(Icons.camera_alt_outlined),
+                    label: const Text("인슐린 펜 사진으로 확인하기"),
                   ),
                 ),
               ],
@@ -144,27 +166,27 @@ class HomeScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFF23322E)),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("식사 기록", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold, color: Colors.white)),
+                Text("식사 기록", style: AppText.sectionTitle()),
                 const SizedBox(height: 4),
-                const Text(
-                  "식사 시각을 기록해두면 측정값이 공복인지 식후인지 자동으로 구분해 더 알맞은 안내를 보여드려요.",
-                  style: TextStyle(color: Colors.white60, fontSize: 12),
+                Text(
+                  "식사 시각을 기록해두면 측정값이 공복인지 식후인지 자동으로 구분해 더 알맞은 안내를 보여드립니다.",
+                  style: AppText.body(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    _mealChip("아침 08:00 x"),
-                    _mealChip("점심 12:30 x"),
-                    _mealChip("저녁 18:30 x"),
+                    _mealChip("아침 08:00 삭제"),
+                    _mealChip("점심 12:30 삭제"),
+                    _mealChip("저녁 18:30 삭제"),
                   ],
                 ),
               ],
@@ -172,7 +194,6 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Quick Stats Grid
           Row(
             children: [
               Expanded(child: _statCard("최근 7일 측정", "16회", "")),
@@ -189,32 +210,33 @@ class HomeScreen extends StatelessWidget {
 
   Widget _mealChip(String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF1F3B32),
+        color: AppColors.primarySoft,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: AppColors.primary.withValues(alpha: 0.25)),
       ),
-      child: Text(text, style: const TextStyle(color: Color(0xFF26B089), fontSize: 12)),
+      child: Text(text, style: const TextStyle(color: AppColors.primary, fontSize: 13, fontWeight: FontWeight.w700)),
     );
   }
 
   Widget _statCard(String title, String mainValue, String subText) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: const Color(0xFF16221F),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF23322E)),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(color: Colors.white60, fontSize: 11)),
+          Text(title, style: AppText.caption(), maxLines: 2, overflow: TextOverflow.ellipsis),
           const SizedBox(height: 8),
-          Text(mainValue, style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text(mainValue, style: AppText.sectionTitle()),
           if (subText.isNotEmpty) ...[
             const SizedBox(height: 4),
-            Text(subText, style: const TextStyle(color: Colors.white38, fontSize: 10)),
+            Text(subText, style: AppText.caption(color: AppColors.textMuted), maxLines: 1, overflow: TextOverflow.ellipsis),
           ]
         ],
       ),

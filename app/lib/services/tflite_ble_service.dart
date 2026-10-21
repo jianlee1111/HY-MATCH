@@ -33,9 +33,9 @@ class TFLiteBleService {
         options: options,
       );
       _isModelLoaded = true;
-      debugPrint("✅ TFLite Model initialized successfully.");
+      debugPrint("TFLite model initialized successfully.");
     } catch (e) {
-      debugPrint("⚠️ TFLite Model load failed (Simulated fallback active): $e");
+      debugPrint("TFLite model load failed, using simulated fallback: $e");
     }
   }
 
@@ -71,7 +71,7 @@ class TFLiteBleService {
         _predictionController.add(result);
         return result;
       } catch (e) {
-        debugPrint("Inference Error: $e");
+        debugPrint("Inference error: $e");
       }
     }
 

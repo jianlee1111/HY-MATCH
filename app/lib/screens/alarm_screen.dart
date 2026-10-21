@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 class AlarmScreen extends StatelessWidget {
   const AlarmScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("용량조절 알림", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text("용량조절 알림", style: AppText.title()),
           const SizedBox(height: 4),
-          const Text("담당 의료진이 설정한 계획에 따라 알림을 받습니다.", style: TextStyle(color: Colors.white60, fontSize: 12)),
+          Text("담당 의료진이 설정한 계획에 따라 알림을 받습니다.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
           _alarmCard("기저 인슐린 · 12U", "매일 21:00", "정기"),
@@ -20,7 +21,7 @@ class AlarmScreen extends StatelessWidget {
           _alarmCard("속효 인슐린 · 4U", "최근 3회 연속 혈당이 150mg/dL 이상일 때", "조건기반"),
           const SizedBox(height: 24),
 
-          const Text("알림 이력", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text("알림 이력", style: AppText.sectionTitle()),
           const SizedBox(height: 12),
           _historyTile("기저 인슐린 용량조절 알림", "2026-08-14 21:56", "이행 완료"),
           _historyTile("기저 인슐린 용량조절 알림", "2026-08-13 21:56", "이행 완료"),
@@ -33,9 +34,9 @@ class AlarmScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF16221F),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF23322E)),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -43,29 +44,32 @@ class AlarmScreen extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // 제목이 길어지면 태그 배지와 겹쳐 넘칠 수 있어 Expanded + ellipsis로 방어
               Expanded(
-                child: Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-                ),
+                child: Text(title, overflow: TextOverflow.ellipsis, style: AppText.bodyStrong()),
               ),
               const SizedBox(width: 8),
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(color: const Color(0xFF1F3B32), borderRadius: BorderRadius.circular(8)),
-                child: Text(tag, style: const TextStyle(color: Color(0xFF26B089), fontSize: 11)),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                decoration: BoxDecoration(color: AppColors.primarySoft, borderRadius: BorderRadius.circular(8)),
+                child: Text(tag, style: const TextStyle(color: AppColors.primary, fontSize: 12, fontWeight: FontWeight.w700)),
               ),
             ],
           ),
           const SizedBox(height: 6),
-          Text(subtitle, style: const TextStyle(color: Colors.white60, fontSize: 12)),
+          Text(subtitle, style: AppText.caption(color: AppColors.textSecondary)),
           const SizedBox(height: 12),
-          OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(side: const BorderSide(color: Colors.white38)),
-            child: const Text("지금 알림 시뮬레이션 (데모)", style: TextStyle(color: Colors.white, fontSize: 11)),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              onPressed: () {},
+              style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)),
+              child: const Text(
+                "알림 미리보기 (데모)",
+                textAlign: TextAlign.center,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
           ),
         ],
       ),
@@ -77,8 +81,9 @@ class AlarmScreen extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: const Color(0xFF16221F),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: AppColors.border),
       ),
       child: Row(
         children: [
@@ -86,20 +91,23 @@ class AlarmScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  title,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w500),
-                ),
-                Text(time, style: const TextStyle(color: Colors.white38, fontSize: 11)),
+                Text(title, overflow: TextOverflow.ellipsis, style: AppText.body(weight: FontWeight.w600)),
+                Text(time, style: AppText.caption(color: AppColors.textMuted)),
               ],
             ),
           ),
           const SizedBox(width: 8),
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-            decoration: BoxDecoration(color: Colors.green.withValues(alpha: 0.2), borderRadius: BorderRadius.circular(6)),
-            child: Text(status, style: const TextStyle(color: Colors.greenAccent, fontSize: 11)),
+            decoration: BoxDecoration(color: AppColors.statusNormalSoft, borderRadius: BorderRadius.circular(6)),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.check_circle_rounded, size: 14, color: AppColors.statusNormal),
+                const SizedBox(width: 4),
+                Text(status, style: const TextStyle(color: AppColors.statusNormal, fontSize: 12, fontWeight: FontWeight.w700)),
+              ],
+            ),
           )
         ],
       ),

@@ -8,9 +8,21 @@ class GlucoseRecord {
   GlucoseRecord({required this.timestamp, required this.value, this.note = ''});
 }
 
+class GuardianContact {
+  final String name;
+  final String relation;
+  final String phone;
+
+  const GuardianContact({
+    required this.name,
+    required this.relation,
+    required this.phone,
+  });
+}
+
 class AppState extends ChangeNotifier {
   // Mode: 0 = Patient App, 1 = Medical Staff Portal
-  int _currentRoleMode = 0; 
+  int _currentRoleMode = 0;
   int get currentRoleMode => _currentRoleMode;
 
   // Selected Nav Tab index
@@ -60,6 +72,31 @@ class AppState extends ChangeNotifier {
   int vegUnit = 0;
   int fatUnit = 0;
 
+  // BLE 기기 연결 상태 — 실제 스캔/페어링 로직은 아직 없고,
+  // 측정 화면에서 측정을 한 번 시작하면 true로 표시됩니다(데모).
+  bool _isDeviceConnected = false;
+  bool get isDeviceConnected => _isDeviceConnected;
+
+  void setDeviceConnected(bool connected) {
+    _isDeviceConnected = connected;
+    notifyListeners();
+  }
+
+  // 보호자 알림(SOS) — 지금은 보호자 등록과 알림 미리보기까지만 제공합니다.
+  // 실제 푸시 발송은 백엔드(FCM 등)가 필요해 아직 구현되어 있지 않습니다.
+  final List<GuardianContact> _guardians = [];
+  List<GuardianContact> get guardians => List.unmodifiable(_guardians);
+
+  void addGuardian(GuardianContact guardian) {
+    _guardians.add(guardian);
+    notifyListeners();
+  }
+
+  void removeGuardian(int index) {
+    _guardians.removeAt(index);
+    notifyListeners();
+  }
+
   void setRoleMode(int mode) {
     _currentRoleMode = mode;
     notifyListeners();
@@ -102,6 +139,7 @@ class AppState extends ChangeNotifier {
     meatUnit = 0;
     vegUnit = 0;
     fatUnit = 0;
+    _isDeviceConnected = false;
     notifyListeners();
   }
 }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:provider/provider.dart';
 import '../services/app_state.dart';
+import '../theme/app_theme.dart';
 
 class TrendScreen extends StatelessWidget {
   const TrendScreen({super.key});
@@ -22,12 +23,12 @@ class TrendScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text("혈당 추세", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+                    Text("혈당 추세", style: AppText.title()),
                     const SizedBox(height: 4),
                     Text(
                       "목표범위 ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
                       overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(color: Colors.white60, fontSize: 12),
+                      style: AppText.body(color: AppColors.textSecondary),
                     ),
                   ],
                 ),
@@ -35,14 +36,12 @@ class TrendScreen extends StatelessWidget {
               const SizedBox(width: 8),
               OutlinedButton(
                 onPressed: () {},
-                style: OutlinedButton.styleFrom(side: const BorderSide(color: Colors.white38)),
-                child: const Text("표로 보기", style: TextStyle(color: Colors.white, fontSize: 12)),
+                child: const Text("표로 보기"),
               ),
             ],
           ),
           const SizedBox(height: 20),
 
-          // Time filter tabs (7일, 14일, 30일)
           Row(
             children: [
               _filterChip("7일", false),
@@ -54,25 +53,40 @@ class TrendScreen extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          // Chart Area
           Expanded(
             child: Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: const Color(0xFF16221F),
+                color: AppColors.surface,
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFF23322E)),
+                border: Border.all(color: AppColors.border),
               ),
               child: Column(
                 children: [
                   Expanded(
                     child: LineChart(
                       LineChartData(
-                        gridData: const FlGridData(show: true, drawVerticalLine: false),
-                        titlesData: const FlTitlesData(
-                          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-                          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                        gridData: FlGridData(
+                          show: true,
+                          drawVerticalLine: false,
+                          getDrawingHorizontalLine: (value) => const FlLine(color: AppColors.border, strokeWidth: 1),
                         ),
+                        titlesData: FlTitlesData(
+                          rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                          topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                          leftTitles: AxisTitles(
+                            sideTitles: SideTitles(
+                              showTitles: true,
+                              reservedSize: 36,
+                              getTitlesWidget: (value, meta) => Text(
+                                value.toInt().toString(),
+                                style: AppText.caption(color: AppColors.textMuted).copyWith(fontSize: 11),
+                              ),
+                            ),
+                          ),
+                          bottomTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+                        ),
+                        borderData: FlBorderData(show: false),
                         minY: 0,
                         maxY: 250,
                         lineBarsData: [
@@ -81,8 +95,8 @@ class TrendScreen extends StatelessWidget {
                               return FlSpot(e.key.toDouble(), e.value.value);
                             }).toList(),
                             isCurved: true,
-                            color: const Color(0xFF26B089),
-                            barWidth: 2,
+                            color: AppColors.primary,
+                            barWidth: 3,
                             dotData: const FlDotData(show: true),
                           ),
                         ],
@@ -90,16 +104,15 @@ class TrendScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 16),
-                  // Legend Bar - 좁은 화면에서 4개가 한 줄에 안 들어갈 수 있어 Wrap으로 변경
                   Wrap(
                     alignment: WrapAlignment.center,
                     spacing: 12,
                     runSpacing: 6,
                     children: [
-                      _legendItem(Colors.red, "중증 저혈당"),
-                      _legendItem(Colors.orange, "저혈당"),
-                      _legendItem(const Color(0xFF26B089), "정상범위"),
-                      _legendItem(Colors.amber, "고혈당"),
+                      _legendItem(AppColors.statusSevere, "중증 저혈당"),
+                      _legendItem(AppColors.statusLow, "저혈당"),
+                      _legendItem(AppColors.statusNormal, "정상범위"),
+                      _legendItem(AppColors.statusHigh, "고혈당"),
                     ],
                   )
                 ],
@@ -113,14 +126,19 @@ class TrendScreen extends StatelessWidget {
 
   Widget _filterChip(String label, bool isSelected) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: isSelected ? const Color(0xFF26B089) : const Color(0xFF16221F),
+        color: isSelected ? AppColors.primary : AppColors.surface,
         borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
       ),
       child: Text(
         label,
-        style: TextStyle(color: isSelected ? Colors.black : Colors.white70, fontWeight: FontWeight.bold, fontSize: 12),
+        style: TextStyle(
+          color: isSelected ? AppColors.onPrimary : AppColors.textSecondary,
+          fontWeight: FontWeight.w700,
+          fontSize: 13,
+        ),
       ),
     );
   }
@@ -129,9 +147,9 @@ class TrendScreen extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(Icons.circle, color: color, size: 8),
-        const SizedBox(width: 4),
-        Text(label, style: const TextStyle(color: Colors.white60, fontSize: 10)),
+        Icon(Icons.circle, color: color, size: 10),
+        const SizedBox(width: 5),
+        Text(label, style: AppText.caption(color: AppColors.textSecondary)),
       ],
     );
   }

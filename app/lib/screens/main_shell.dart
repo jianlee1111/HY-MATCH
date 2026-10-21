@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/app_state.dart';
+import '../theme/app_theme.dart';
+import '../theme/glucose_status.dart';
 import 'home_screen.dart';
 import 'measure_screen.dart';
 import 'trend_screen.dart';
@@ -18,24 +20,17 @@ class MainShell extends StatelessWidget {
     final appState = Provider.of<AppState>(context);
 
     return Scaffold(
+      backgroundColor: AppColors.background,
       body: SafeArea(
         child: Column(
           children: [
-            // Top Bar (Demo Banner, Mode Switcher, Reset)
             _buildTopHeaderBar(context, appState),
-
-            // Status Warning Bar
             _buildStatusWarningBanner(context, appState),
-
-            // Main Area (Sidebar + Content Body)
             Expanded(
               child: Row(
                 children: [
-                  // Left Navigation Drawer / Sidebar
                   _buildSidebar(context, appState),
-                  const VerticalDivider(width: 1, color: Color(0xFF23322E)),
-
-                  // Main Screen Body according to active tab or mode
+                  const VerticalDivider(width: 1, color: AppColors.border),
                   Expanded(
                     child: appState.currentRoleMode == 1
                         ? const DoctorPortalScreen()
@@ -52,66 +47,75 @@ class MainShell extends StatelessWidget {
 
   Widget _buildTopHeaderBar(BuildContext context, AppState appState) {
     return Container(
-      color: const Color(0xFF0B1210),
+      color: AppColors.surface,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Column(
         children: [
-          const Text(
-            "프로토타입 데모 — 실제 기기·서버와 연동되지 않았습니다. 측정값·판정·가이드 문구는 시뮬레이션이며 실제 의료 자문이 아닙니다.",
-            style: TextStyle(color: Colors.grey, fontSize: 11),
+          Text(
+            "시험(데모) 버전 — 실제 기기·서버와 연동되지 않았습니다. 측정값과 안내 문구는 모두 예시이며 의료 자문이 아닙니다.",
+            style: AppText.caption(color: AppColors.textMuted),
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
           Row(
             children: [
-              const Icon(Icons.circle, color: Color(0xFF26B089), size: 10),
-              const SizedBox(width: 8),
-              const Text(
-                "HY-MATCH",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
-              ),
-              const SizedBox(width: 6),
-              // 고정폭 텍스트가 화면을 밀어내던 원인 -> Expanded + ellipsis로 남는 공간만 사용하도록 변경
-              Expanded(
+              Flexible(
                 child: Text(
-                  "자가관리 앱 프로토타입",
-                  style: const TextStyle(color: Colors.grey, fontSize: 12),
-                  overflow: TextOverflow.ellipsis,
+                  "HY-MATCH",
+                  style: AppText.sectionTitle(),
                   maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ),
-              // Patient App / Medical Portal Switcher
-              Container(
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1B2825),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    _roleButton("환자 앱", 0, appState),
-                    _roleButton("의료진", 1, appState),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 10),
+              _buildConnectionChip(appState.isDeviceConnected),
+              const Spacer(),
               OutlinedButton(
                 onPressed: () {
                   appState.resetDemoData();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("데모 데이터가 초기화되었습니다.")),
+                    const SnackBar(content: Text("데모 데이터를 초기 상태로 되돌렸습니다.")),
                   );
                 },
                 style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Colors.grey),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                  minimumSize: Size.zero,
-                  tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  minimumSize: const Size(0, 44),
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
                 ),
-                child: const Text("초기화", style: TextStyle(color: Colors.white, fontSize: 12)),
+                child: const Text("초기화"),
               ),
             ],
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(child: _roleButton("환자 화면", 0, appState)),
+              const SizedBox(width: 8),
+              Expanded(child: _roleButton("의료진 화면", 1, appState)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildConnectionChip(bool connected) {
+    final color = connected ? AppColors.primary : AppColors.textMuted;
+    final bg = connected ? AppColors.primarySoft : AppColors.surfaceAlt;
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(color: bg, borderRadius: BorderRadius.circular(16)),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(
+            connected ? Icons.bluetooth_connected_rounded : Icons.bluetooth_disabled_rounded,
+            size: 16,
+            color: color,
+          ),
+          const SizedBox(width: 4),
+          Text(
+            connected ? "센서 연결됨" : "센서 연결 안 됨",
+            style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w700),
           ),
         ],
       ),
@@ -123,17 +127,23 @@ class MainShell extends StatelessWidget {
     return GestureDetector(
       onTap: () => appState.setRoleMode(roleIndex),
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+        constraints: const BoxConstraints(minHeight: kMinTouchTarget),
+        alignment: Alignment.center,
+        padding: const EdgeInsets.symmetric(horizontal: 8),
         decoration: BoxDecoration(
-          color: isSelected ? const Color(0xFF26B089) : Colors.transparent,
-          borderRadius: BorderRadius.circular(20),
+          color: isSelected ? AppColors.primary : AppColors.surfaceAlt,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
         ),
         child: Text(
           title,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
           style: TextStyle(
-            color: isSelected ? Colors.black : Colors.white70,
-            fontWeight: FontWeight.bold,
-            fontSize: 12,
+            color: isSelected ? AppColors.onPrimary : AppColors.textSecondary,
+            fontWeight: FontWeight.w700,
+            fontSize: 13,
           ),
         ),
       ),
@@ -141,27 +151,27 @@ class MainShell extends StatelessWidget {
   }
 
   Widget _buildStatusWarningBanner(BuildContext context, AppState appState) {
-    bool isHigh = appState.currentGlucose > appState.targetHigh;
-    if (!isHigh) return const SizedBox.shrink();
+    final status = GlucoseStatus.fromValue(appState.currentGlucose, appState.targetLow, appState.targetHigh);
+    if (status.level == GlucoseLevel.normal) return const SizedBox.shrink();
 
     return Container(
       width: double.infinity,
-      color: const Color(0xFF332912), // Warning Dark Yellow
+      color: status.softColor,
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Row(
         children: [
-          const Icon(Icons.circle, color: Colors.amber, size: 10),
+          Icon(status.icon, color: status.color, size: 20),
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              "현재 상태: 고혈당 (${appState.currentGlucose.toInt()} mg/dL) — 대응 가이드 보기",
-              style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold, fontSize: 13),
+              "현재 상태: ${status.label} (${appState.currentGlucose.toInt()} mg/dL) — 대응 방법 확인하기",
+              style: TextStyle(color: status.color, fontWeight: FontWeight.w700, fontSize: 14),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
           const SizedBox(width: 8),
-          const Icon(Icons.arrow_forward, color: Colors.amber, size: 16),
+          Icon(Icons.arrow_forward_rounded, color: status.color, size: 18),
         ],
       ),
     );
@@ -174,13 +184,13 @@ class MainShell extends StatelessWidget {
       {'icon': Icons.show_chart, 'label': '추세'},
       {'icon': Icons.notifications_none, 'label': '알림'},
       {'icon': Icons.apple_outlined, 'label': '식품표'},
-      {'icon': Icons.cleaning_services_outlined, 'label': '펜가이드'},
+      {'icon': Icons.camera_alt_outlined, 'label': '펜가이드'},
       {'icon': Icons.person_outline, 'label': '내정보'},
     ];
 
     return Container(
-      width: 140,
-      color: const Color(0xFF0B1210),
+      width: 148,
+      color: AppColors.surface,
       child: ListView.builder(
         itemCount: navItems.length,
         itemBuilder: (context, index) {
@@ -188,33 +198,41 @@ class MainShell extends StatelessWidget {
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
-              color: isSelected ? const Color(0xFF1B3B32) : Colors.transparent,
+              color: isSelected ? AppColors.primarySoft : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
             ),
-            // ListTile은 자기 배경/잉크 효과를 가장 가까운 Material 위에 그리는데
-            // 색깔 있는 Container 안에 바로 있으면 그 효과가 안 보인다는 경고가 남 -> Material로 감쌈
             child: Material(
               color: Colors.transparent,
-              child: ListTile(
-                dense: true,
-                leading: Icon(
-                  navItems[index]['icon'] as IconData,
-                  color: isSelected ? const Color(0xFF26B089) : Colors.white60,
-                  size: 20,
-                ),
-                title: Text(
-                  navItems[index]['label'] as String,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.white60,
-                    fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                    fontSize: 13,
-                  ),
-                ),
+              child: InkWell(
+                borderRadius: BorderRadius.circular(10),
                 onTap: () {
-                  appState.setRoleMode(0); // Switch to patient app mode
+                  appState.setRoleMode(0);
                   appState.setTabIndex(index);
                 },
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                  child: Row(
+                    children: [
+                      Icon(
+                        navItems[index]['icon'] as IconData,
+                        color: isSelected ? AppColors.primary : AppColors.textSecondary,
+                        size: 22,
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text(
+                          navItems[index]['label'] as String,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
+                            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                            fontSize: 14,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
           );

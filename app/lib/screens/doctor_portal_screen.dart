@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/app_state.dart';
+import '../theme/app_theme.dart';
 
 class DoctorPortalScreen extends StatelessWidget {
   const DoctorPortalScreen({super.key});
@@ -11,19 +12,15 @@ class DoctorPortalScreen extends StatelessWidget {
 
     return Row(
       children: [
-        // Doctor Patient Selection Sidebar
         Container(
           width: 180,
-          color: const Color(0xFF0F1816),
+          color: AppColors.surface,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text(
-                  "담당 환자 (3)",
-                  style: TextStyle(color: Colors.white60, fontSize: 11),
-                ),
+              Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Text("담당 환자 (3)", style: AppText.caption(color: AppColors.textMuted)),
               ),
               _patientTile("김민지", "2형 · 1985-03-12", true),
               _patientTile("이도현", "2형 · 1972-11-02", false),
@@ -31,31 +28,19 @@ class DoctorPortalScreen extends StatelessWidget {
             ],
           ),
         ),
-        const VerticalDivider(width: 1, color: Color(0xFF23322E)),
+        const VerticalDivider(width: 1, color: AppColors.border),
 
-        // Doctor Detail Body
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "김민지",
-                  style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
-                  ),
-                ),
+                Text("김민지", style: AppText.title()),
                 const SizedBox(height: 2),
-                const Text(
-                  "2형 · 여 · 1985-03-12",
-                  style: TextStyle(color: Colors.white60, fontSize: 12),
-                ),
+                Text("2형 · 여 · 1985-03-12", style: AppText.body(color: AppColors.textSecondary)),
                 const SizedBox(height: 16),
 
-                // Doctor Sub-Tabs (개요, 추세, 처방/계획, 이행률)
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(
@@ -83,7 +68,7 @@ class DoctorPortalScreen extends StatelessWidget {
       margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        color: isSelected ? const Color(0xFF1B3B32) : Colors.transparent,
+        color: isSelected ? AppColors.primarySoft : Colors.transparent,
         borderRadius: BorderRadius.circular(8),
       ),
       child: Column(
@@ -91,24 +76,22 @@ class DoctorPortalScreen extends StatelessWidget {
         children: [
           Row(
             children: [
-              // 환자 이름이 길어지면 옆의 점 아이콘과 겹쳐 넘칠 수 있어 Expanded로 방어
               Expanded(
                 child: Text(
                   name,
                   overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: isSelected ? Colors.white : Colors.white70,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 13,
+                  style: AppText.body(
+                    color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
+                    weight: FontWeight.w700,
                   ),
                 ),
               ),
               const SizedBox(width: 4),
-              const Icon(Icons.circle, color: Colors.amber, size: 8),
+              if (isSelected) const Icon(Icons.circle, color: AppColors.primary, size: 8),
             ],
           ),
           const SizedBox(height: 2),
-          Text(sub, style: const TextStyle(color: Colors.white38, fontSize: 10)),
+          Text(sub, style: AppText.caption(color: AppColors.textMuted)),
         ],
       ),
     );
@@ -119,22 +102,23 @@ class DoctorPortalScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => appState.setDoctorSubTabIndex(index),
       child: Container(
+        constraints: const BoxConstraints(minHeight: kMinTouchTarget),
+        alignment: Alignment.center,
         margin: const EdgeInsets.only(right: 16),
-        padding: const EdgeInsets.symmetric(vertical: 6),
         decoration: BoxDecoration(
           border: Border(
             bottom: BorderSide(
-              color: isSelected ? const Color(0xFF26B089) : Colors.transparent,
-              width: 2,
+              color: isSelected ? AppColors.primary : Colors.transparent,
+              width: 3,
             ),
           ),
         ),
         child: Text(
           title,
           style: TextStyle(
-            color: isSelected ? const Color(0xFF26B089) : Colors.white60,
-            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            fontSize: 14,
+            color: isSelected ? AppColors.primary : AppColors.textSecondary,
+            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+            fontSize: 15,
           ),
         ),
       ),
@@ -143,7 +127,6 @@ class DoctorPortalScreen extends StatelessWidget {
 
   Widget _getDoctorTabContent(AppState appState) {
     if (appState.doctorSubTabIndex == 3) {
-      // 이행률 View
       return Column(
         children: [
           Row(
@@ -159,17 +142,15 @@ class DoctorPortalScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "발생시각                상태                응답시간",
-                  style: TextStyle(color: Colors.white38, fontSize: 11),
-                ),
-                const Divider(color: Color(0xFF23322E)),
+                Text("발생시각                상태                응답시간", style: AppText.caption(color: AppColors.textMuted)),
+                const Divider(color: AppColors.border),
                 _historyRow("2026-08-14 21:56", "이행", "6분"),
                 _historyRow("2026-08-13 21:56", "이행", "22분"),
                 _historyRow("2026-08-12 21:56", "미이행", "—"),
@@ -180,7 +161,6 @@ class DoctorPortalScreen extends StatelessWidget {
       );
     }
 
-    // Default Overview View
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -188,23 +168,17 @@ class DoctorPortalScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("최근 측정값", style: TextStyle(color: Colors.white60, fontSize: 12)),
+                Text("최근 측정값", style: AppText.caption()),
                 const SizedBox(height: 8),
-                Text(
-                  "${appState.currentGlucose.toInt()} mg/dL",
-                  style: const TextStyle(
-                    fontSize: 32,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.amber,
-                  ),
-                ),
-                const Text("2026-08-16 19:45", style: TextStyle(color: Colors.white38, fontSize: 11)),
+                Text("${appState.currentGlucose.toInt()} mg/dL", style: AppText.hero(color: AppColors.statusHigh).copyWith(fontSize: 32)),
+                Text("2026-08-16 19:45", style: AppText.caption(color: AppColors.textMuted)),
               ],
             ),
           ),
@@ -214,33 +188,28 @@ class DoctorPortalScreen extends StatelessWidget {
           child: Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(12),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("목표 혈당범위 설정", style: TextStyle(color: Colors.white60, fontSize: 12)),
+                Text("목표 혈당범위 설정", style: AppText.caption()),
                 const SizedBox(height: 12),
                 Row(
                   children: [
                     Expanded(
                       child: TextFormField(
                         initialValue: appState.targetLow.toInt().toString(),
-                        decoration: const InputDecoration(
-                          labelText: "저혈당 기준",
-                          border: OutlineInputBorder(),
-                        ),
+                        decoration: const InputDecoration(labelText: "저혈당 기준"),
                       ),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
                       child: TextFormField(
                         initialValue: appState.targetHigh.toInt().toString(),
-                        decoration: const InputDecoration(
-                          labelText: "고혈당 기준",
-                          border: OutlineInputBorder(),
-                        ),
+                        decoration: const InputDecoration(labelText: "고혈당 기준"),
                       ),
                     ),
                   ],
@@ -248,13 +217,7 @@ class DoctorPortalScreen extends StatelessWidget {
                 const SizedBox(height: 12),
                 ElevatedButton(
                   onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF26B089),
-                  ),
-                  child: const Text(
-                    "저장 (새 버전으로 이력 관리)",
-                    style: TextStyle(color: Colors.black),
-                  ),
+                  child: const Text("저장 (새 버전으로 이력 관리)"),
                 ),
               ],
             ),
@@ -268,15 +231,16 @@ class DoctorPortalScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF16221F),
+        color: AppColors.surface,
         borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: AppColors.border),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: const TextStyle(color: Colors.white60, fontSize: 11)),
+          Text(title, style: AppText.caption()),
           const SizedBox(height: 6),
-          Text(val, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text(val, style: AppText.sectionTitle().copyWith(fontSize: 24)),
         ],
       ),
     );
@@ -288,15 +252,15 @@ class DoctorPortalScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(time, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+          Text(time, style: AppText.body(color: AppColors.textSecondary)),
           Text(
             status,
-            style: TextStyle(
-              color: status == "이행" ? Colors.greenAccent : Colors.redAccent,
-              fontSize: 12,
+            style: AppText.body(
+              weight: FontWeight.w700,
+              color: status == "이행" ? AppColors.statusNormal : AppColors.statusSevere,
             ),
           ),
-          Text(resp, style: const TextStyle(color: Colors.white70, fontSize: 12)),
+          Text(resp, style: AppText.body(color: AppColors.textSecondary)),
         ],
       ),
     );

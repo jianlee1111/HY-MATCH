@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../services/app_state.dart';
 import '../services/tflite_ble_service.dart';
+import '../theme/app_theme.dart';
 
 class MeasureScreen extends StatefulWidget {
   const MeasureScreen({super.key});
@@ -18,6 +19,7 @@ class _MeasureScreenState extends State<MeasureScreen> {
 
     final bleService = Provider.of<TFLiteBleService>(context, listen: false);
     final appState = Provider.of<AppState>(context, listen: false);
+    appState.setDeviceConnected(true);
 
     // Simulate 3-second BLE acquisition & TFLite inference
     Future.delayed(const Duration(seconds: 3), () {
@@ -41,9 +43,9 @@ class _MeasureScreenState extends State<MeasureScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("측정", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text("측정", style: AppText.title()),
           const SizedBox(height: 6),
-          const Text("귀클립형 기기를 착용한 상태에서 측정을 시작하세요.", style: TextStyle(color: Colors.white60, fontSize: 13)),
+          Text("귀클립형 기기를 착용한 상태에서 측정을 시작하세요.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 40),
 
           Expanded(
@@ -52,9 +54,9 @@ class _MeasureScreenState extends State<MeasureScreen> {
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF16221F),
+                  color: AppColors.surface,
                   borderRadius: BorderRadius.circular(20),
-                  border: Border.all(color: const Color(0xFF23322E)),
+                  border: Border.all(color: AppColors.border),
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -63,33 +65,33 @@ class _MeasureScreenState extends State<MeasureScreen> {
                       width: 80,
                       height: 80,
                       decoration: const BoxDecoration(
-                        color: Color(0xFF1D3B33),
+                        color: AppColors.primarySoft,
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.bluetooth, color: Color(0xFF26B089), size: 40),
+                      child: const Icon(Icons.bluetooth, color: AppColors.primary, size: 40),
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      _isMeasuring ? "BLE 데이터 수신 및 TFLite 추론 중..." : "버튼을 누르면 BLE로 기기를 검색하고 연결합니다.",
+                      _isMeasuring ? "혈당 수치를 분석하고 있습니다" : "버튼을 누르면 기기를 찾아 연결합니다.",
                       textAlign: TextAlign.center,
-                      style: const TextStyle(color: Colors.white70, fontSize: 13),
+                      style: AppText.body(color: AppColors.textSecondary),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      "(귀클립 센서 7채널 + TFLite On-device AI 추론)",
-                      style: TextStyle(color: Colors.white38, fontSize: 11),
+                    Text(
+                      "귀클립 센서 7채널 신호를 이용해 기기 안에서 직접 분석합니다.",
+                      textAlign: TextAlign.center,
+                      style: AppText.caption(color: AppColors.textMuted),
                     ),
                     const SizedBox(height: 32),
                     _isMeasuring
-                        ? const CircularProgressIndicator(color: Color(0xFF26B089))
-                        : ElevatedButton(
-                            onPressed: () => _startMeasurement(context),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: const Color(0xFF26B089),
-                              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        ? const CircularProgressIndicator(color: AppColors.primary)
+                        : SizedBox(
+                            height: 56,
+                            width: 220,
+                            child: ElevatedButton(
+                              onPressed: () => _startMeasurement(context),
+                              child: const Text("측정 시작"),
                             ),
-                            child: const Text("측정 시작", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15)),
                           ),
                   ],
                 ),

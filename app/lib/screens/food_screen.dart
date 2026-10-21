@@ -1,33 +1,37 @@
 import 'package:flutter/material.dart';
+import '../theme/app_theme.dart';
 
 class FoodScreen extends StatelessWidget {
   const FoodScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("식품교환표", style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white)),
+          Text("식품교환표", style: AppText.title()),
           const SizedBox(height: 4),
-          const Text("같은 교환단위 안의 식품은 서로 바꿔 먹어도 혈당·칼로리에 미치는 영향이 비슷합니다.", style: TextStyle(color: Colors.white60, fontSize: 12)),
+          Text(
+            "같은 교환단위 안의 식품은 서로 바꿔 먹어도 혈당·칼로리에 미치는 영향이 비슷합니다.",
+            style: AppText.body(color: AppColors.textSecondary),
+          ),
           const SizedBox(height: 20),
 
           Container(
             padding: const EdgeInsets.all(16),
             decoration: BoxDecoration(
-              color: const Color(0xFF16221F),
+              color: AppColors.surface,
               borderRadius: BorderRadius.circular(16),
-              border: Border.all(color: const Color(0xFF23322E)),
+              border: Border.all(color: AppColors.border),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text("오늘 섭취 기록", style: TextStyle(color: Colors.white60, fontSize: 12)),
+                Text("오늘 섭취 기록", style: AppText.caption()),
                 const SizedBox(height: 4),
-                const Text("0 / 1800kcal", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.white)),
+                Text("0 / 1800kcal", style: AppText.sectionTitle()),
                 const SizedBox(height: 12),
                 _unitRow("곡류군", "0 / 8단위"),
                 _unitRow("어육류군", "0 / 6단위"),
@@ -38,20 +42,19 @@ class FoodScreen extends StatelessWidget {
                   children: [
                     Expanded(
                       child: TextField(
-                        decoration: InputDecoration(
+                        style: AppText.body(),
+                        decoration: const InputDecoration(
                           hintText: "음식 이름 입력 (예: 사과, 쌀밥)",
-                          hintStyle: const TextStyle(color: Colors.white38, fontSize: 13),
-                          filled: true,
-                          fillColor: const Color(0xFF0F1816),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
                         ),
                       ),
                     ),
                     const SizedBox(width: 8),
-                    ElevatedButton(
-                      onPressed: () {},
-                      style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF26B089)),
-                      child: const Text("추가", style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      height: kMinTouchTarget,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        child: const Text("추가하기"),
+                      ),
                     ),
                   ],
                 ),
@@ -65,12 +68,12 @@ class FoodScreen extends StatelessWidget {
 
   Widget _unitRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 5.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(label, style: const TextStyle(color: Colors.white70, fontSize: 13)),
-          Text(value, style: const TextStyle(color: Colors.white38, fontSize: 12)),
+          Text(label, style: AppText.body()),
+          Text(value, style: AppText.caption(color: AppColors.textMuted)),
         ],
       ),
     );
