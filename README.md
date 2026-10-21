@@ -181,13 +181,12 @@ Pen recognition calls the device camera through `image_picker`. If the camera do
 - [ ] Produce and add injection tutorial videos
 - [ ] Implement real guardian SOS delivery (backend integration, e.g. Firebase Cloud Messaging)
 - [ ] Implement real BLE device scanning/pairing
-- [ ] Add a `LICENSE` file
 
 ---
 
 ## License & References
 
-No `LICENSE` file is committed to this repository yet, so all rights are reserved by default until one is added.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 **Reference models:** Cole-Cole biological tissue dielectric relaxation equations, the Gabriel dielectric property database.
 **Reference:** [Toss — UX Research for Seniors](https://toss.tech/article/senior-usability-research)
