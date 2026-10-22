@@ -24,7 +24,7 @@ So the app's two core features are: automatically recording and visualizing gluc
 These reflect findings from Toss's senior usability research (["UX Research for Seniors"](https://toss.tech/article/senior-usability-research)), based on direct observation of older users.
 
 - **Every tappable element looks like a button.** Older users frequently failed to recognize plain text or a ">" arrow as tappable, so every interactive element in this app has a visible border or fill.
-- **Demo data is labeled clearly and repeatedly.** Older users were observed mistaking example data for their own real data, so this app repeatedly marks demo content as such — recognition results from the pen camera always include "(demo result)".
+- **Demo data is labeled clearly and repeatedly.** Older users were observed mistaking example data for their own real data, so this app repeatedly marks demo content as such — glucose history, alarms, and the patient roster in the doctor portal are all clearly sample data, and a pen-camera result only gets the "(demo result)" label in the rare case the real model fails to load and the app falls back to a placeholder.
 - **Instructions are never conveyed through motion alone.** Users tended to memorize and replay animations as a fixed pattern rather than following the actual instruction, so device-pairing and pen-recognition flows always pair any animation with numbered text steps.
 - **Imperative copy instead of questions.** Button and guidance text uses direct phrasing ("Start measurement", "Take a photo to check") instead of question form ("Would you like to...?").
 - **Scrollability is visually implied.** Cards and lists are deliberately cut off at the edge of the viewport where content continues, rather than ending cleanly, so users don't assume what's visible is everything there is.
@@ -46,8 +46,8 @@ This repository is a research prototype. The table below is honest about what ac
 |---|---|
 | Glucose dashboard / trend chart / alarm history | Works end-to-end on demo data (no real sensor or backend yet) |
 | Measurement flow (BLE → inference) | UI and the TFLite inference pipeline run for real, but currently driven by a simulated dummy signal |
-| **Insulin pen camera recognition** | **Fully wired: camera capture → classifier call → result display all work.** The image classification model itself doesn't exist yet, so `PenClassifierService` currently returns a fixed demo result (see below for how to swap in a real model) |
-| Pre-dose safety check | The logic comparing current glucose against the recognized pen's action profile (rapid-acting vs. long-acting) is real and functional |
+| **Insulin pen camera recognition** | **Fully working end-to-end**, including a real on-device model: `assets/insulin_classifier.tflite` (MobileNetV2-based, two output heads — 13-class product + 4-class action-category) runs via `PenClassifierService`. Falls back to a labeled demo result only if the model fails to load |
+| Pre-dose safety check | Real and functional: compares current glucose against the recognized pen's action-timing category (초속효성/혼합형 vs. 지속성/중간형) and warns before a mealtime dose while glucose is low |
 | Injection tutorial | The numbered text walkthrough works today. The video slot exists in the UI but no video asset has been added yet (see below) |
 | Guardian alerts (SOS) | Guardian registration and an alert preview ("here's what would be sent") both work. Actual push delivery isn't implemented — there's no backend to send it |
 | Doctor portal | Functional on demo data only |
@@ -86,7 +86,8 @@ There is no cloud backend yet. All state lives in the app's `AppState` (Provider
 HY-MATCH/
 ├── app/
 │   ├── assets/
-│   │   └── glucose_model.tflite      # on-device glucose model (trained on synthetic data so far)
+│   │   ├── glucose_model.tflite      # on-device glucose model (trained on synthetic data so far)
+│   │   └── insulin_classifier.tflite # on-device pen recognition model (MobileNetV2, 2 output heads)
 │   ├── lib/
 │   │   ├── main.dart
 │   │   ├── theme/
@@ -105,7 +106,7 @@ HY-MATCH/
 │   │   └── services/
 │   │       ├── app_state.dart              # app-wide state (Provider)
 │   │       ├── tflite_ble_service.dart     # BLE I/O + glucose model inference
-│   │       └── pen_classifier_service.dart # insulin pen image classification (currently a fixed demo result)
+│   │       └── pen_classifier_service.dart # insulin pen image classification (real TFLite model, demo fallback on failure)
 │   ├── android/
 │   ├── windows/
 │   ├── test/
@@ -115,21 +116,27 @@ HY-MATCH/
 │   ├── data/
 │   │   └── README.md
 │   └── notebooks/
-│       └── colab_training_pipeline.ipynb   # glucose model definition, synthetic-data training, TFLite export
+│       ├── colab_training_pipeline.ipynb   # glucose model definition, synthetic-data training, TFLite export
+│       └── Insulin_Classifier.ipynb        # insulin pen photo classifier training (MobileNetV2 transfer learning), TFLite export
 │
 └── README.md
 ```
 
 ---
 
-## Wiring Up a Real Pen Recognition Model
+## Pen Recognition Model
 
-Right now, `classify()` in `lib/services/pen_classifier_service.dart` waits 1.6 seconds and returns a fixed demo result ("NovoRapid FlexTouch (demo result)"). Once a real image classification model exists, swap it in like this:
+`PenClassifierService.classify()` runs a real on-device model: `assets/insulin_classifier.tflite`, a MobileNetV2-based classifier with two output heads, trained in `ai_model/notebooks/Insulin_Classifier.ipynb`.
 
-1. Collect and label a pen-photo dataset (product name, rapid-acting vs. long-acting).
-2. Train, convert the model to TFLite, add it under `app/assets/` (e.g. `pen_model.tflite`), and register it in `pubspec.yaml`'s `assets` list.
-3. Inside `classify()`, load it the same way `tflite_ble_service.dart` loads `glucose_model.tflite` — `Interpreter.fromAsset('assets/pen_model.tflite')` — resize/normalize the captured image to match the model's input, run inference, and map the output to a `PenRecognitionResult`.
-4. As long as the public interface stays the same (`classify(File) -> Future<PenRecognitionResult>`), nothing in the calling screen (`pen_guide_screen.dart`) needs to change.
+- Input: a single 300×300 RGB image, normalized to `[0, 1]` (`pixel / 255.0`) — must match exactly, since that's what the training pipeline used.
+- `sub_output` (13 classes): the specific product name.
+- `parent_output` (4 classes): the action-timing category (장시간형/중간형/초속효형/혼합형), mapped to the app's `InsulinActionProfile` enum (`longActing` / `intermediateActing` / `rapidActing` / `premixed`, plus `unknown` for the manual "기타" fallback).
+
+The pre-dose safety warning triggers for `rapidActing` **and** `premixed` results, since premixed insulins (e.g. 노보믹스, 휴마로그믹스) contain a rapid-acting component and are dosed before meals just like pure rapid-acting pens.
+
+**Important quirk:** the compiled `.tflite` file's output order does *not* match the order `model.predict()` returns in the training notebook (`[parent_preds, sub_preds]`). Inspecting the converted model's actual subgraph output list shows output index `0` is `sub_output` (13-class) and index `1` is `parent_output` (4-class) — `pen_classifier_service.dart` reads them in that order. If the model is retrained and reconverted, re-check this ordering before trusting the mapping (e.g. with Python: inspect `interpreter.get_output_details()` from `tf.lite.Interpreter`).
+
+To retrain with more products or categories: add images under the same `인슐린/<상위유형>/<제품명>/` folder structure the notebook expects, rerun it, replace `assets/insulin_classifier.tflite`, and update the `_subLabels` / `_parentLabels` lists in `pen_classifier_service.dart` to match the notebook's new `sorted(...)` label order exactly.
 
 ## Adding the Tutorial Video
 
@@ -169,6 +176,7 @@ Pen recognition calls the device camera through `image_picker`. If the camera do
 ### Notes
 
 - `glucose_model.tflite` is already bundled under `app/assets/`, so inference runs with no extra setup — but since it was trained on synthetic data, its output shouldn't be treated as clinically reliable.
+- `insulin_classifier.tflite` is also bundled, trained on a real (small, ~270-image) labeled photo dataset of 13 pen products — more useful than the glucose model for demos, but still too small a dataset to be clinically reliable. Misclassification is expected on pens/angles/lighting not represented in training data.
 - Emulators have no real Bluetooth hardware, so BLE connection and glucose measurement run in simulation mode. Camera capture works normally as long as the emulator has a virtual camera configured.
 - There's no backend integration yet (e.g. Firebase), so no config files like `google-services.json` are required to build or run.
 
@@ -176,17 +184,19 @@ Pen recognition calls the device camera through `image_picker`. If the camera do
 
 ## Roadmap
 
+- [x] Wire up a real insulin pen image classification model (`insulin_classifier.tflite`, trained on a real labeled photo dataset — see [Pen Recognition Model](#pen-recognition-model))
 - [ ] Train the glucose estimation model on real phantom/clinical data
-- [ ] Train and wire up a real insulin pen image classification model
+- [ ] Expand the pen-photo dataset (more products, more angles/lighting conditions) to improve recognition reliability
 - [ ] Produce and add injection tutorial videos
 - [ ] Implement real guardian SOS delivery (backend integration, e.g. Firebase Cloud Messaging)
 - [ ] Implement real BLE device scanning/pairing
+- [ ] Add a `LICENSE` file
 
 ---
 
 ## License & References
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+No `LICENSE` file is committed to this repository yet, so all rights are reserved by default until one is added.
 
 **Reference models:** Cole-Cole biological tissue dielectric relaxation equations, the Gabriel dielectric property database.
 **Reference:** [Toss — UX Research for Seniors](https://toss.tech/article/senior-usability-research)
