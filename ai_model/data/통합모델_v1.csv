@@ -1,0 +1,97 @@
+﻿table,label,mode,value_a,value_b,value_c,note
+predicted_sigma_glucose,"기준 (0 mg/dL, 4.0 mm, 0 °C)",nir,609.4661898132318,,,mg/dL
+predicted_sigma_glucose,"기준 (0 mg/dL, 4.0 mm, 0 °C)",mw,14.967756033049248,,,mg/dL
+predicted_sigma_glucose,"기준 (0 mg/dL, 4.0 mm, 0 °C)",fusion,12.269405460332703,,,mg/dL
+predicted_sigma_glucose,"기준 (0 mg/dL, 4.0 mm, 0 °C)",fusion_corr,12.232226403756219,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.0 mm",nir,609.0780172794352,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.0 mm",mw,14.993909899232442,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.0 mm",fusion,12.29857415614702,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.0 mm",fusion_corr,12.260704575144626,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.1 mm, +0.5 °C",nir,608.2123640996155,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.1 mm, +0.5 °C",mw,14.60367103178175,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.1 mm, +0.5 °C",fusion,12.782883444553878,,,mg/dL
+predicted_sigma_glucose,"108 mg/dL, 4.1 mm, +0.5 °C",fusion_corr,12.756250542054486,,,mg/dL
+predicted_sigma_glucose,"270 mg/dL, 4.3 mm, +1 °C",nir,608.1938908425882,,,mg/dL
+predicted_sigma_glucose,"270 mg/dL, 4.3 mm, +1 °C",mw,14.851682809437252,,,mg/dL
+predicted_sigma_glucose,"270 mg/dL, 4.3 mm, +1 °C",fusion,12.83453088185366,,,mg/dL
+predicted_sigma_glucose,"270 mg/dL, 4.3 mm, +1 °C",fusion_corr,12.803087997639405,,,mg/dL
+predicted_sigma_glucose,"0 mg/dL, 3.7 mm, −1 °C",nir,616.7513168942012,,,mg/dL
+predicted_sigma_glucose,"0 mg/dL, 3.7 mm, −1 °C",mw,16.32195465026117,,,mg/dL
+predicted_sigma_glucose,"0 mg/dL, 3.7 mm, −1 °C",fusion,11.706007685163874,,,mg/dL
+predicted_sigma_glucose,"0 mg/dL, 3.7 mm, −1 °C",fusion_corr,11.664224639232497,,,mg/dL
+linear_vs_full,두께 +0.1 mm,nir,-59.42229192489584,-1.548797811778968e-06,607.6709794382508,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.1 mm,mw,50.41907192226731,-3.78513220766763e-09,14.620069850996652,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.1 mm,fusion,-109.65966298170282,3.902897560692509e-09,12.795378685574622,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.1 mm,fusion_corr,-111.40046757297893,9.563933645040379e-09,12.767249423831494,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.3 mm,nir,-520.6820108491324,-1.4643568704286736e-06,607.5929323250633,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.3 mm,mw,172.18355510851933,2.19770868170599e-10,14.843529491502077,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.3 mm,fusion,-299.3522136525586,6.7977623530168785e-09,12.81874332782855,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 +0.3 mm,fusion_corr,-305.1018651954396,2.2547610001311114e-08,12.784302328604374,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 −0.3 mm,nir,-626.2469917893757,-5.807643162825116e-06,617.2184669233956,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 −0.3 mm,mw,134.68775360149286,5.395008884079289e-10,16.31700620049632,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 −0.3 mm,fusion,-328.8570686842156,-5.276632464301656e-10,11.727081402561415,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,두께 −0.3 mm,fusion_corr,-332.4197358224432,-5.1055764060947695e-09,11.686793925638744,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +1 °C,nir,-11.701017779525188,-3.75316078304877e-06,610.134874019936,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +1 °C,mw,0.0241509283926149,-0.4576583250368742,14.960948253864158,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +1 °C,fusion,-0.1842625555755717,2.9938280476926593e-07,12.280434436608523,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +1 °C,fusion_corr,-0.1904213906161516,3.4318068742322794e-07,12.245622501241566,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +2 °C,nir,-47.57886036143433,-5.148754667061439e-08,611.3049883753065,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +2 °C,mw,-0.2647761545083682,-0.8194126573557838,14.928166675473783,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +2 °C,fusion,-0.5080918784275923,2.0570611525272398e-07,12.263099499558624,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,온도 +2 °C,fusion_corr,-0.5186420861238332,3.0885047408446553e-07,12.231197043958591,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,"270 mg/dL, +0.3 mm, +1 °C",nir,-518.73104185167,-1.500252778896538e-06,608.1938908425882,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,"270 mg/dL, +0.3 mm, +1 °C",mw,167.21964603356628,6.75072442390956e-10,14.851682809437252,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,"270 mg/dL, +0.3 mm, +1 °C",fusion,-302.6874431953413,1.304277930103126e-08,12.83453088185366,linear error / full error / predicted sigma (mg/dL)
+linear_vs_full,"270 mg/dL, +0.3 mm, +1 °C",fusion_corr,-306.93157001089025,-6.815184860897716e-09,12.803087997639405,linear error / full error / predicted sigma (mg/dL)
+monte_carlo,"기준 (0 mg/dL, 4.0 mm, 0 °C)",nir,5.220379544938497,585.3196237296644,609.4661898132318,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"기준 (0 mg/dL, 4.0 mm, 0 °C)",mw,-0.8590475044080508,16.479809417470346,14.967756033049248,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"기준 (0 mg/dL, 4.0 mm, 0 °C)",fusion,0.7999794376037851,12.619106408117013,12.269405460332703,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"기준 (0 mg/dL, 4.0 mm, 0 °C)",fusion_corr,0.855211757031931,12.691904503838522,12.232226403756219,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"162 mg/dL, 4.2 mm, +0.7 °C",nir,3.9268502434471046,584.6113845839257,607.7304010729675,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"162 mg/dL, 4.2 mm, +0.7 °C",mw,0.3570980483175545,15.717050865305302,14.722087628986811,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"162 mg/dL, 4.2 mm, +0.7 °C",fusion,-0.06245568904121797,13.360301812666846,12.801618848434073,"mean error / std / predicted sigma (mg/dL), n=200"
+monte_carlo,"162 mg/dL, 4.2 mm, +0.7 °C",fusion_corr,-0.018143553691951128,13.42141363452965,12.77257062400577,"mean error / std / predicted sigma (mg/dL), n=200"
+mismatch,산란 계수 +20 % (교정 뒤에 변함),nir,-5108.0,at bound,,물리적 교란 (모델이 모름)
+mismatch,산란 계수 +20 % (교정 뒤에 변함),mw,9.698482017483911e-10,,,물리적 교란 (모델이 모름)
+mismatch,산란 계수 +20 % (교정 뒤에 변함),fusion,1132.6115681444444,,,물리적 교란 (모델이 모름)
+mismatch,산란 계수 +20 % (교정 뒤에 변함),fusion_corr,1206.4703603773332,,,물리적 교란 (모델이 모름)
+mismatch,중간층 수분 비율 +0.02,nir,963.0129402321757,,,물리적 교란 (모델이 모름)
+mismatch,중간층 수분 비율 +0.02,mw,9.698482017483911e-10,,,물리적 교란 (모델이 모름)
+mismatch,중간층 수분 비율 +0.02,fusion,172.22223205417765,,,물리적 교란 (모델이 모름)
+mismatch,중간층 수분 비율 +0.02,fusion_corr,178.197681938191,,,물리적 교란 (모델이 모름)
+mismatch,피부 εr +1,nir,-7.358296684856214e-06,,,물리적 교란 (모델이 모름)
+mismatch,피부 εr +1,mw,-10.161935287620892,,,물리적 교란 (모델이 모름)
+mismatch,피부 εr +1,fusion,-82.74319095484748,,,물리적 교란 (모델이 모름)
+mismatch,피부 εr +1,fusion_corr,-91.74833270440766,,,물리적 교란 (모델이 모름)
+mismatch,공기 틈 10 µm (양쪽),nir,-7.358296684856214e-06,,,물리적 교란 (모델이 모름)
+mismatch,공기 틈 10 µm (양쪽),mw,-1502.467141191608,,,물리적 교란 (모델이 모름)
+mismatch,공기 틈 10 µm (양쪽),fusion,-409.4363243492758,,,물리적 교란 (모델이 모름)
+mismatch,공기 틈 10 µm (양쪽),fusion_corr,-698.100674178869,,,물리적 교란 (모델이 모름)
+mismatch,클립 재장착으로 광량 +1 %,nir,3301.9532738095304,,,물리적 교란 (모델이 모름)
+mismatch,클립 재장착으로 광량 +1 %,mw,9.698482017483911e-10,,,물리적 교란 (모델이 모름)
+mismatch,클립 재장착으로 광량 +1 %,fusion,-69.1818559736196,,,물리적 교란 (모델이 모름)
+mismatch,클립 재장착으로 광량 +1 %,fusion_corr,-71.88304770778333,,,물리적 교란 (모델이 모름)
+mismatch,1625 nm 포도당 흡수 계수가 1e-5 (가정은 3e-5),nir,-92.35619944110186,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 1e-5 (가정은 3e-5),mw,9.698482017483911e-10,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 1e-5 (가정은 3e-5),fusion,-1.8156747909187914,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 1e-5 (가정은 3e-5),fusion_corr,-1.698250427348512,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 5e-5,nir,92.28961461717645,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 5e-5,mw,9.698482017483911e-10,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 5e-5,fusion,1.814553405959856,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,1625 nm 포도당 흡수 계수가 5e-5,fusion_corr,1.6967957428193472,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,물 흡수 온도계수가 1.2배 (가정은 Jensen 2003 값 1배),nir,1.438847633039586e-06,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,물 흡수 온도계수가 1.2배 (가정은 Jensen 2003 값 1배),mw,9.698482017483911e-10,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,물 흡수 온도계수가 1.2배 (가정은 Jensen 2003 값 1배),fusion,-1.7786542538889307,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,물 흡수 온도계수가 1.2배 (가정은 Jensen 2003 값 1배),fusion_corr,-0.7054544778233094,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 혈당 계수가 조직 값 G02 (가정은 팬텀 G01),nir,-7.358296684856214e-06,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 혈당 계수가 조직 값 G02 (가정은 팬텀 G01),mw,-93.8093585224907,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 혈당 계수가 조직 값 G02 (가정은 팬텀 G01),fusion,-89.82650985597537,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 혈당 계수가 조직 값 G02 (가정은 팬텀 G01),fusion_corr,-89.72794764845831,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 온도 계수 부호 반대 (K02),nir,-7.358296684856214e-06,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 온도 계수 부호 반대 (K02),mw,-3.573887852326152e-10,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 온도 계수 부호 반대 (K02),fusion,-15.150059275176702,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 온도 계수 부호 반대 (K02),fusion_corr,-17.195022336310913,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 두께 응답이 1.3배,nir,-7.358296684856214e-06,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 두께 응답이 1.3배,mw,2.4290613964694785e-10,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 두께 응답이 1.3배,fusion,-130.18741044937875,,,계수가 달랐음 (모델이 다르게 가정)
+mismatch,마이크로파 두께 응답이 1.3배,fusion_corr,-134.78169004971807,,,계수가 달랐음 (모델이 다르게 가정)

@@ -1,0 +1,592 @@
+﻿table,scenario,g,geometry,quantity,wl_1310,wl_1370,wl_1625,note
+diffusion,phantom,,,T,0.09939689332129859,0.018004872511395466,0.011421123864751003,diffusion model (NIRLayerV1)
+diffusion,phantom,,,glucose,-0.00018776443932118592,-0.00038381068092924756,3.905582434912211e-05,diffusion model (NIRLayerV1)
+diffusion,phantom,,,temp,0.0012965706809753086,0.009642305539288945,-0.012187276909475821,diffusion model (NIRLayerV1)
+diffusion,phantom,,,thick,0.1719569826848184,0.3343368198970863,0.3545738136965177,diffusion model (NIRLayerV1)
+diffusion,phantom,,,water,0.006329004665751635,0.012947689989114844,0.015148546238654055,diffusion model (NIRLayerV1)
+diffusion,phantom,,,scat,0.04698841401953614,0.07596257964496292,0.062316743666800505,diffusion model (NIRLayerV1)
+mc,phantom,g0.9,total,T,0.11318021691931199,0.021911752467711876,0.016004678531155038,mean over 8 batches
+mc_se,phantom,g0.9,total,T,0.00010212166141255906,2.4292123910532483e-05,1.5764375534878795e-05,standard error of the mean
+mc,phantom,g0.9,total,glucose,-0.00018100963177293563,-0.00037297830123966705,3.781146850257606e-05,mean over 8 batches
+mc_se,phantom,g0.9,total,glucose,1.15261642505598e-07,1.5634577670686329e-07,1.1843577163634034e-08,standard error of the mean
+mc,phantom,g0.9,total,temp,0.0012663467832158852,0.009374968665856088,-0.011626209891000355,mean over 8 batches
+mc_se,phantom,g0.9,total,temp,5.557014203127018e-07,3.4316485019792984e-06,2.075933949898985e-06,standard error of the mean
+mc,phantom,g0.9,total,thick,0.20941736781400766,0.39142496995516807,0.43268316944165364,mean over 8 batches
+mc_se,phantom,g0.9,total,thick,0.0005558375407416704,0.0011207535832703716,0.0011704425144317937,standard error of the mean
+mc,phantom,g0.9,total,water,0.006099462427738532,0.012580535263385005,0.014668340445742226,mean over 8 batches
+mc_se,phantom,g0.9,total,water,3.87912938509726e-06,5.229888138867166e-06,4.562995258040098e-06,standard error of the mean
+mc,phantom,g0.9,total,scat,0.07549544103678443,0.12370949863714531,0.1268983661343672,mean over 8 batches
+mc_se,phantom,g0.9,total,scat,0.0006167997441536744,0.0008448312214444584,0.00029888456383849105,standard error of the mean
+mc,phantom,g0.9,total,sigma_A_noise_layer,0.0003152030121507123,0.00046532376557948616,0.0005751324152758976,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,total,neg_nir_only_mgdl,631.1554505540133,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,pencil → disc 0.06,T,4.687978106546825e-05,1.585650446588037e-05,1.4682841981664599e-05,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,T,1.567734334758456e-06,4.0482031575802336e-07,4.382284868958172e-07,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,glucose,-0.00010768275345163868,-0.0002806803839472747,2.9921883404003378e-05,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,glucose,1.3559201196371052e-06,1.448707494295405e-06,4.695192346182605e-08,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,temp,0.000812418601400822,0.007171486829990835,-0.009229962099323525,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,temp,5.957444140845513e-06,3.1703642548821135e-05,2.6716163878246378e-05,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,thick,0.41492898642219406,0.5962567195618093,0.6752628743463517,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,thick,0.022575468201670536,0.033721057769262076,0.026932534008218992,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,water,0.003637296734922483,0.00948918909795942,0.01163041118568043,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,water,4.566627528925136e-05,4.860730255115346e-05,1.8170065227732846e-05,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,scat,0.09485288297536679,0.1501906660824685,0.18736330582850327,mean over 8 batches
+mc_se,phantom,g0.9,pencil → disc 0.06,scat,0.02228361237203282,0.009911148233967618,0.007634861197027517,standard error of the mean
+mc,phantom,g0.9,pencil → disc 0.06,sigma_A_noise_layer,0.00032187317961696163,0.0004110888427965431,0.0004292353328702212,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,pencil → disc 0.06,neg_nir_only_mgdl,9763.508492122468,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,pencil → disc 0.06,A_eff_mm2,27.304694427473635,15.628670405931798,12.32790286877647,exit area giving the same detector signal
+mc,phantom,g0.9,beam 0.5 → disc 0.06,T,4.775237797495216e-05,1.5322314509054264e-05,1.386435646673286e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,T,3.399934754029385e-07,8.263551654645235e-08,6.819256825446045e-08,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,glucose,-0.00010611621131177232,-0.00028366106388193636,3.0144171534929593e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,glucose,3.366836230038569e-07,3.3717185849627413e-07,2.136881324626611e-08,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,temp,0.0007965785931015899,0.007227111917787469,-0.009273531925184252,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,temp,2.391969241171393e-06,9.669355597136232e-06,7.440080091130519e-06,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,thick,0.41733815311472944,0.593728710930517,0.6464226634422241,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,thick,0.005147257363752784,0.005946266748903978,0.005438666903552685,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,water,0.003585102791027387,0.009590294136805072,0.011716426792954395,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,water,1.1312996550151447e-05,1.1323637303822357e-05,8.229707309616964e-06,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,scat,0.09890694932927833,0.15676588844403777,0.1705535140403546,mean over 8 batches
+mc_se,phantom,g0.9,beam 0.5 → disc 0.06,scat,0.0023293890916738346,0.0030339422484096513,0.0025319652510221646,standard error of the mean
+mc,phantom,g0.9,beam 0.5 → disc 0.06,sigma_A_noise_layer,0.00032135706257734335,0.0004174716573223478,0.0004417668108309003,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 0.5 → disc 0.06,neg_nir_only_mgdl,4487.071586908141,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 0.5 → disc 0.06,A_eff_mm2,26.80574562152488,16.173541010464863,13.055683487501193,exit area giving the same detector signal
+mc,phantom,g0.9,beam 1.0 → disc 0.06,T,4.450680110348792e-05,1.3950466524586944e-05,1.2189627446481153e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,T,1.6961277344116075e-07,5.383459018618013e-08,4.267105146529587e-08,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,glucose,-0.00010893681740792267,-0.0002891737063415347,3.071034210691378e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,glucose,1.3408759815919272e-07,1.758316334227582e-07,1.187550009249076e-08,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,temp,0.0008162309887622817,0.00737020859197823,-0.009454065122906741,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,temp,1.0216956715775466e-06,5.146419181493717e-06,2.2398501330137285e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,thick,0.3986697023406097,0.5613654293777213,0.6185703695892214,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,thick,0.0023107435525558974,0.002890914600653931,0.0032529047388514644,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,water,0.0036801730535540415,0.009776161272641255,0.01193595851165382,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,water,4.519954497977087e-06,5.918518497003609e-06,4.581236693041994e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,scat,0.09412773562491691,0.14683218300693823,0.1618946508304252,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.06,scat,0.0017222888358062356,0.0014517339304443546,0.0014385970852870088,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.06,sigma_A_noise_layer,0.0003234284378690033,0.0004367561483006433,0.0004740580079674822,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 1.0 → disc 0.06,neg_nir_only_mgdl,4566.139741016213,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 1.0 → disc 0.06,A_eff_mm2,28.76050547517693,17.763999623286253,14.849399670521297,exit area giving the same detector signal
+mc,phantom,g0.9,beam 2.0 → disc 0.06,T,3.44695321608994e-05,9.878164017665427e-06,8.087941331631945e-06,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,T,5.3310535884852605e-08,1.59772649016071e-08,1.4358370015854039e-08,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,glucose,-0.00011728796431356708,-0.0003065703315858865,3.24364098876516e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,glucose,9.379880548164857e-08,1.0945961548689421e-07,6.751296044426924e-09,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,temp,0.0008765984352692997,0.007820335673254419,-0.010005710071892115,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,temp,7.059428382570634e-07,3.1618291528572793e-06,1.636329393508401e-06,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,thick,0.33998182127458476,0.4976900391246233,0.5380060613033149,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,thick,0.0017758662607899516,0.001829697539308333,0.0016410647684740032,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,water,0.00396156770613755,0.01036202994092317,0.012604391301169034,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,water,3.1384506160086157e-06,3.6655425068295994e-06,2.6057171434845866e-06,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,scat,0.08356520027332269,0.1327792353707588,0.14279275681181863,mean over 8 batches
+mc_se,phantom,g0.9,beam 2.0 → disc 0.06,scat,0.001254755158651515,0.0009500802178115205,0.0003939831625986539,standard error of the mean
+mc,phantom,g0.9,beam 2.0 → disc 0.06,sigma_A_noise_layer,0.00033375301101993984,0.0005352806259863094,0.0006247945829708664,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 2.0 → disc 0.06,neg_nir_only_mgdl,10449.635120026289,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 2.0 → disc 0.06,A_eff_mm2,37.13534871446528,25.087261321461433,22.380064637663683,exit area giving the same detector signal
+mc,phantom,g0.9,beam 1.0 → disc 0.25,T,0.0007687576751078933,0.00024035780895248629,0.00020981623874595024,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,T,2.686218080650367e-06,8.737857638726191e-07,6.976758870623684e-07,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,glucose,-0.00010906533160752195,-0.0002895348130932178,3.0744900635061005e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,glucose,1.3649582602430438e-07,1.7873714985197187e-07,1.1033538783142638e-08,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,temp,0.0008172574942252109,0.007380188334837327,-0.009465018153099792,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,temp,9.948524229494894e-07,5.232981997452276e-06,2.1191837101466015e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,thick,0.39813104820214573,0.560379485890611,0.6166806112396399,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,thick,0.002424253836877084,0.0028741516511061726,0.003172849783392785,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,water,0.0036844996394351306,0.009788329659566214,0.011949333471765671,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,water,4.598768465534178e-06,6.019252969474132e-06,4.257352881111065e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,scat,0.09412342091331023,0.1463249363444548,0.1614249163804689,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.25,scat,0.0017139222124472918,0.001529135486298016,0.001382788497804783,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.25,sigma_A_noise_layer,0.00030734882048124706,0.0003078233625330432,0.0003080112004219354,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 1.0 → disc 0.25,neg_nir_only_mgdl,3947.5244086742846,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 1.0 → disc 0.25,A_eff_mm2,28.90752748870986,17.89982424532165,14.97744550096025,exit area giving the same detector signal
+mc,phantom,g0.9,beam 1.0 → disc 0.5,T,0.003025753960021844,0.0009398876935037481,0.0008177427584707032,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,T,9.723740887906577e-06,3.1330162135796566e-06,2.468261709889368e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,glucose,-0.00010953891643710714,-0.000290580424644183,3.084695575776549e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,glucose,1.326278396968002e-07,1.7280346196366636e-07,9.898502669244752e-09,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,temp,0.0008208120583149741,0.007407963253701997,-0.009497670255668783,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,temp,9.948536692802558e-07,4.957171504900099e-06,2.063734830649289e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,thick,0.3943443226005279,0.5567824831143642,0.6115527412142037,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,thick,0.002207705853753863,0.003070209482601614,0.003146401129504537,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,water,0.003700457304020675,0.009823546205745487,0.011988848011980649,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,water,4.4647546006015235e-06,5.819701829630388e-06,3.817544264684414e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,scat,0.09347913180139425,0.14547564907853372,0.16007941104630602,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 0.5,scat,0.001625794474159876,0.0014257886827024704,0.001133470381377561,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 0.5,sigma_A_noise_layer,0.0003072960208741194,0.0003073276380899785,0.00030734038379645113,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 1.0 → disc 0.5,neg_nir_only_mgdl,4080.954440591038,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 1.0 → disc 0.5,A_eff_mm2,29.378308902786895,18.310113286840036,15.371637344295817,exit area giving the same detector signal
+mc,phantom,g0.9,beam 1.0 → disc 1.0,T,0.011357960464889981,0.0034551092627437005,0.002960817995326522,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,T,2.8800128583048325e-05,9.14862156607384e-06,7.212280729402932e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,glucose,-0.00011152355498775398,-0.00029460988436718965,3.1238389059578934e-05,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,glucose,1.0509884639928834e-07,1.3841536576177915e-07,8.575189307740448e-09,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,temp,0.0008351650072287748,0.007511835174020333,-0.009622548672709617,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,temp,8.698140416931547e-07,4.020552297537164e-06,1.7711180743971746e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,thick,0.37954196954673325,0.5411411243788925,0.5927869421646422,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,thick,0.001668929724360686,0.002871027334900922,0.002718625209396967,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,water,0.0037673294701481433,0.009959218852659091,0.01214042092403893,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,water,3.5337670826305603e-06,4.659594361411985e-06,3.3029957492968127e-06,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,scat,0.09069079993968464,0.14227225881867311,0.1554514014144318,mean over 8 batches
+mc_se,phantom,g0.9,beam 1.0 → disc 1.0,scat,0.0014200350467119083,0.0010727900309720295,0.0008019462623007816,standard error of the mean
+mc,phantom,g0.9,beam 1.0 → disc 1.0,sigma_A_noise_layer,0.0003072924588217997,0.0003072949464560454,0.0003072960355433267,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,beam 1.0 → disc 1.0,neg_nir_only_mgdl,4764.489792347156,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,beam 1.0 → disc 1.0,A_eff_mm2,31.305456565423427,19.923480082704415,16.981854533411806,exit area giving the same detector signal
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",T,4.2619481339532895e-05,1.3135785004055193e-05,1.136897639948906e-05,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",T,1.2494683385009134e-07,3.8913546021940305e-08,2.988002216380964e-08,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose,-0.00011020850390249559,-0.00029201193109263654,3.0987148012092376e-05,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose,1.274768287014386e-07,1.605049803894008e-07,8.782233914476485e-09,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",temp,0.0008257335728960617,0.007445161347580769,-0.009542304704802645,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",temp,1.0159975461076618e-06,4.497503638329895e-06,1.9438661453412374e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",thick,0.38876799812220536,0.551344546151276,0.6044913764426691,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",thick,0.0018466314839190134,0.0031724142028980054,0.003049874048386683,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",water,0.0037230225365295923,0.009871755722932876,0.012043137772266555,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",water,4.2885384029581136e-06,5.4038913552324954e-06,3.3835588043405726e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",scat,0.09252440721715859,0.1444357712082277,0.1583049563692555,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",scat,0.0015109837461913592,0.0012760935437350295,0.0008986908698774379,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",sigma_A_noise_layer,0.00032484868458837723,0.0004506352990803248,0.0004941837012980736,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",neg_nir_only_mgdl,5005.432381853875,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",A_eff_mm2,30.03410779736871,18.865723061920228,15.921279403455303,exit area giving the same detector signal
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",dA_vs_aligned,0.018809222268875898,0.026123297305569962,0.030260941619581982,"AU, against the aligned detector"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",T,3.753433585613978e-05,1.108822721207577e-05,9.286537430940695e-06,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",T,7.253493389068962e-08,2.272104030385163e-08,1.850406238825157e-08,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose,-0.00011436250130215829,-0.0003004440923244185,3.1819761538165225e-05,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose,8.941209741165591e-08,1.1791424616798187e-07,6.8659337857148725e-09,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",temp,0.0008555588851522514,0.0076623832834068015,-0.009808365635510628,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",temp,7.314686038755214e-07,3.295503510948038e-06,1.3670749393089267e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",thick,0.3595208008439241,0.5189039255004876,0.5654600502053652,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",thick,0.0015736129691379715,0.002347958320194867,0.0021085044269187067,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",water,0.003862990184940288,0.01015570613053201,0.012365578223421766,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",water,2.995785393973904e-06,3.960611920431572e-06,2.644154383095423e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",scat,0.08708543046065824,0.13742489392474241,0.1489644659797692,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",scat,0.0012861379614594484,0.0009434772250294392,0.0005263967788432267,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",sigma_A_noise_layer,0.0003297504632789321,0.0004968818768755092,0.0005647243742337785,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",neg_nir_only_mgdl,7288.580868336024,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",A_eff_mm2,34.10312364991772,22.34947727419788,19.491511355402896,exit area giving the same detector signal
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",dA_vs_aligned,0.07398122963588144,0.09971023960625834,0.1181240148914044,"AU, against the aligned detector"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",T,2.3952461254120907e-05,5.988417014671659e-06,4.521329922002536e-06,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",T,2.684194669665687e-08,8.80453035110841e-09,5.625986775691817e-09,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose,-0.00013076194519608833,-0.0003344441930959032,3.5266682108794155e-05,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose,9.190087950753109e-08,1.174664755130914e-07,7.667313544555906e-09,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",temp,0.000971263836301489,0.00852953318201948,-0.010905962085501453,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",temp,5.284531571852589e-07,3.5520784932009167e-06,2.895904686503241e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",thick,0.27070638935856,0.41749385298536357,0.43712265964820146,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",thick,0.0015099469468073047,0.00164180143946949,0.0009770040708557265,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",water,0.004415527503057476,0.01130023824356608,0.013699983490029207,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",water,3.0795049426803037e-06,3.924112921770378e-06,2.9607313061588807e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",scat,0.07065338781150514,0.11881115566905245,0.12194376357423424,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",scat,0.0011886852178398133,0.0010234150798791423,0.000573854976694062,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",sigma_A_noise_layer,0.000359925294520364,0.0007855322168257471,0.0010204503106608087,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",neg_nir_only_mgdl,21464.530903373012,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",A_eff_mm2,53.44077517709169,41.38256929674052,40.03438211989279,exit area giving the same detector signal
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",dA_vs_aligned,0.2690560551106431,0.3672572212314037,0.43070795501960113,"AU, against the aligned detector"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",T,1.3226611554862837e-05,2.5803420693186183e-06,1.7444994040179782e-06,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",T,2.8199445459152082e-08,4.303513028960727e-09,2.545645998675339e-09,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose,-0.0001570143646386697,-0.00038932446960903544,4.081896810755366e-05,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose,2.0147227441556665e-07,2.5024565364446323e-07,1.4154207745084893e-08,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",temp,0.0011457172771066402,0.009882813670466818,-0.012637881422934762,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",temp,8.623735624495973e-07,4.269963766000692e-06,4.731042644409316e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",thick,0.19329473616253334,0.31345898864178967,0.32132733197966246,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",thick,0.0016717522431562862,0.0018284252498540566,0.001372546727409366,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",water,0.005299937525299951,0.013145852230092311,0.01584696634651997,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",water,6.761075270701043e-06,8.415325256509399e-06,5.424617243771318e-06,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",scat,0.05938008163851689,0.1090207264809436,0.10314593251076598,mean over 8 batches
+mc_se,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",scat,0.0006269206218318321,0.001263964773943296,0.0007602003543916849,standard error of the mean
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",sigma_A_noise_layer,0.00045777616446243967,0.0017055935736241012,0.0025405466839143894,"AU, noise layer at the MC signal"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",neg_nir_only_mgdl,7831.66336785665,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",A_eff_mm2,96.77747709683527,96.04001152950617,103.75965126193255,exit area giving the same detector signal
+mc,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",dA_vs_aligned,0.5269625775309245,0.7328929253730658,0.8443042057367308,"AU, against the aligned detector"
+crosstalk_offset,phantom,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose_error_mgdl,-1322.786950416353,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose_error_mgdl,12711.37193808081,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose_error_mgdl,19691.322567245526,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose_error_mgdl,-31986.94358194213,,,estimator knows the aligned Jacobian
+crosstalk_diffusion_jacobian,phantom,g0.9,total,glucose_error_mgdl_per_0.1mm_thickness,-826.4304057446891,,,
+crosstalk_diffusion_jacobian,phantom,g0.9,total,glucose_error_mgdl_per_1C,48.60058407405871,,,
+crosstalk_diffusion_jacobian,phantom,g0.9,total,glucose_error_mgdl_per_1pct_musp,-993.60360344072,,,
+crosstalk_diffusion_jacobian,phantom,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_0.1mm_thickness,-16779.720775341564,,,
+crosstalk_diffusion_jacobian,phantom,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1C,240.54396207822052,,,
+crosstalk_diffusion_jacobian,phantom,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1pct_musp,-1391.0128777677483,,,
+mc,phantom,g0.7,total,T,0.11499909645937643,0.02321748459672443,0.017506694981731824,mean over 8 batches
+mc_se,phantom,g0.7,total,T,7.640674929099537e-05,1.2154066791298977e-05,2.1495892864856963e-05,standard error of the mean
+mc,phantom,g0.7,total,glucose,-0.00017753002589151117,-0.0003621957907718295,3.649713855708066e-05,mean over 8 batches
+mc_se,phantom,g0.7,total,glucose,8.964666911395832e-08,1.1478984706253223e-07,1.061574045340455e-08,standard error of the mean
+mc,phantom,g0.7,total,temp,0.0012442960087587279,0.00910440748310453,-0.011221313561576754,mean over 8 batches
+mc_se,phantom,g0.7,total,temp,4.597778788254846e-07,3.355478178789935e-06,2.6227561118512946e-06,standard error of the mean
+mc,phantom,g0.7,total,thick,0.210238595641004,0.39035071592721726,0.42966189060522875,mean over 8 batches
+mc_se,phantom,g0.7,total,thick,0.00045400538477523804,0.000990262327677169,0.0014471893913636541,standard error of the mean
+mc,phantom,g0.7,total,water,0.005981858540113243,0.012216828444789753,0.014159347529470637,mean over 8 batches
+mc_se,phantom,g0.7,total,water,3.014108721928959e-06,3.883429703799793e-06,4.074649409600964e-06,standard error of the mean
+mc,phantom,g0.7,total,scat,0.0772697365899258,0.1268659902328728,0.13267891829517298,mean over 8 batches
+mc_se,phantom,g0.7,total,scat,0.00033905448909259567,0.0003243645687787323,0.0001943378083532052,standard error of the mean
+mc,phantom,g0.7,total,sigma_A_noise_layer,0.00031495799914376576,0.00045075660829349437,0.0005403390610037988,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,total,neg_nir_only_mgdl,634.2219065793008,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,pencil → disc 0.06,T,7.779785703415011e-05,3.1313322388591764e-05,5.214673223187249e-05,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,T,1.0608887419773716e-06,3.5975254500180746e-07,1.511639120738902e-06,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,glucose,-9.363937933099138e-05,-0.00025912929286886954,2.7655384885983665e-05,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,glucose,4.0960078735275323e-07,6.340110107789732e-07,3.591972689052919e-08,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,temp,0.0006833709884203746,0.006352232266967726,-0.008192627740788994,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,temp,6.7909629762873045e-06,2.543202104872203e-05,1.3402439569791226e-05,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,thick,0.5955914427765607,0.8417790985476735,0.9309330904014598,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,thick,0.029383450265668947,0.02787014905830422,0.009811986352898669,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,water,0.0031647706619905855,0.008764367178975985,0.010752757884118128,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,water,1.3685067489790781e-05,2.130973554374846e-05,1.3855368414621008e-05,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,scat,0.272291212114785,0.3648691599182547,0.4293672867313365,mean over 8 batches
+mc_se,phantom,g0.7,pencil → disc 0.06,scat,0.00974431910307464,0.00923817505629212,0.004940546741270617,standard error of the mean
+mc,phantom,g0.7,pencil → disc 0.06,sigma_A_noise_layer,0.0003126701799406159,0.0003369835745695936,0.0003186802841149329,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,pencil → disc 0.06,neg_nir_only_mgdl,3213.7151957990063,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,pencil → disc 0.06,A_eff_mm2,16.717801612601654,8.385682020561285,3.796902455081717,exit area giving the same detector signal
+mc,phantom,g0.7,beam 0.5 → disc 0.06,T,5.968510474519435e-05,2.1228938735070608e-05,2.3097820913288158e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,T,3.292207470813808e-07,1.0325195433194416e-07,8.078198364077261e-08,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,glucose,-0.00010065944532969148,-0.00027111048818795737,2.879459898063008e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,glucose,1.7261107972991283e-07,4.14540303978212e-07,8.656111309475637e-09,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,temp,0.0007433521076646472,0.006784553947254577,-0.008718504573850268,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,temp,9.928128525849267e-07,1.200014013945023e-05,2.7273127792660416e-06,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,thick,0.4733027217317338,0.6495645926019933,0.7083512984798777,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,thick,0.007633006005219404,0.004583308256591812,0.0030757508582867975,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,water,0.0034010846132421424,0.009167284093311382,0.011193566196611156,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,water,5.775493654529501e-06,1.3876388036925653e-05,3.3056490832511406e-06,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,scat,0.1530731252222644,0.21656749732769814,0.24511293792845962,mean over 8 batches
+mc_se,phantom,g0.7,beam 0.5 → disc 0.06,scat,0.0010080264745738214,0.0013379778573238256,0.0010856226192262808,standard error of the mean
+mc,phantom,g0.7,beam 0.5 → disc 0.06,sigma_A_noise_layer,0.00031637052502643764,0.0003688301928570362,0.0003615673241556741,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 0.5 → disc 0.06,neg_nir_only_mgdl,2988.398584087126,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 0.5 → disc 0.06,A_eff_mm2,21.791184673881105,12.369132900848223,8.572066446397054,exit area giving the same detector signal
+mc,phantom,g0.7,beam 1.0 → disc 0.06,T,5.1450513835535126e-05,1.727109391391222e-05,1.6707741974101013e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,T,1.6727110845750037e-07,6.565394435919825e-08,2.5412329566807805e-08,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,glucose,-0.00010463753019519856,-0.0002794382013753613,2.968833326378297e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,glucose,1.8260151375025106e-07,1.439649750033314e-07,7.10109605465063e-09,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,temp,0.0007767930418311148,0.007041981897826601,-0.00905421267694043,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,temp,1.046738956548558e-06,6.045178118146521e-06,1.8352232366589976e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,thick,0.41905843183541336,0.5844963201697579,0.626671266662994,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,thick,0.004141775710093655,0.001416695929640424,0.002370809151948953,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,water,0.003535208515952332,0.009447729222280505,0.011539668628487416,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,water,6.124485461318474e-06,4.835617824216466e-06,2.7268431321250755e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,scat,0.12257303613895576,0.1785687951185027,0.19510029048814587,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.06,scat,0.0005907650416417081,0.0009049735035777972,0.00056980288019623,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.06,sigma_A_noise_layer,0.00031944610555575053,0.00039658847573621764,0.0004047175340765488,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 1.0 → disc 0.06,neg_nir_only_mgdl,3447.741008742289,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 1.0 → disc 0.06,A_eff_mm2,25.27883674670283,15.203644069501392,11.850557420781517,exit area giving the same detector signal
+mc,phantom,g0.7,beam 2.0 → disc 0.06,T,3.7161896999887174e-05,1.1166093533109176e-05,9.610395356227668e-06,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,T,5.6468678541790726e-08,1.1304213995443519e-08,1.5124002793918986e-08,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,glucose,-0.00011444907238267128,-0.00029871072418297595,3.1547985813829536e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,glucose,9.594336132952117e-08,1.186763655148549e-07,6.361948824120669e-09,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,temp,0.0008510773227758954,0.007574501592785454,-0.00968195287047563,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,temp,5.20470374402751e-07,3.829186421926864e-06,1.6755226302099365e-06,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,thick,0.34397325718533533,0.49611402471595833,0.5302591338449121,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,thick,0.001257099671662476,0.001318094583795238,0.002282008076163743,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,water,0.003865751536808666,0.010096490654980035,0.012259398065547194,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,water,3.220388072649741e-06,3.983093940629666e-06,2.4696782006380296e-06,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,scat,0.09430073953623828,0.14545830998498854,0.15624295116276055,mean over 8 batches
+mc_se,phantom,g0.7,beam 2.0 → disc 0.06,scat,0.0005293070752741929,0.0005636097824549852,0.0001950195302530958,standard error of the mean
+mc,phantom,g0.7,beam 2.0 → disc 0.06,sigma_A_noise_layer,0.0003301869352582337,0.000494745374008685,0.000551399035007554,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 2.0 → disc 0.06,neg_nir_only_mgdl,7141.215641821803,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 2.0 → disc 0.06,A_eff_mm2,34.99845930325937,23.516153055627974,20.602279957960462,exit area giving the same detector signal
+mc,phantom,g0.7,beam 1.0 → disc 0.25,T,0.0008873987896755448,0.00029744155181358063,0.00028705824244976846,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,T,2.510782738259957e-06,1.012607476366393e-06,4.228953725994775e-07,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,glucose,-0.00010479170999364826,-0.0002797484728199859,2.971505396841014e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,glucose,1.7769759013951247e-07,1.6625576810612614e-07,5.848698782652122e-09,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,temp,0.0007780483661858013,0.007050589581337497,-0.009063161770658981,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,temp,1.0435015009253235e-06,5.89364425419933e-06,1.5910230014812534e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,thick,0.417506565631227,0.5827695001483173,0.625312138261219,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,thick,0.003914909560009219,0.001429961087330338,0.002185447265753812,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,water,0.003540403472408692,0.009458182355854206,0.011550007960558275,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,water,5.960049485466498e-06,5.579509776891043e-06,2.2444591404691007e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,scat,0.12210924134022985,0.17811148181211311,0.19463911474644097,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.25,scat,0.0006702829480006485,0.0009260271683382435,0.0005186825242024242,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.25,sigma_A_noise_layer,0.00030733482114540437,0.0003076397346411081,0.00030767739175548213,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 1.0 → disc 0.25,neg_nir_only_mgdl,3179.848239585811,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 1.0 → disc 0.25,A_eff_mm2,25.445177580359204,15.326515116829198,11.974683228454523,exit area giving the same detector signal
+mc,phantom,g0.7,beam 1.0 → disc 0.5,T,0.003477457962257459,0.0011591674666566322,0.0011142762542723883,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,T,8.693374537169807e-06,3.5015643899914097e-06,1.4866093164633308e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,glucose,-0.0001053500986300982,-0.00028077970755774654,2.979834782072051e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,glucose,1.606707264156855e-07,1.7835255923881996e-07,5.7013924556662735e-09,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,temp,0.0007820734433757672,0.007078553576926707,-0.009090272319014724,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,temp,9.553356634592266e-07,5.715383221602604e-06,1.4823897672056541e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,thick,0.413255583904962,0.5782721851820948,0.6218203670963375,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,thick,0.0034937647632115286,0.0016233593110529005,0.0021058094650915063,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,water,0.0035592106153334606,0.009492884650532685,0.011582235982915554,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,water,5.388948069040089e-06,5.97732775055611e-06,2.1920697579468948e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,scat,0.12070458006398438,0.17678708542047988,0.19385149696913162,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 0.5,scat,0.0006063302344070661,0.0007963799993616964,0.0004372229153762021,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 0.5,sigma_A_noise_layer,0.00030729510956767575,0.0003073156255616167,0.0003073183436704682,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 1.0 → disc 0.5,neg_nir_only_mgdl,3325.0849030606746,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 1.0 → disc 0.5,A_eff_mm2,25.973018259846118,15.731091740842883,12.33960252952706,exit area giving the same detector signal
+mc,phantom,g0.7,beam 1.0 → disc 1.0,T,0.012838157519689777,0.004175106285981687,0.003927298892578439,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,T,2.7095147788680068e-05,9.511503219558277e-06,4.25759731483631e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,glucose,-0.00010759405514334453,-0.00028499721929961725,3.0168567886798248e-05,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,glucose,1.3836479571208396e-07,1.6655685637422975e-07,5.800420329036998e-09,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,temp,0.0007990780806446092,0.007194756706117914,-0.0092136306250163,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,temp,7.847093735802082e-07,5.0242434610432394e-06,1.032417933259337e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,thick,0.3960751181603043,0.5592191253520975,0.6038683066113765,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,thick,0.0026586917708509754,0.0016372135112389964,0.002059382658063422,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,water,0.0036347977144983584,0.009634819411495712,0.01172546875963334,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,water,4.643011563559703e-06,5.580755494330154e-06,2.2352535201769523e-06,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,scat,0.11439190256063297,0.1700258221896541,0.1876252254053582,mean over 8 batches
+mc_se,phantom,g0.7,beam 1.0 → disc 1.0,scat,0.0005270720424524171,0.0006587823124952709,0.00033544293042435955,standard error of the mean
+mc,phantom,g0.7,beam 1.0 → disc 1.0,sigma_A_noise_layer,0.0003072923936840962,0.0003072940942886776,0.0003072944051274311,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,beam 1.0 → disc 1.0,neg_nir_only_mgdl,3925.164756799586,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,beam 1.0 → disc 1.0,A_eff_mm2,28.141134430867385,17.470184960034715,14.004257340122352,exit area giving the same detector signal
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",T,4.869372441898822e-05,1.60989531307698e-05,1.537431831656344e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",T,1.0886463022775073e-07,4.314558083279101e-08,1.901015583294287e-08,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",glucose,-0.00010613568694077728,-0.00028223277048962554,2.992105182261934e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",glucose,1.437089136517363e-07,1.8199197532527385e-07,6.1321769731862755e-09,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",temp,0.0007878607526886911,0.0071181706852753435,-0.009130777494407015,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",temp,8.353947916634928e-07,5.556684781885349e-06,1.1906336207875751e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",thick,0.40745074738538783,0.5716484359260381,0.6161554956122901,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",thick,0.003117460401270813,0.0017941882703751766,0.002007905462872332,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",water,0.0035856711633473603,0.009541786329165015,0.011629714393785795,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",water,4.8196124999188394e-06,6.09555731988862e-06,2.3601840717946725e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",scat,0.11862747733186968,0.17474271874385844,0.19213727130253647,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",scat,0.0005271805665329135,0.0007035101712139538,0.00038049833795178825,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",sigma_A_noise_layer,0.0003208302383496393,0.00040836942973763014,0.0004199373442933857,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",neg_nir_only_mgdl,3900.380471649606,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",A_eff_mm2,26.709995082555082,16.310598734285353,12.87836322618451,exit area giving the same detector signal
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",dA_vs_aligned,0.023908256304280562,0.03051109716358833,0.03612070573482805,"AU, against the aligned detector"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",T,4.132250493877277e-05,1.2915918994651553e-05,1.1592238249856933e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",T,6.889371374519825e-08,1.978522300560941e-08,1.4439901984766045e-08,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",glucose,-0.00011099875945824069,-0.00029173500738649517,3.083927650273879e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",glucose,1.1666966870023471e-07,1.3884414079481485e-07,6.165618870357356e-09,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",temp,0.0008250882085674418,0.007382853706804457,-0.009443164701797624,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",temp,6.275769545385938e-07,4.1550876336014135e-06,1.102983527269483e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",thick,0.3687048900108652,0.5262739150790816,0.5658223849382833,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",thick,0.0017492766445785066,0.0014813516385256608,0.0021451055190034336,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",water,0.003749505606401706,0.00986164226058066,0.011985069348803012,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",water,3.917632241330989e-06,4.65580367221108e-06,2.3834980615843843e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",scat,0.10335643593457719,0.15664979174943416,0.17059075014647143,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",scat,0.0004863888739613468,0.0005798569703119906,0.00018853799143492536,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",sigma_A_noise_layer,0.00032593529405935793,0.000454754598621583,0.0004883690397278114,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",neg_nir_only_mgdl,5532.222960420911,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",A_eff_mm2,31.47459578526447,20.33022695998545,17.080054029956568,exit area giving the same detector signal
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",dA_vs_aligned,0.09519121662195582,0.12617602003528006,0.15874930613193433,"AU, against the aligned detector"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",T,2.441805420537619e-05,6.245110248544804e-06,4.703273707921024e-06,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",T,3.291014157598856e-08,7.593100433005768e-09,9.78121677167823e-09,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",glucose,-0.0001295710960170913,-0.0003296476699843725,3.4772913512348426e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",glucose,7.592099366304111e-08,1.3921527971108948e-07,7.117774010192017e-09,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",temp,0.0009607804226294843,0.008396286667229507,-0.010748145253991037,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",temp,4.767899333977282e-07,3.607390972302739e-06,3.1319074370280387e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",thick,0.26324800923220304,0.396061552570932,0.4074973175995097,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",thick,0.0011532524847634113,0.001442493649429686,0.0027022560643572015,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",water,0.004375161128928606,0.011137627963979197,0.013507565223124037,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",water,2.547009280566392e-06,4.701576204871375e-06,2.7656631212614892e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",scat,0.0697299200694719,0.11476911523208888,0.11542783355045985,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",scat,0.0006524232663498521,0.0005549366723810606,0.0003529732658129745,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",sigma_A_noise_layer,0.0003580785319841014,0.0007582770340513602,0.0009846221354832523,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",neg_nir_only_mgdl,125922.18601944766,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",A_eff_mm2,53.26424164854663,42.04626565547641,42.097498026157886,exit area giving the same detector signal
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",dA_vs_aligned,0.32366536242924987,0.44175988928752585,0.5505205710258756,"AU, against the aligned detector"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",T,1.3072374545479598e-05,2.56384329459766e-06,1.6976608354627093e-06,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",T,1.7640097459026744e-08,5.112619454156072e-09,3.3638360452656324e-09,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",glucose,-0.00015706142302255802,-0.00038630885878154254,4.050364231534497e-05,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",glucose,1.2659120153835584e-07,1.506215410787602e-07,1.9206914643282243e-08,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",temp,0.0011462447570954914,0.009816294275585568,-0.012578531326070874,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",temp,7.506083636574469e-07,2.738331244477713e-06,3.972828358138114e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",thick,0.18170801787337287,0.29610501588059945,0.29218480854167983,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",thick,0.0008047126784854508,0.001156844144087077,0.001350433279037053,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",water,0.00530119605451855,0.013042790695415226,0.015723090280990292,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",water,4.259942795951561e-06,5.064658360312388e-06,7.464345949222566e-06,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",scat,0.05536008207859139,0.09964459347320875,0.09298704281069466,mean over 8 batches
+mc_se,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",scat,0.0004469265905214989,0.0007760988480046886,0.0006595983548420922,standard error of the mean
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",sigma_A_noise_layer,0.0004607507805592399,0.0017162137633155944,0.0026096267733409367,"AU, noise layer at the MC signal"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",neg_nir_only_mgdl,8094.699206620031,,,"glucose, temperature, thickness unknown"
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",A_eff_mm2,99.49295250511436,102.41794617921839,116.62874674358638,exit area giving the same detector signal
+mc,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",dA_vs_aligned,0.5950219341849263,0.8284122967141414,0.9930692892553288,"AU, against the aligned detector"
+crosstalk_offset,phantom,g0.7,"beam 1.0 → disc 0.06, offset 0.5",glucose_error_mgdl,10524.220151789666,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.7,"beam 1.0 → disc 0.06, offset 1.0",glucose_error_mgdl,-11919.961410403028,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.7,"beam 1.0 → disc 0.06, offset 2.0",glucose_error_mgdl,-116851.23242680468,,,estimator knows the aligned Jacobian
+crosstalk_offset,phantom,g0.7,"beam 1.0 → disc 0.06, offset 3.0",glucose_error_mgdl,-235714.69564512486,,,estimator knows the aligned Jacobian
+crosstalk_diffusion_jacobian,phantom,g0.7,total,glucose_error_mgdl_per_0.1mm_thickness,-1092.1982685764058,,,
+crosstalk_diffusion_jacobian,phantom,g0.7,total,glucose_error_mgdl_per_1C,42.20179810459485,,,
+crosstalk_diffusion_jacobian,phantom,g0.7,total,glucose_error_mgdl_per_1pct_musp,-974.1011350900461,,,
+crosstalk_diffusion_jacobian,phantom,g0.7,beam 1.0 → disc 0.06,glucose_error_mgdl_per_0.1mm_thickness,-18546.499941177328,,,
+crosstalk_diffusion_jacobian,phantom,g0.7,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1C,229.2419180010055,,,
+crosstalk_diffusion_jacobian,phantom,g0.7,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1pct_musp,-2354.970091761534,,,
+diffusion,earlobe,,,T,0.0993360383186146,0.016958239501367676,0.010363477184196838,diffusion model (NIRLayerV1)
+diffusion,earlobe,,,glucose,-9.366315752317266e-05,-0.00020129592433891676,2.0562129219619933e-05,diffusion model (NIRLayerV1)
+diffusion,earlobe,,,temp,0.0013313000457814443,0.009966442370302149,-0.012650768821146737,diffusion model (NIRLayerV1)
+diffusion,earlobe,,,thick,0.17003217693666856,0.33945768560016193,0.36341631421969967,diffusion model (NIRLayerV1)
+diffusion,earlobe,,,water,0.01261641935671593,0.027132770225125342,0.03186832042466723,diffusion model (NIRLayerV1)
+diffusion,earlobe,,,scat,0.04070719535313907,0.06848291297076689,0.05532686631021803,diffusion model (NIRLayerV1)
+mc,earlobe,g0.9,total,T,0.11621095471646273,0.022100030401588554,0.016192869290714583,mean over 8 batches
+mc_se,earlobe,g0.9,total,T,9.300276167568865e-05,2.7947339997765932e-05,2.452362677379614e-05,standard error of the mean
+mc,earlobe,g0.9,total,glucose,-9.031033701270295e-05,-0.0001906372958532119,1.8982434734440316e-05,mean over 8 batches
+mc_se,earlobe,g0.9,total,glucose,4.628077576396781e-08,2.78783073289319e-08,6.4472485843320846e-09,standard error of the mean
+mc,earlobe,g0.9,total,temp,0.0012836427814865538,0.009438695717124905,-0.011678839684048356,mean over 8 batches
+mc_se,earlobe,g0.9,total,temp,6.578021790086243e-07,1.3802148695168976e-06,3.966640619510852e-06,standard error of the mean
+mc,earlobe,g0.9,total,thick,0.21426817773539444,0.40580814622055894,0.44768797352982026,mean over 8 batches
+mc_se,earlobe,g0.9,total,thick,0.0006194353957951356,0.0010289290931931516,0.0013825338429049002,standard error of the mean
+mc,earlobe,g0.9,total,water,0.01216274436554473,0.02569363100399362,0.02942492269163593,mean over 8 batches
+mc_se,earlobe,g0.9,total,water,6.2095235764744515e-06,3.7293699667636137e-06,9.9704862239108e-06,standard error of the mean
+mc,earlobe,g0.9,total,scat,0.07426715508028782,0.12473851814533593,0.12878212094675096,mean over 8 batches
+mc_se,earlobe,g0.9,total,scat,0.0007853140657270019,0.0008222542159615126,0.0002680117205143241,standard error of the mean
+mc,earlobe,g0.9,total,sigma_A_noise_layer,0.0003148010000653035,0.00046309294689264347,0.0005703651078426651,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,total,neg_nir_only_mgdl,1302.2401243718332,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,pencil → disc 0.06,T,6.118730571492035e-05,2.0348811183173288e-05,1.8245695009238365e-05,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,T,1.6007755377634588e-06,5.446945399583305e-07,5.336324370118284e-07,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,glucose,-5.460957241561551e-05,-0.0001454399318725763,1.5152857198853608e-05,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,glucose,6.623698280610443e-07,5.737028227296231e-07,5.2074196841691594e-08,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,temp,0.000776219105209683,0.007201055441961804,-0.009322698306194071,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,temp,9.414253721650603e-06,2.8404404493139048e-05,3.2038564433938235e-05,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,thick,0.4535299609285979,0.6241777985413919,0.6813631497728186,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,thick,0.029665175652888325,0.01993459602233545,0.0179390125902739,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,water,0.007375166530747499,0.01965382101761961,0.02354617590335733,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,water,8.860619348479078e-05,7.71923229811576e-05,7.99460875187156e-05,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,scat,0.12320570749896091,0.15753322660176072,0.18108540493110825,mean over 8 batches
+mc_se,earlobe,g0.9,pencil → disc 0.06,scat,0.016231963041024016,0.018002042359874897,0.011225812671759077,standard error of the mean
+mc,earlobe,g0.9,pencil → disc 0.06,sigma_A_noise_layer,0.0003159366335429909,0.00037378002813488135,0.0003906375107342084,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,pencil → disc 0.06,neg_nir_only_mgdl,6216.129041300014,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,pencil → disc 0.06,A_eff_mm2,21.480189696496662,12.283049515941913,10.03727383596883,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,T,5.925749731678128e-05,1.9289748086308338e-05,1.7664974937330424e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,T,3.128013955336409e-07,1.6204611412918765e-07,5.576229788599999e-08,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,glucose,-5.570389467318698e-05,-0.00014658873786846767,1.5279577498580126e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,glucose,8.856482414783557e-08,1.4907870142839378e-07,6.443199207980397e-09,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,temp,0.0007917728078961337,0.007257932808260569,-0.009400662248588453,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,temp,1.2588229103803799e-06,7.380888049133441e-06,3.96418027521927e-06,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,thick,0.43790963058940513,0.6273395339955825,0.6829233754973115,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,thick,0.004779061815259768,0.006334565961132329,0.00474614281401471,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,water,0.0075217021030963525,0.019808100929864972,0.02374273449321338,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,water,1.1915444161719338e-05,2.002384638584037e-05,9.843081637696839e-06,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,scat,0.10994221298019911,0.16094973727370032,0.17612188195208917,mean over 8 batches
+mc_se,earlobe,g0.9,beam 0.5 → disc 0.06,scat,0.0023156501857631503,0.0029793070856965675,0.002535840807801012,standard error of the mean
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,sigma_A_noise_layer,0.00031649998981149024,0.0003805505159900813,0.0003955805223677864,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,neg_nir_only_mgdl,10795.28395050913,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 0.5 → disc 0.06,A_eff_mm2,22.1797239722748,12.957424546714465,10.367240133937685,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,T,5.3498259245139294e-05,1.684790626189347e-05,1.5033686679995939e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,T,1.7403560829766868e-07,4.687518180247923e-08,5.51640495540533e-08,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,glucose,-5.739271168309383e-05,-0.0001497423974564243,1.5602658411276133e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,glucose,2.1632951923481152e-08,7.528124566985222e-08,6.1512533599177595e-09,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,temp,0.0008157770235451404,0.00741407292207355,-0.009599436252621343,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,temp,3.0749504156410915e-07,3.7272499042889033e-06,3.784550036419561e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,thick,0.41520506229369575,0.5851663292418835,0.6333221560830382,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,thick,0.0028173590647858297,0.002687581611199907,0.003259335967563859,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,water,0.007749018424790959,0.02023254857460773,0.024242640724061876,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,water,2.9285559109097157e-06,1.0139419290168395e-05,9.437817229379373e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,scat,0.10483790420178102,0.15723782955427928,0.16672973948126849,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.06,scat,0.0011950342059469114,0.001787481935426708,0.0013928387666343857,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,sigma_A_noise_layer,0.0003185502599156113,0.00040059799623601056,0.0004243827967945004,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,neg_nir_only_mgdl,9360.492552453541,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 1.0 → disc 0.06,A_eff_mm2,24.56743363838401,14.835401590451372,12.181778231348956,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,T,3.9362266902466545e-05,1.1137533499602723e-05,9.196271095953977e-06,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,T,8.842443266375911e-08,1.79773743288209e-08,1.951645141774498e-08,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,glucose,-6.269851545654392e-05,-0.00015998469567172956,1.654974931216873e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,glucose,2.648858360642751e-08,4.2624603871227056e-08,4.771638764552749e-09,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,temp,0.0008911919733135202,0.007921173250372908,-0.010182129958651462,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,temp,3.764792010292481e-07,2.110336407000716e-06,2.9357332175837775e-06,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,thick,0.3433772554583819,0.5064722867688793,0.5420435586572703,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,thick,0.0012144426983380708,0.0012757160019678153,0.0018833695773085388,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,water,0.008463485959999,0.021609653723497872,0.025706090645542162,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,water,3.540066618035806e-06,5.722234572516499e-06,7.3636744461800845e-06,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,scat,0.08744321446070426,0.13867947848194112,0.1461796215543504,mean over 8 batches
+mc_se,earlobe,g0.9,beam 2.0 → disc 0.06,scat,0.0013155350308356774,0.0008195608320046701,0.0006607666594096846,standard error of the mean
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,sigma_A_noise_layer,0.00032777758330158684,0.0004955248715756763,0.0005686312520922307,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,neg_nir_only_mgdl,59357.03933914853,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 2.0 → disc 0.06,A_eff_mm2,33.39022462884791,22.44172422577994,19.914271254559786,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,T,0.0009228527585213529,0.00029020010338290093,0.000258282343127874,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,T,2.89987570797716e-06,8.240387891311095e-07,9.021081791965728e-07,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,glucose,-5.749342001686217e-05,-0.00014993146656369147,1.561849406881394e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,glucose,2.1592223348038196e-08,6.317763494016685e-08,6.037567764271752e-09,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,temp,0.0008172084576097893,0.0074234338416015195,-0.009609179082852717,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,temp,3.0690357432423735e-07,3.1280297617136047e-06,3.7146043573842895e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,thick,0.4133200886093719,0.5836831658790785,0.6317859935852437,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,thick,0.002277193964456452,0.0026653024074464694,0.0030367215452655537,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,water,0.007762578193102363,0.02025798119457029,0.024267077349873843,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,water,2.9067695312205843e-06,8.5250969258953e-06,9.266407247697859e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,scat,0.10489237710615978,0.15704139064778433,0.1666944527161257,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.25,scat,0.00103033893061435,0.0016744159951956957,0.0013775433408312746,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,sigma_A_noise_layer,0.0003073316441218959,0.00030765720773424953,0.0003077675383813862,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,neg_nir_only_mgdl,8792.8840651146,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 1.0 → disc 0.25,A_eff_mm2,24.725469355267148,14.952892061459329,12.310026352406952,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,T,0.003619231257089099,0.001131151826881323,0.0010011319916734172,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,T,1.1457526620804148e-05,3.224397447854322e-06,3.152045378964611e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,glucose,-5.780493021355116e-05,-0.00015054286428547545,1.5670585132014196e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,glucose,1.9297981051296043e-08,5.861983470209359e-08,5.5534444060093004e-09,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,temp,0.0008216361500035833,0.007453704245813916,-0.009641227903318113,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,temp,2.742920916371342e-07,2.90236299857461e-06,3.4167475176399373e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,thick,0.4080870789750196,0.5792516724065404,0.6264301213677363,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,thick,0.0015888904547580272,0.002705342433779519,0.0026274226920290273,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,water,0.007804511051968356,0.020340131479391732,0.024347520678631378,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,water,2.595470330387859e-06,7.909147470152932e-06,8.526082051300187e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,scat,0.10388240639745157,0.15567790143084143,0.1655605625352665,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 0.5,scat,0.0009854677410807862,0.0015405761407929295,0.0013445518714859561,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,sigma_A_noise_layer,0.00030729489044241734,0.00030731678363173076,0.0003073244974985058,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,neg_nir_only_mgdl,9562.65628811303,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 1.0 → disc 0.5,A_eff_mm2,25.218579283154913,15.344821867362374,12.703469579274927,exit area giving the same detector signal
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,T,0.013414972678208691,0.004091909981471369,0.0035570672345455858,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,T,3.839478409295929e-05,9.537296195780783e-06,9.90223411078981e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,glucose,-5.905232084810187e-05,-0.0001528610040098394,1.58785855473075e-05,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,glucose,1.8278355188095e-08,5.3572285665055085e-08,4.798811788505238e-09,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,temp,0.0008393661090709307,0.007568475815117895,-0.009769199323142994,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,temp,2.597858901582781e-07,2.652389081957943e-06,2.9524588183927675e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,thick,0.39074443229249456,0.5608273508194623,0.6052608377397546,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,thick,0.0009763190173884053,0.0023493870192244923,0.0023916021257184986,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,water,0.007972428410484064,0.020651637878775525,0.024668781063803866,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,water,2.4404078508279877e-06,7.205117035049622e-06,7.376272401255654e-06,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,scat,0.09929504203734274,0.15103678528672748,0.16073859797943557,mean over 8 batches
+mc_se,earlobe,g0.9,beam 1.0 → disc 1.0,scat,0.0009765753273193267,0.0012629432304728054,0.0011215748750540017,standard error of the mean
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,sigma_A_noise_layer,0.0003072923736741582,0.00030729417074559,0.0003072948777530053,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,neg_nir_only_mgdl,12486.458298909354,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,beam 1.0 → disc 1.0,A_eff_mm2,27.21492546883411,16.96745369964769,14.301500604260438,exit area giving the same detector signal
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",T,5.075550685054379e-05,1.5724462966538282e-05,1.382216022378525e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",T,1.565237741486613e-07,4.3038353185226215e-08,3.971773753734052e-08,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose,-5.8240959113755e-05,-0.0001513858539809229,1.5743951473642856e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose,2.0910674288914177e-08,5.8598918789130133e-08,4.983056152364912e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",temp,0.0008278337118967519,0.007495440845681736,-0.009686366246015108,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",temp,2.972115626817681e-07,2.901286322759692e-06,3.0658167058043326e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",thick,0.40131102234469795,0.5729518846979675,0.6191024657491523,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",thick,0.0011060141777560273,0.002663046569056152,0.002403812248809978,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",water,0.007863213397891432,0.02045341373194386,0.024460852923979558,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",water,2.8088953626719066e-06,7.890955250929331e-06,7.651878737822243e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",scat,0.10210896583875058,0.15371228259635572,0.16383301872550643,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",scat,0.0010287619792395826,0.0014398995606130997,0.0012890307716926853,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",sigma_A_noise_layer,0.0003197744405365649,0.0004126151580943133,0.0004424632600863749,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",neg_nir_only_mgdl,11918.543447884993,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",A_eff_mm2,25.89502135490825,15.895325384743183,13.249523531072377,exit area giving the same detector signal
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",dA_vs_aligned,0.02285486055107219,0.02996974380516814,0.036481593147843175,"AU, against the aligned detector"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",T,4.3559783840889915e-05,1.2811379835840831e-05,1.0857642380902274e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",T,1.0984950756949762e-07,2.3768904397011048e-08,2.6682879013210127e-08,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose,-6.084395331826377e-05,-0.00015630560855276724,1.6199926621368437e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose,1.878037092410985e-08,4.5228069810893114e-08,4.688023245252483e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",temp,0.0008648317790310811,0.007739019631658464,-0.009966903058147248,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",temp,2.669157454867676e-07,2.2392220569836476e-06,2.884291225510241e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",thick,0.3667149761902102,0.533448934570028,0.5732623892540287,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",thick,0.0008720118853863251,0.0017678702592503642,0.002073305966270077,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",water,0.008213679473514559,0.02111479383878826,0.025165372337429336,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",water,2.5004441864869794e-06,6.067565172097179e-06,7.22624696965463e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",scat,0.09328906623129682,0.1448045647363905,0.15351264004324724,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",scat,0.001100968105958892,0.0009329315579003233,0.0008305325490992262,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",sigma_A_noise_layer,0.0003241187976134564,0.0004567742978542653,0.0005085819816051202,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",neg_nir_only_mgdl,23010.590803347128,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",A_eff_mm2,30.17266886756829,19.50964365713584,16.867108964411898,exit area giving the same detector signal
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",dA_vs_aligned,0.08924754681596012,0.1189435174751712,0.1413185915323396,"AU, against the aligned detector"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",T,2.5789857183053274e-05,6.174804456296243e-06,4.59373880530215e-06,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",T,2.6917611377541436e-08,1.0439383562517062e-08,9.22065107893552e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose,-7.085437820031998e-05,-0.0001767860712662587,1.8205368834717426e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose,3.80952913360593e-08,5.708973408514801e-08,4.9514834353668815e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",temp,0.0010071172402097374,0.008753020406982918,-0.011200742563774808,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",temp,5.414661497919526e-07,2.8264733363514045e-06,3.046376801800089e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",thick,0.2631650593213978,0.408444045672563,0.4262331541845996,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",thick,0.0015361968918509862,0.001137018060617423,0.0014237297932122867,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",water,0.009562406560399948,0.02387023089091758,0.0282657968145585,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",water,5.119874495835669e-06,7.653047783461803e-06,7.661626792788841e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",scat,0.0691159066490917,0.11785508402435174,0.12009679026581727,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",scat,0.001170488999473072,0.0011875615704567417,0.0006249607207504394,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",sigma_A_noise_layer,0.0003531603181231283,0.0007654988024719283,0.0010058356601728101,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",neg_nir_only_mgdl,16755.59565645754,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",A_eff_mm2,50.96247429542458,40.478278643886284,39.866663059709936,exit area giving the same detector signal
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",dA_vs_aligned,0.31687630404035416,0.4359153340424792,0.5148847703140125,"AU, against the aligned detector"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",T,1.3360240467704787e-05,2.3715395338255927e-06,1.527091716402047e-06,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",T,1.549889267114471e-08,3.3307390529303615e-09,2.772135540152224e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose,-8.543365302762103e-05,-0.00020930537293384176,2.151684207342214e-05,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose,4.799906786863998e-08,6.090445621060349e-08,6.538710137665769e-09,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",temp,0.0012143441649847691,0.010363084616325048,-0.013238110610884599,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",temp,6.822539290736607e-07,3.0152860510020245e-06,4.022919995839683e-06,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",thick,0.1793246880983898,0.29897616579962705,0.3005881954979671,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",thick,0.0013808143178586068,0.001622928806497948,0.0020768785933673655,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",water,0.011528096148747672,0.02825015704549705,0.03339048356092711,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",water,6.477886483497601e-06,8.145283888756782e-06,1.00809930884212e-05,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",scat,0.05411003044699385,0.10197963795813753,0.096214199968432,mean over 8 batches
+mc_se,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",scat,0.0008574568490932525,0.0009448077603459114,0.0010691151307842066,standard error of the mean
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",sigma_A_noise_layer,0.00045526686390116357,0.0018510737566576757,0.002897261454235466,"AU, noise layer at the MC signal"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",neg_nir_only_mgdl,11724.401036988986,,,"glucose, temperature, thickness unknown"
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",A_eff_mm2,98.37509563926398,105.39375447402999,119.92536870462577,exit area giving the same detector signal
+mc,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",dA_vs_aligned,0.6025113539705176,0.851506841284113,0.9931848486271435,"AU, against the aligned detector"
+crosstalk_offset,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 0.5",glucose_error_mgdl,14071.1853674996,,,estimator knows the aligned Jacobian
+crosstalk_offset,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 1.0",glucose_error_mgdl,41426.21574217933,,,estimator knows the aligned Jacobian
+crosstalk_offset,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 2.0",glucose_error_mgdl,-81462.70219459779,,,estimator knows the aligned Jacobian
+crosstalk_offset,earlobe,g0.9,"beam 1.0 → disc 0.06, offset 3.0",glucose_error_mgdl,-487621.6251911345,,,estimator knows the aligned Jacobian
+crosstalk_diffusion_jacobian,earlobe,g0.9,total,glucose_error_mgdl_per_0.1mm_thickness,-2985.1636146197407,,,
+crosstalk_diffusion_jacobian,earlobe,g0.9,total,glucose_error_mgdl_per_1C,82.21353658056307,,,
+crosstalk_diffusion_jacobian,earlobe,g0.9,total,glucose_error_mgdl_per_1pct_musp,-2096.469833781421,,,
+crosstalk_diffusion_jacobian,earlobe,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_0.1mm_thickness,-40486.17927506511,,,
+crosstalk_diffusion_jacobian,earlobe,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1C,485.0540318236837,,,
+crosstalk_diffusion_jacobian,earlobe,g0.9,beam 1.0 → disc 0.06,glucose_error_mgdl_per_1pct_musp,-4404.224320862616,,,

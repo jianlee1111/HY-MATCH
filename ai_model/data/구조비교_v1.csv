@@ -1,0 +1,163 @@
+﻿table,label,col,value
+A_structure_sigma_mgdl,S21 (현재),온도·두께 모름,14.792
+A_structure_sigma_mgdl,S21 (현재),온도 센서(NTC),14.085
+A_structure_sigma_mgdl,S21 (현재),NTC + 두께 앎,10.048
+A_structure_sigma_mgdl,S21 (현재),온도·두께 앎,9.272
+A_structure_sigma_mgdl,S11,온도·두께 모름,27.006
+A_structure_sigma_mgdl,S11,온도 센서(NTC),4.955
+A_structure_sigma_mgdl,S11,NTC + 두께 앎,2.591
+A_structure_sigma_mgdl,S11,온도·두께 앎,2.578
+A_structure_sigma_mgdl,S11 + S21,온도·두께 모름,10.534
+A_structure_sigma_mgdl,S11 + S21,온도 센서(NTC),4.652
+A_structure_sigma_mgdl,S11 + S21,NTC + 두께 앎,2.485
+A_structure_sigma_mgdl,S11 + S21,온도·두께 앎,2.484
+A_structure_sigma_mgdl,S21 21점,온도·두께 모름,9.369
+A_structure_sigma_mgdl,S21 21점,온도 센서(NTC),9.162
+A_structure_sigma_mgdl,S21 21점,NTC + 두께 앎,7.151
+A_structure_sigma_mgdl,S21 21점,온도·두께 앎,6.091
+A_structure_sigma_mgdl,S11 21점,온도·두께 모름,18.558
+A_structure_sigma_mgdl,S11 21점,온도 센서(NTC),4.322
+A_structure_sigma_mgdl,S11 21점,NTC + 두께 앎,1.645
+A_structure_sigma_mgdl,S11 21점,온도·두께 앎,1.642
+A_structure_sigma_mgdl,S11 + S21 21점,온도·두께 모름,6.736
+A_structure_sigma_mgdl,S11 + S21 21점,온도 센서(NTC),3.789
+A_structure_sigma_mgdl,S11 + S21 21점,NTC + 두께 앎,1.585
+A_structure_sigma_mgdl,S11 + S21 21점,온도·두께 앎,1.585
+D_g01_gain_m,"중심값 (Δεr +0.391, Δσ −0.061)",S21 (현재),1.000
+D_g01_sigma_own_ntc,"중심값 (Δεr +0.391, Δσ −0.061)",S21 (현재),14.085
+D_g01_gain_m,"중심값 (Δεr +0.391, Δσ −0.061)",S11,1.000
+D_g01_sigma_own_ntc,"중심값 (Δεr +0.391, Δσ −0.061)",S11,4.955
+D_g01_gain_m,"중심값 (Δεr +0.391, Δσ −0.061)",S11 + S21,1.000
+D_g01_sigma_own_ntc,"중심값 (Δεr +0.391, Δσ −0.061)",S11 + S21,4.652
+D_g01_gain_m,Δεr만 0,S21 (현재),0.734
+D_g01_sigma_own_ntc,Δεr만 0,S21 (현재),18.578
+D_g01_gain_m,Δεr만 0,S11,0.589
+D_g01_sigma_own_ntc,Δεr만 0,S11,8.104
+D_g01_gain_m,Δεr만 0,S11 + S21,0.622
+D_g01_sigma_own_ntc,Δεr만 0,S11 + S21,7.118
+D_g01_gain_m,Δσ만 0,S21 (현재),0.267
+D_g01_sigma_own_ntc,Δσ만 0,S21 (현재),42.840
+D_g01_gain_m,Δσ만 0,S11,0.413
+D_g01_sigma_own_ntc,Δσ만 0,S11,11.174
+D_g01_gain_m,Δσ만 0,S11 + S21,0.379
+D_g01_sigma_own_ntc,Δσ만 0,S11 + S21,10.872
+D_g01_gain_m,Δεr −1 SE (−0.116),S21 (현재),0.655
+D_g01_sigma_own_ntc,Δεr −1 SE (−0.116),S21 (현재),20.130
+D_g01_gain_m,Δεr −1 SE (−0.116),S11,0.467
+D_g01_sigma_own_ntc,Δεr −1 SE (−0.116),S11,9.653
+D_g01_gain_m,Δεr −1 SE (−0.116),S11 + S21,0.510
+D_g01_sigma_own_ntc,Δεr −1 SE (−0.116),S11 + S21,8.132
+D_g01_gain_m,Δεr +1 SE (+0.898),S21 (현재),1.344
+D_g01_sigma_own_ntc,Δεr +1 SE (+0.898),S21 (현재),10.307
+D_g01_gain_m,Δεr +1 SE (+0.898),S11,1.531
+D_g01_sigma_own_ntc,Δεr +1 SE (+0.898),S11,3.205
+D_g01_gain_m,Δεr +1 SE (+0.898),S11 + S21,1.488
+D_g01_sigma_own_ntc,Δεr +1 SE (+0.898),S11 + S21,3.080
+D_g01_gain_m,Δσ −1 SE (−0.088),S21 (현재),1.325
+D_g01_sigma_own_ntc,Δσ −1 SE (−0.088),S21 (현재),10.612
+D_g01_gain_m,Δσ −1 SE (−0.088),S11,1.260
+D_g01_sigma_own_ntc,Δσ −1 SE (−0.088),S11,3.926
+D_g01_gain_m,Δσ −1 SE (−0.088),S11 + S21,1.275
+D_g01_sigma_own_ntc,Δσ −1 SE (−0.088),S11 + S21,3.640
+D_g01_gain_m,Δσ +1 SE (−0.034),S21 (현재),0.676
+D_g01_sigma_own_ntc,Δσ +1 SE (−0.034),S21 (현재),20.687
+D_g01_gain_m,Δσ +1 SE (−0.034),S11,0.740
+D_g01_sigma_own_ntc,Δσ +1 SE (−0.034),S11,6.666
+D_g01_gain_m,Δσ +1 SE (−0.034),S11 + S21,0.725
+D_g01_sigma_own_ntc,Δσ +1 SE (−0.034),S11 + S21,6.369
+D_g01_gain_m,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S21 (현재),0.114
+D_g01_sigma_own_ntc,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S21 (현재),114.232
+D_g01_gain_m,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S11,0.078
+D_g01_sigma_own_ntc,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S11,56.379
+D_g01_gain_m,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S11 + S21,0.086
+D_g01_sigma_own_ntc,"조직값 G02 (Δεr −0.027, Δσ −0.011)",S11 + S21,46.806
+D_g01_gain_m,둘 다 0,S21 (현재),0.000
+D_g01_sigma_own_ntc,둘 다 0,S21 (현재),inf
+D_g01_gain_m,둘 다 0,S11,0.000
+D_g01_sigma_own_ntc,둘 다 0,S11,inf
+D_g01_gain_m,둘 다 0,S11 + S21,0.000
+D_g01_sigma_own_ntc,둘 다 0,S11 + S21,inf
+F_levers,펌웨어만 (ADC 범위 자동 + 860회 평균) — 기준,nir_unk,514.531
+F_levers,펌웨어만 (ADC 범위 자동 + 860회 평균) — 기준,nir_ntc,234.530
+F_levers,펌웨어만 (ADC 범위 자동 + 860회 평균) — 기준,fus_unk,3.406
+F_levers,펌웨어만 (ADC 범위 자동 + 860회 평균) — 기준,fus_ntc,3.406
+F_levers,광원 감시 PD (같은 시간: NIR 평균 430회),nir_unk,69.879
+F_levers,광원 감시 PD (같은 시간: NIR 평균 430회),nir_ntc,67.228
+F_levers,광원 감시 PD (같은 시간: NIR 평균 430회),fus_unk,2.552
+F_levers,광원 감시 PD (같은 시간: NIR 평균 430회),fus_ntc,2.552
+F_levers,LED 온도 변동 0.1 → 0.02 °C (온도 제어),nir_unk,106.517
+F_levers,LED 온도 변동 0.1 → 0.02 °C (온도 제어),nir_ntc,97.761
+F_levers,LED 온도 변동 0.1 → 0.02 °C (온도 제어),fus_unk,2.651
+F_levers,LED 온도 변동 0.1 → 0.02 °C (온도 제어),fus_ntc,2.651
+F_levers,LED 출력 3.8 → 7.6 mW,nir_unk,514.451
+F_levers,LED 출력 3.8 → 7.6 mW,nir_ntc,234.479
+F_levers,LED 출력 3.8 → 7.6 mW,fus_unk,3.406
+F_levers,LED 출력 3.8 → 7.6 mW,fus_ntc,3.405
+F_levers,LED 출력 3.8 → 13.5 mW (범위 위쪽 끝),nir_unk,514.437
+F_levers,LED 출력 3.8 → 13.5 mW (범위 위쪽 끝),nir_ntc,234.468
+F_levers,LED 출력 3.8 → 13.5 mW (범위 위쪽 끝),fus_unk,3.406
+F_levers,LED 출력 3.8 → 13.5 mW (범위 위쪽 끝),fus_ntc,3.405
+F_levers,LED 구동 잡음 5e-4 → 1e-4,nir_unk,514.239
+F_levers,LED 구동 잡음 5e-4 → 1e-4,nir_ntc,234.488
+F_levers,LED 구동 잡음 5e-4 → 1e-4,fus_unk,3.406
+F_levers,LED 구동 잡음 5e-4 → 1e-4,fus_ntc,3.405
+F_levers,수광 면적 20 → 80 mm²,nir_unk,516.307
+F_levers,수광 면적 20 → 80 mm²,nir_ntc,235.564
+F_levers,수광 면적 20 → 80 mm²,fus_unk,3.414
+F_levers,수광 면적 20 → 80 mm²,fus_ntc,3.414
+F_levers,온도 센서 접촉 오차 0.05 → 0.01 °C,nir_unk,514.531
+F_levers,온도 센서 접촉 오차 0.05 → 0.01 °C,nir_ntc,105.921
+F_levers,온도 센서 접촉 오차 0.05 → 0.01 °C,fus_unk,3.406
+F_levers,온도 센서 접촉 오차 0.05 → 0.01 °C,fus_ntc,3.401
+F_levers,마이크로파에 S11 추가,nir_unk,514.531
+F_levers,마이크로파에 S11 추가,nir_ntc,234.530
+F_levers,마이크로파에 S11 추가,fus_unk,1.398
+F_levers,마이크로파에 S11 추가,fus_ntc,1.350
+F_levers,케이블 길이 변동 0.1 → 0.01 mm,nir_unk,514.531
+F_levers,케이블 길이 변동 0.1 → 0.01 mm,nir_ntc,234.530
+F_levers,케이블 길이 변동 0.1 → 0.01 mm,fus_unk,2.968
+F_levers,케이블 길이 변동 0.1 → 0.01 mm,fus_ntc,2.963
+F_levers,공통 이득·위상 변동 1/10,nir_unk,514.531
+F_levers,공통 이득·위상 변동 1/10,nir_ntc,234.530
+F_levers,공통 이득·위상 변동 1/10,fus_unk,3.062
+F_levers,공통 이득·위상 변동 1/10,fus_ntc,3.059
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",nir,607.579
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)","중심값 (Δεr +0.391, Δσ −0.061)",12.289
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δεr만 0,9.576
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δσ만 0,17.447
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δεr −1 SE (−0.116),8.662
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δεr +1 SE (+0.898),10.041
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δσ −1 SE (−0.088),8.047
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",Δσ +1 SE (−0.034),20.834
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)","조직값 G02 (Δεr −0.027, Δσ −0.011)",52.361
+G_designs_fusion_sigma,"설계 1 (지금 그대로: 50회, ±2.048 V)",둘 다 0,254.619
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",nir,514.531
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)","중심값 (Δεr +0.391, Δσ −0.061)",3.406
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δεr만 0,3.333
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δσ만 0,6.907
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δεr −1 SE (−0.116),3.181
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δεr +1 SE (+0.898),2.671
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δσ −1 SE (−0.088),2.396
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",Δσ +1 SE (−0.034),5.389
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)","조직값 G02 (Δεr −0.027, Δσ −0.011)",18.541
+G_designs_fusion_sigma,"설계 1 + 펌웨어 (자동 범위, 860회)",둘 다 0,121.063
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",nir,69.879
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)","중심값 (Δεr +0.391, Δσ −0.061)",2.552
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δεr만 0,1.474
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δσ만 0,2.514
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δεr −1 SE (−0.116),1.284
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δεr +1 SE (+0.898),2.341
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δσ −1 SE (−0.088),1.472
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",Δσ +1 SE (−0.034),5.291
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)","조직값 G02 (Δεr −0.027, Δσ −0.011)",7.631
+G_designs_fusion_sigma,"설계 2 (펌웨어 + 감시 PD, 같은 시간)",둘 다 0,39.834
+G_designs_fusion_sigma,설계 2 + S11,nir,69.879
+G_designs_fusion_sigma,설계 2 + S11,"중심값 (Δεr +0.391, Δσ −0.061)",0.693
+G_designs_fusion_sigma,설계 2 + S11,Δεr만 0,0.666
+G_designs_fusion_sigma,설계 2 + S11,Δσ만 0,1.175
+G_designs_fusion_sigma,설계 2 + S11,Δεr −1 SE (−0.116),0.623
+G_designs_fusion_sigma,설계 2 + S11,Δεr +1 SE (+0.898),0.504
+G_designs_fusion_sigma,설계 2 + S11,Δσ −1 SE (−0.088),0.489
+G_designs_fusion_sigma,설계 2 + S11,Δσ +1 SE (−0.034),1.057
+G_designs_fusion_sigma,설계 2 + S11,"조직값 G02 (Δεr −0.027, Δσ −0.011)",3.770
+G_designs_fusion_sigma,설계 2 + S11,둘 다 0,23.260

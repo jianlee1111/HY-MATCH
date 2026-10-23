@@ -1,0 +1,67 @@
+﻿table,label,value_a,value_b,value_c,note
+operating_point,gap 3.5 mm,1.0,0.08178050905560219,0.08314476328304406,force N / sigma_force N / sigma_thickness mm
+operating_point,gap 3.75 mm,1.25,0.1022256357336509,0.1025003931755829,force N / sigma_force N / sigma_thickness mm
+operating_point,gap 4.0 mm,1.5,0.12267076247707642,0.12267076247707642,force N / sigma_force N / sigma_thickness mm
+operating_point,gap 4.25 mm,1.75,0.1431158892605787,0.14331227358061915,force N / sigma_force N / sigma_thickness mm
+operating_point,gap 4.5 mm,2.0,0.16356101607160872,0.16424739260754506,force N / sigma_force N / sigma_thickness mm
+person_to_person,relaxed lobe 2.7 mm,2.6884658876743313,0.18846588767433126,inf,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 3.0 mm,2.9681647940074907,0.46816479400749067,0.04923506139338196,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 3.4 mm,3.3356028719980193,0.8356028719980193,0.07118352341674979,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 3.91 mm,3.795209866865898,1.295209866865898,0.10610094444001092,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 4.14 mm,3.999305200029254,1.4993052000292542,0.12261394315486858,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 4.5 mm,4.314882032667876,1.8148820326678763,0.1487222855823661,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+person_to_person,relaxed lobe 4.8 mm,4.574314574314574,2.074314574314574,0.17051121392378213,gap mm / force N / sigma_thickness mm (inf = FSR below break force)
+kim_wear,V1,0.027244499603436445,0.027244499603436445,0.22209448325983663,gap change mm / force change N / |dF| over sigma_F
+kim_wear,V2,-0.06014995168712245,-0.06014995168712245,0.49033649479730523,gap change mm / force change N / |dF| over sigma_F
+kim_wear,V3,-0.29532846763098775,-0.29532846763098775,2.407488644135362,gap change mm / force change N / |dF| over sigma_F
+kim_wear,V4,-0.009849001735337204,-0.009849001735337204,0.0802880942162375,gap change mm / force change N / |dF| over sigma_F
+kim_wear,V5,-0.24574033645272442,-0.24574033645272442,2.0032510721423624,gap change mm / force change N / |dF| over sigma_F
+zero_force_gap,g0 1.5 mm,0.2044512697515581,1.7046366115835074,1.491917857819148,sigma_thickness at 4.0 mm / thinnest lobe with contact mm / V3 snr
+zero_force_gap,g0 2.0 mm,0.16356101607160872,2.207505518763797,1.8422163988080043,sigma_thickness at 4.0 mm / thinnest lobe with contact mm / V3 snr
+zero_force_gap,g0 2.5 mm,0.12267076247707642,2.712295740691133,2.407488644135362,sigma_thickness at 4.0 mm / thinnest lobe with contact mm / V3 snr
+zero_force_gap,g0 3.0 mm,0.08178050905560219,3.221908981071285,3.47322554157201,sigma_thickness at 4.0 mm / thinnest lobe with contact mm / V3 snr
+zero_force_gap,g0 3.4 mm,0.0490683066918592,3.641267700606878,5.377680667082495,sigma_thickness at 4.0 mm / thinnest lobe with contact mm / V3 snr
+lever,"기준 (착용 30분, 보정 후 드리프트 그대로)",0.12267076247707642,,,sigma_thickness mm at 4.0 mm
+lever,착용 1분 시점에 읽음,0.05267827313294337,,,sigma_thickness mm at 4.0 mm
+lever,착용 5분 시점에 읽음,0.07431786603453701,,,sigma_thickness mm at 4.0 mm
+lever,착용 30분 시점에 읽음,0.12267076247707642,,,sigma_thickness mm at 4.0 mm
+lever,착용 120분 시점에 읽음,0.16459600659963577,,,sigma_thickness mm at 4.0 mm
+lever,착용 480분 시점에 읽음,0.20787840780950037,,,sigma_thickness mm at 4.0 mm
+lever,드리프트를 로그 시간 피팅으로 제거(착용 30분),0.05267827313294337,,,sigma_thickness mm at 4.0 mm
+lever,부품별 보정 없음(부품 간 ±6 % 추가),0.15214504910350288,,,sigma_thickness mm at 4.0 mm
+lever,반복성 ±5 % (적분 가이드 범위의 위쪽),0.14061691209348648,,,sigma_thickness mm at 4.0 mm
+lever,스프링 상수 교정 오차 10 % (두께 4.5 mm에서),0.1710327628800314,,,sigma_thickness mm at 4.0 mm
+lever,(비교) 교정 오차 3 % (두께 4.5 mm에서),0.16424739260754506,,,sigma_thickness mm at 4.0 mm
+lever,ADC 범위 자동 선택,0.12267076107005111,,,sigma_thickness mm at 4.0 mm
+lever,평균 횟수 860 (1초),0.12267076071011439,,,sigma_thickness mm at 4.0 mm
+lever,센서 지수 n = 0.8,0.14816120781410597,,,sigma_thickness mm at 4.0 mm
+glucose_sigma,"기준 (0 mg/dL, 4.0 mm)",두께 센서 없음,12.232859468939056,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"기준 (0 mg/dL, 4.0 mm)",가정값 0.05 mm,12.232226403756219,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"기준 (0 mg/dL, 4.0 mm)",FSR 모델,12.232754274930501,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"기준 (0 mg/dL, 4.0 mm)",0.01 mm,12.217121100523348,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"기준 (0 mg/dL, 4.0 mm)",0.001 mm,11.231957525497238,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"108 mg/dL, 4.1 mm, +0.5 °C",두께 센서 없음,12.756915395882563,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"108 mg/dL, 4.1 mm, +0.5 °C",가정값 0.05 mm,12.756250542054486,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"108 mg/dL, 4.1 mm, +0.5 °C",FSR 모델,12.756818351058326,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"108 mg/dL, 4.1 mm, +0.5 °C",0.01 mm,12.740373085096175,,"fusion + correction, 1-sigma mg/dL"
+glucose_sigma,"108 mg/dL, 4.1 mm, +0.5 °C",0.001 mm,11.644785800160468,,"fusion + correction, 1-sigma mg/dL"
+mismatch_bias,산란 계수 +20 % (교정 뒤에 변함),두께 센서 없음,1206.8670162624758,132.0118906587835,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,산란 계수 +20 % (교정 뒤에 변함),가정값 0.05 mm,1206.4703603773332,131.97843970624402,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,산란 계수 +20 % (교정 뒤에 변함),FSR 모델,1206.8090863551079,132.00700605166116,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,산란 계수 +20 % (교정 뒤에 변함),0.01 mm,1197.014216686939,131.18087958221025,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,중간층 수분 비율 +0.02,두께 센서 없음,178.2474991376622,18.706920593897003,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,중간층 수분 비율 +0.02,가정값 0.05 mm,178.197681938191,18.702633982718986,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,중간층 수분 비율 +0.02,FSR 모델,178.24022675899823,18.706294869548223,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,중간층 수분 비율 +0.02,0.01 mm,177.00892340267546,18.600343772209982,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,피부 εr +1,두께 센서 없음,-91.69749830012066,19.601736621553734,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,피부 εr +1,가정값 0.05 mm,-91.74833270440766,19.597323214991746,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,피부 εr +1,FSR 모델,-91.70492140635805,19.601092290030486,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,피부 εr +1,0.01 mm,-92.96141846566928,19.49199986843375,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,공기 틈 10 µm (양쪽),두께 센서 없음,-699.1902374935461,-452.63791528261964,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,공기 틈 10 µm (양쪽),가정값 0.05 mm,-698.100674178869,-452.7777260403525,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,공기 틈 10 µm (양쪽),FSR 모델,-699.1971283845347,-452.6252851209103,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,공기 틈 10 µm (양쪽),0.01 mm,-700.3381701740512,-450.4908887378005,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,클립 재장착으로 광량 +1 %,두께 센서 없음,-71.9034464405563,-7.866894552536863,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,클립 재장착으로 광량 +1 %,가정값 0.05 mm,-71.88304770778333,-7.865128870397697,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,클립 재장착으로 광량 +1 %,FSR 모델,-71.90047175377259,-7.866636907773561,glucose bias mg/dL / thickness bias um (fusion + correction)
+mismatch_bias,클립 재장착으로 광량 +1 %,0.01 mm,-71.3970069848476,-7.823017334549931,glucose bias mg/dL / thickness bias um (fusion + correction)
