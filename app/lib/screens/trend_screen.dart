@@ -23,10 +23,10 @@ class TrendScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("혈당 추세", style: AppText.title()),
+                    Text("Glucose Trend", style: AppText.title()),
                     const SizedBox(height: 4),
                     Text(
-                      "목표범위 ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
+                      "Target range ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
                       overflow: TextOverflow.ellipsis,
                       style: AppText.body(color: AppColors.textSecondary),
                     ),
@@ -36,7 +36,7 @@ class TrendScreen extends StatelessWidget {
               const SizedBox(width: 8),
               OutlinedButton(
                 onPressed: () {},
-                child: const Text("표로 보기"),
+                child: const Text("View as Table"),
               ),
             ],
           ),
@@ -44,11 +44,11 @@ class TrendScreen extends StatelessWidget {
 
           Row(
             children: [
-              _filterChip("7일", false),
+              _filterChip("7D", false),
               const SizedBox(width: 8),
-              _filterChip("14일", true),
+              _filterChip("14D", true),
               const SizedBox(width: 8),
-              _filterChip("30일", false),
+              _filterChip("30D", false),
             ],
           ),
           const SizedBox(height: 20),
@@ -109,10 +109,10 @@ class TrendScreen extends StatelessWidget {
                     spacing: 12,
                     runSpacing: 6,
                     children: [
-                      _legendItem(AppColors.statusSevere, "중증 저혈당"),
-                      _legendItem(AppColors.statusLow, "저혈당"),
-                      _legendItem(AppColors.statusNormal, "정상범위"),
-                      _legendItem(AppColors.statusHigh, "고혈당"),
+                      _legendItem(AppColors.statusSevere, "Severe Low"),
+                      _legendItem(AppColors.statusLow, "Low"),
+                      _legendItem(AppColors.statusNormal, "In Range"),
+                      _legendItem(AppColors.statusHigh, "High"),
                     ],
                   )
                 ],

@@ -43,13 +43,17 @@ class _MeasureScreenState extends State<MeasureScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("측정", style: AppText.title()),
+          Text("Measure", style: AppText.title()),
           const SizedBox(height: 6),
-          Text("귀클립형 기기를 착용한 상태에서 측정을 시작하세요.", style: AppText.body(color: AppColors.textSecondary)),
+          Text("Put on the ear-clip device, then start your measurement.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 40),
 
           Expanded(
-            child: Center(
+            child: LayoutBuilder(
+              builder: (context, constraints) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                  child: Center(
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 20),
@@ -59,6 +63,7 @@ class _MeasureScreenState extends State<MeasureScreen> {
                   border: Border.all(color: AppColors.border),
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
@@ -72,13 +77,13 @@ class _MeasureScreenState extends State<MeasureScreen> {
                     ),
                     const SizedBox(height: 24),
                     Text(
-                      _isMeasuring ? "혈당 수치를 분석하고 있습니다" : "버튼을 누르면 기기를 찾아 연결합니다.",
+                      _isMeasuring ? "Analyzing your glucose reading" : "Tap the button to find and connect your device.",
                       textAlign: TextAlign.center,
                       style: AppText.body(color: AppColors.textSecondary),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "귀클립 센서 7채널 신호를 이용해 기기 안에서 직접 분석합니다.",
+                      "Analyzed on-device using the ear-clip sensor's 7-channel signal.",
                       textAlign: TextAlign.center,
                       style: AppText.caption(color: AppColors.textMuted),
                     ),
@@ -86,14 +91,16 @@ class _MeasureScreenState extends State<MeasureScreen> {
                     _isMeasuring
                         ? const CircularProgressIndicator(color: AppColors.primary)
                         : SizedBox(
-                            height: 56,
                             width: 220,
                             child: ElevatedButton(
                               onPressed: () => _startMeasurement(context),
-                              child: const Text("측정 시작"),
+                              child: const Text("Start Measurement"),
                             ),
                           ),
                   ],
+                ),
+              ),
+                  ),
                 ),
               ),
             ),

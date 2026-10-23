@@ -11,20 +11,20 @@ class AlarmScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("용량조절 알림", style: AppText.title()),
+          Text("Dose Adjustment Alerts", style: AppText.title()),
           const SizedBox(height: 4),
-          Text("담당 의료진이 설정한 계획에 따라 알림을 받습니다.", style: AppText.body(color: AppColors.textSecondary)),
+          Text("You'll be notified according to the plan your clinician set up.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
-          _alarmCard("기저 인슐린 · 12U", "매일 21:00", "정기"),
+          _alarmCard("Basal insulin · 12U", "Daily at 21:00", "Scheduled"),
           const SizedBox(height: 12),
-          _alarmCard("속효 인슐린 · 4U", "최근 3회 연속 혈당이 150mg/dL 이상일 때", "조건기반"),
+          _alarmCard("Rapid-acting insulin · 4U", "When glucose has been 150 mg/dL or higher for 3 readings in a row", "Condition-based"),
           const SizedBox(height: 24),
 
-          Text("알림 이력", style: AppText.sectionTitle()),
+          Text("Alert History", style: AppText.sectionTitle()),
           const SizedBox(height: 12),
-          _historyTile("기저 인슐린 용량조절 알림", "2026-08-14 21:56", "이행 완료"),
-          _historyTile("기저 인슐린 용량조절 알림", "2026-08-13 21:56", "이행 완료"),
+          _historyTile("Basal insulin dose adjustment alert", "2026-08-14 21:56", "Completed"),
+          _historyTile("Basal insulin dose adjustment alert", "2026-08-13 21:56", "Completed"),
         ],
       ),
     );
@@ -64,7 +64,7 @@ class AlarmScreen extends StatelessWidget {
               onPressed: () {},
               style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)),
               child: const Text(
-                "알림 미리보기 (데모)",
+                "Preview Alert (Demo)",
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,

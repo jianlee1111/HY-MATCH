@@ -11,10 +11,10 @@ class FoodScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("식품교환표", style: AppText.title()),
+          Text("Food Exchange Guide", style: AppText.title()),
           const SizedBox(height: 4),
           Text(
-            "같은 교환단위 안의 식품은 서로 바꿔 먹어도 혈당·칼로리에 미치는 영향이 비슷합니다.",
+            "Foods within the same exchange unit have a similar effect on blood glucose and calories, so you can swap them freely.",
             style: AppText.body(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
@@ -29,14 +29,14 @@ class FoodScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("오늘 섭취 기록", style: AppText.caption()),
+                Text("Today's Intake Log", style: AppText.caption()),
                 const SizedBox(height: 4),
                 Text("0 / 1800kcal", style: AppText.sectionTitle()),
                 const SizedBox(height: 12),
-                _unitRow("곡류군", "0 / 8단위"),
-                _unitRow("어육류군", "0 / 6단위"),
-                _unitRow("채소군", "0 / 8단위"),
-                _unitRow("지방군", "0 / 5단위"),
+                _unitRow("Grains", "0 / 8 units"),
+                _unitRow("Meat & Fish", "0 / 6 units"),
+                _unitRow("Vegetables", "0 / 8 units"),
+                _unitRow("Fats", "0 / 5 units"),
                 const SizedBox(height: 16),
                 Row(
                   children: [
@@ -44,7 +44,7 @@ class FoodScreen extends StatelessWidget {
                       child: TextField(
                         style: AppText.body(),
                         decoration: const InputDecoration(
-                          hintText: "음식 이름 입력 (예: 사과, 쌀밥)",
+                          hintText: "Enter a food name (e.g. apple, rice)",
                         ),
                       ),
                     ),
@@ -53,7 +53,7 @@ class FoodScreen extends StatelessWidget {
                       height: kMinTouchTarget,
                       child: ElevatedButton(
                         onPressed: () {},
-                        child: const Text("추가하기"),
+                        child: const Text("Add"),
                       ),
                     ),
                   ],

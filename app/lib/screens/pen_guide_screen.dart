@@ -23,13 +23,30 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
   bool _isAnalyzing = false;
   String? _captureError;
 
-  static const List<String> _manualPens = [
-    "란투스 솔로스타",
-    "노보래피드 플렉스타치",
-    "휴마로그 콰트펜",
-    "레버미어 플렉스타치",
-    "투제오 솔로스타",
-    "기타 / 목록에 없음",
+  @override
+  void dispose() {
+    _classifier.dispose();
+    super.dispose();
+  }
+
+  // The 13 products the model can recognize, plus an "Other" option. Each
+  // product's action profile matches the _parentToProfile mapping in
+  // pen_classifier_service.dart.
+  static const List<MapEntry<String, InsulinActionProfile>> _manualPens = [
+    MapEntry("NovoRapid", InsulinActionProfile.rapidActing),
+    MapEntry("Apidra", InsulinActionProfile.rapidActing),
+    MapEntry("Humalog", InsulinActionProfile.rapidActing),
+    MapEntry("Lantus", InsulinActionProfile.longActing),
+    MapEntry("Levemir", InsulinActionProfile.longActing),
+    MapEntry("Toujeo", InsulinActionProfile.longActing),
+    MapEntry("Tresiba", InsulinActionProfile.longActing),
+    MapEntry("Humulin N", InsulinActionProfile.intermediateActing),
+    MapEntry("NovoMix 30", InsulinActionProfile.premixed),
+    MapEntry("NovoMix 50", InsulinActionProfile.premixed),
+    MapEntry("Humalog Mix 25", InsulinActionProfile.premixed),
+    MapEntry("Humalog Mix 50", InsulinActionProfile.premixed),
+    MapEntry("Humulin 70/30", InsulinActionProfile.premixed),
+    MapEntry("Other / Not Listed", InsulinActionProfile.unknown),
   ];
 
   Future<void> _captureAndClassify() async {
@@ -39,10 +56,10 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
     try {
       picked = await _picker.pickImage(source: ImageSource.camera, imageQuality: 85);
     } catch (e) {
-      setState(() => _captureError = "카메라를 열 수 없습니다. 설정에서 카메라 권한을 허용해주세요.");
+      setState(() => _captureError = "Couldn't open the camera. Please allow camera access in Settings.");
       return;
     }
-    if (picked == null) return; // 사용자가 촬영을 취소한 경우
+    if (picked == null) return; // User canceled the capture
 
     final file = File(picked.path);
     setState(() {
@@ -63,11 +80,10 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
   }
 
   void _selectManualPen(int index) {
+    final entry = _manualPens[index];
     final result = PenRecognitionResult(
-      productName: _manualPens[index],
-      profile: index == _manualPens.length - 1
-          ? InsulinActionProfile.unknown
-          : InsulinActionProfile.rapidActing,
+      productName: entry.key,
+      profile: entry.value,
       confidence: 1,
     );
     setState(() {
@@ -81,7 +97,11 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
     final appState = Provider.of<AppState>(context, listen: false);
     final status = GlucoseStatus.fromValue(appState.currentGlucose, appState.targetLow, appState.targetHigh);
 
-    final needsWarning = result.profile == InsulinActionProfile.rapidActing &&
+    // Premixed insulin (which contains a rapid-acting component) is also
+    // taken before meals, so it gets the same warning as rapid-acting.
+    final isMealtimeDose = result.profile == InsulinActionProfile.rapidActing ||
+        result.profile == InsulinActionProfile.premixed;
+    final needsWarning = isMealtimeDose &&
         (status.level == GlucoseLevel.low || status.level == GlucoseLevel.severeLow);
 
     if (needsWarning) {
@@ -100,17 +120,17 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           children: [
             const Icon(Icons.warning_amber_rounded, color: AppColors.statusSevere, size: 26),
             const SizedBox(width: 10),
-            Expanded(child: Text("투여 전 확인이 필요합니다", style: AppText.sectionTitle())),
+            Expanded(child: Text("Check before you inject", style: AppText.sectionTitle())),
           ],
         ),
         content: Text(
-          "현재 혈당이 ${glucose.toInt()}mg/dL입니다. 이 상태에서 초속효성 인슐린을 투여하면 저혈당이 더 심해질 수 있습니다. 투여 전 담당 의료진에게 먼저 확인하세요.",
+          "Your current glucose is ${glucose.toInt()} mg/dL. Taking rapid-acting insulin now could make a low reading worse. Please check with your clinician before injecting.",
           style: AppText.body(),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(),
-            child: const Text("확인했습니다"),
+            child: const Text("Got it"),
           ),
         ],
       ),
@@ -129,14 +149,14 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("인슐린 펜 가이드", style: AppText.title()),
+          Text("Insulin Pen Guide", style: AppText.title()),
           const SizedBox(height: 6),
-          Text("사진을 찍으면 펜 종류를 확인하고 사용법을 안내합니다.", style: AppText.body(color: AppColors.textSecondary)),
+          Text("Take a photo to identify your pen and see how to use it.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
           Container(
@@ -163,16 +183,15 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
                 ],
                 SizedBox(
                   width: double.infinity,
-                  height: 56,
                   child: ElevatedButton.icon(
                     onPressed: _isAnalyzing ? null : _captureAndClassify,
                     icon: const Icon(Icons.camera_alt_rounded),
-                    label: Text(_isAnalyzing ? "분석 중입니다" : "사진 촬영하고 확인하기"),
+                    label: Text(_isAnalyzing ? "Analyzing" : "Take a Photo to Check"),
                   ),
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  "지금은 시험(데모) 단계로, 인식 결과가 실제 제품과 다를 수 있습니다. 투여량과 방법은 반드시 처방 내용을 따르세요.",
+                  "This is a trial (demo) stage, so the recognized result may differ from the actual product. Always follow your prescribed dose and method.",
                   textAlign: TextAlign.center,
                   style: AppText.caption(),
                 ),
@@ -181,30 +200,30 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           ),
 
           const SizedBox(height: 24),
-          Text("또는 목록에서 직접 선택하기", style: AppText.sectionTitle()),
+          Text("Or Choose From the List", style: AppText.sectionTitle()),
           const SizedBox(height: 12),
 
-          Expanded(
-            child: GridView.builder(
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 1.9,
-                crossAxisSpacing: 12,
-                mainAxisSpacing: 12,
-              ),
-              itemCount: _manualPens.length,
-              itemBuilder: (context, index) {
-                return OutlinedButton(
-                  onPressed: () => _selectManualPen(index),
-                  child: Text(
-                    _manualPens[index],
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                );
-              },
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              childAspectRatio: 1.6,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
             ),
+            itemCount: _manualPens.length,
+            itemBuilder: (context, index) {
+              return OutlinedButton(
+                onPressed: () => _selectManualPen(index),
+                child: Text(
+                  _manualPens[index].key,
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -246,7 +265,7 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           children: [
             const Icon(Icons.center_focus_strong_rounded, size: 48, color: AppColors.textMuted),
             const SizedBox(height: 8),
-            Text("펜 전체가 보이도록 촬영해주세요", style: AppText.caption()),
+            Text("Frame the whole pen in the shot", style: AppText.caption()),
           ],
         ),
       ),
@@ -269,7 +288,7 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           children: [
             Text(result.productName, style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w700, fontSize: 16)),
             const SizedBox(height: 2),
-            Text("종류: ${result.profileLabel}", style: const TextStyle(color: Colors.white70, fontSize: 13)),
+            Text("Type: ${result.profileLabel}", style: const TextStyle(color: Colors.white70, fontSize: 13)),
           ],
         ),
       ),
@@ -282,12 +301,12 @@ class _TutorialSheet extends StatelessWidget {
   const _TutorialSheet({required this.result});
 
   static const List<String> _steps = [
-    "주사 부위(복부, 허벅지, 팔 등)를 알코올 솜으로 소독합니다.",
-    "펜 뚜껑을 열고 새 주사침을 똑바로 끼운 다음 보호 캡을 벗깁니다.",
-    "처방받은 단위(Unit)에 다이얼을 맞춥니다.",
-    "피부를 가볍게 잡고 90도로 찔러 넣은 뒤 버튼을 끝까지 누릅니다.",
-    "그대로 10초 정도 센 뒤 바늘을 천천히 뺍니다.",
-    "매번 주사 부위를 조금씩 바꿔가며 놓습니다. 같은 자리를 반복해서 놓지 않습니다.",
+    "Disinfect the injection site (abdomen, thigh, arm, etc.) with an alcohol swab.",
+    "Remove the pen cap, attach a new needle straight on, then remove its protective cap.",
+    "Dial up to your prescribed dose (in Units).",
+    "Pinch the skin gently, insert the needle at 90 degrees, and press the button all the way down.",
+    "Hold for about 10 seconds, then slowly withdraw the needle.",
+    "Rotate injection sites slightly each time — avoid repeating the same spot.",
   ];
 
   @override
@@ -310,12 +329,13 @@ class _TutorialSheet extends StatelessWidget {
               const SizedBox(height: 16),
               Text(result.productName, style: AppText.title()),
               const SizedBox(height: 4),
-              Text("${result.profileLabel} 인슐린 · 사용 방법 안내", style: AppText.body(color: AppColors.textSecondary)),
+              Text("${result.profileLabel} insulin · how to use it", style: AppText.body(color: AppColors.textSecondary)),
               const SizedBox(height: 16),
 
-              // 영상 튜토리얼 자리.
-              // 실제 영상 에셋이 준비되면 이 영역을 video_player(또는 chewie)
-              // 위젯으로 교체하면 됩니다. README의 "영상 튜토리얼 추가 방법" 참고.
+              // Placeholder for a video tutorial.
+              // Once a real video asset is ready, replace this area with a
+              // video_player (or chewie) widget. See the README section
+              // "Adding a video tutorial" for details.
               AspectRatio(
                 aspectRatio: 16 / 9,
                 child: Container(
@@ -329,24 +349,23 @@ class _TutorialSheet extends StatelessWidget {
                     children: [
                       const Icon(Icons.play_circle_outline_rounded, size: 40, color: AppColors.textMuted),
                       const SizedBox(height: 6),
-                      Text("영상 튜토리얼 준비 중", style: AppText.caption()),
+                      Text("Video tutorial coming soon", style: AppText.caption()),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: 20),
 
-              Text("주사 순서", style: AppText.sectionTitle()),
+              Text("Injection Steps", style: AppText.sectionTitle()),
               const SizedBox(height: 12),
               ..._steps.asMap().entries.map((e) => _StepRow(index: e.key + 1, text: e.value)),
 
               const SizedBox(height: 8),
               SizedBox(
                 width: double.infinity,
-                height: 56,
                 child: ElevatedButton(
                   onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("확인했습니다"),
+                  child: const Text("Got it"),
                 ),
               ),
             ],

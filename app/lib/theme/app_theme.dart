@@ -14,30 +14,37 @@ class AppColors {
   static const background = Color(0xFFF7F5F0);
   static const surface = Color(0xFFFFFFFF);
   static const surfaceAlt = Color(0xFFF0EEE6);
-  static const border = Color(0xFFDEDBD1);
+  // WCAG 1.4.11(Non-text Contrast, AA, 3:1) 충족: 배경/서피스 대비 각각 3.06:1 / 3.34:1.
+  static const border = Color(0xFF8F8778);
 
   static const textPrimary = Color(0xFF1C211E);
   static const textSecondary = Color(0xFF52584F);
-  static const textMuted = Color(0xFF80867C);
+  // WCAG 1.4.3(Contrast Minimum, AA, 일반 텍스트 4.5:1) 충족: 이 색이 실제로 쓰이는
+  // 모든 배경(background/surface/surfaceAlt/primarySoft) 각각에서 4.5:1 이상.
+  static const textMuted = Color(0xFF656A62);
 
   static const primary = Color(0xFF1F6F52);
   static const primarySoft = Color(0xFFDDEDE3);
   static const onPrimary = Color(0xFFFFFFFF);
 
-  // 정상 범위
-  static const statusNormal = Color(0xFF2E7D4F);
+  // 아래 네 상태 색은 각자의 Soft 배경, 그리고 흰색 surface 위에서 모두
+  // 4.5:1 이상(WCAG 1.4.3 AA, 일반 텍스트)이 되도록 보정한 값입니다.
+  // 뱃지/칩처럼 작은 글자에 그대로 쓰이기 때문에 "큰 텍스트" 완화 기준(3:1)을 적용하지 않았습니다.
+
+  // 정상 범위 — soft 대비 4.55:1, 흰색 대비 5.39:1
+  static const statusNormal = Color(0xFF2C784C);
   static const statusNormalSoft = Color(0xFFDFF0E4);
 
-  // 저혈당(경계)
-  static const statusLow = Color(0xFFD9641E);
+  // 저혈당(경계) — soft 대비 4.53:1, 흰색 대비 5.42:1
+  static const statusLow = Color(0xFFAB4F18);
   static const statusLowSoft = Color(0xFFFBE7D8);
 
-  // 고혈당(경계)
-  static const statusHigh = Color(0xFFAD7A00);
+  // 고혈당(경계) — soft 대비 4.52:1, 흰색 대비 5.29:1
+  static const statusHigh = Color(0xFF8E6400);
   static const statusHighSoft = Color(0xFFF7EDCF);
 
-  // 중증 저혈당(위험)
-  static const statusSevere = Color(0xFFC62828);
+  // 중증 저혈당(위험) — soft 대비 4.57:1, 흰색 대비 5.90:1
+  static const statusSevere = Color(0xFFC02727);
   static const statusSevereSoft = Color(0xFFF8DCDC);
 }
 

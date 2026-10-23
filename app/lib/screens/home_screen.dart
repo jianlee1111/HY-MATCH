@@ -23,9 +23,9 @@ class HomeScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("안녕하세요, ${appState.patientName}님", style: AppText.title()),
+          Text("Hello, ${appState.patientName}", style: AppText.title()),
           const SizedBox(height: 4),
-          Text("최근 측정과 오늘의 안내를 확인하세요.", style: AppText.body(color: AppColors.textSecondary)),
+          Text("Check your latest reading and today's guidance.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
           // Hero Card
@@ -73,7 +73,7 @@ class HomeScreen extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 4),
-                Text("$dateStr 측정", style: AppText.caption(color: AppColors.textMuted)),
+                Text("Measured $dateStr", style: AppText.caption(color: AppColors.textMuted)),
                 const SizedBox(height: 16),
 
                 Container(
@@ -91,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                           const SizedBox(width: 6),
                           Expanded(
                             child: Text(
-                              "측정 시점: 식후 1시간 15분 · 저녁 식사 기준",
+                              "Timing: 1h 15m after eating · based on dinner",
                               style: AppText.caption(color: AppColors.textSecondary),
                               overflow: TextOverflow.ellipsis,
                             ),
@@ -99,10 +99,10 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Text("식후 혈당은 정상 범위입니다", style: AppText.sectionTitle()),
+                      Text("Your after-meal glucose is in range", style: AppText.sectionTitle()),
                       const SizedBox(height: 4),
                       Text(
-                        "식사 후 혈당은 어느 정도 오르는 것이 자연스럽습니다. 식후 목표(180 mg/dL 미만) 이내이므로 지금은 별도 조치가 필요하지 않습니다.",
+                        "It's normal for glucose to rise somewhat after eating. This is within the after-meal target (under 180 mg/dL), so no action is needed right now.",
                         style: AppText.body(color: AppColors.textSecondary),
                       ),
                     ],
@@ -115,7 +115,7 @@ class HomeScreen extends StatelessWidget {
                     Icon(Icons.timelapse_rounded, size: 18, color: AppColors.primary),
                     const SizedBox(width: 8),
                     Expanded(
-                      child: Text("최근 측정 중 목표범위 내 비율", style: AppText.body(weight: FontWeight.w700)),
+                      child: Text("Time in range (recent readings)", style: AppText.body(weight: FontWeight.w700)),
                     ),
                     Text("$tirPercent%", style: AppText.bodyStrong(color: AppColors.primary)),
                   ],
@@ -132,17 +132,14 @@ class HomeScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
 
-                // Quick Action — 원터치로 바로 측정 또는 펜 촬영으로 이동
+                // Quick action — one tap straight to measuring or pen photo check
                 Row(
                   children: [
                     Expanded(
-                      child: SizedBox(
-                        height: 56,
-                        child: ElevatedButton.icon(
-                          onPressed: () => appState.setTabIndex(1),
-                          icon: const Icon(Icons.water_drop_outlined),
-                          label: const Text("새 혈당 측정 시작"),
-                        ),
+                      child: ElevatedButton.icon(
+                        onPressed: () => appState.setTabIndex(1),
+                        icon: const Icon(Icons.water_drop_outlined),
+                        label: const Text("Start New Measurement"),
                       ),
                     ),
                   ],
@@ -150,11 +147,10 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(height: 10),
                 SizedBox(
                   width: double.infinity,
-                  height: 56,
                   child: OutlinedButton.icon(
                     onPressed: () => appState.setTabIndex(5),
                     icon: const Icon(Icons.camera_alt_outlined),
-                    label: const Text("인슐린 펜 사진으로 확인하기"),
+                    label: const Text("Check Insulin Pen with Camera"),
                   ),
                 ),
               ],
@@ -173,10 +169,10 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("식사 기록", style: AppText.sectionTitle()),
+                Text("Meal Log", style: AppText.sectionTitle()),
                 const SizedBox(height: 4),
                 Text(
-                  "식사 시각을 기록해두면 측정값이 공복인지 식후인지 자동으로 구분해 더 알맞은 안내를 보여드립니다.",
+                  "Logging meal times lets the app tell fasting readings from after-meal readings automatically, for more accurate guidance.",
                   style: AppText.body(color: AppColors.textSecondary),
                 ),
                 const SizedBox(height: 12),
@@ -184,9 +180,9 @@ class HomeScreen extends StatelessWidget {
                   spacing: 8,
                   runSpacing: 8,
                   children: [
-                    _mealChip("아침 08:00 삭제"),
-                    _mealChip("점심 12:30 삭제"),
-                    _mealChip("저녁 18:30 삭제"),
+                    _mealChip("Breakfast 08:00 · Remove"),
+                    _mealChip("Lunch 12:30 · Remove"),
+                    _mealChip("Dinner 18:30 · Remove"),
                   ],
                 ),
               ],
@@ -196,11 +192,11 @@ class HomeScreen extends StatelessWidget {
 
           Row(
             children: [
-              Expanded(child: _statCard("최근 7일 측정", "16회", "")),
+              Expanded(child: _statCard("Readings, Last 7 Days", "16", "")),
               const SizedBox(width: 12),
-              Expanded(child: _statCard("알림 이행률(28일)", "75%", "3건 이행 · 1건 미이행")),
+              Expanded(child: _statCard("Alert Adherence (28d)", "75%", "3 done · 1 missed")),
               const SizedBox(width: 12),
-              Expanded(child: _statCard("다음 정기 알림", "21:00", "기저 인슐린")),
+              Expanded(child: _statCard("Next Scheduled Alert", "21:00", "Basal insulin")),
             ],
           ),
         ],

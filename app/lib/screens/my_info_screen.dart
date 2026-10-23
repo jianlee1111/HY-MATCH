@@ -15,7 +15,7 @@ class MyInfoScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text("내 정보", style: AppText.title()),
+          Text("My Info", style: AppText.title()),
           const SizedBox(height: 20),
 
           Container(
@@ -30,18 +30,18 @@ class MyInfoScreen extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _infoTile("이름", appState.patientName)),
+                    Expanded(child: _infoTile("Name", appState.patientName)),
                     const SizedBox(width: 12),
-                    Expanded(child: _infoTile("당뇨 유형", appState.diabetesType)),
+                    Expanded(child: _infoTile("Diabetes Type", appState.diabetesType)),
                   ],
                 ),
                 const SizedBox(height: 16),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(child: _infoTile("생년월일", appState.birthDate)),
+                    Expanded(child: _infoTile("Date of Birth", appState.birthDate)),
                     const SizedBox(width: 12),
-                    Expanded(child: _infoTile("등록일", appState.regDate)),
+                    Expanded(child: _infoTile("Registered", appState.regDate)),
                   ],
                 ),
               ],
@@ -59,7 +59,7 @@ class MyInfoScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("목표 혈당범위", style: AppText.caption()),
+                Text("Target Glucose Range", style: AppText.caption()),
                 const SizedBox(height: 6),
                 Text(
                   "${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
@@ -67,7 +67,7 @@ class MyInfoScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "박정환 선생님(내분비내과)이 설정했습니다. 환자는 조회만 할 수 있고, 수정은 담당 의료진만 가능합니다.",
+                  "Set by Dr. Jeonghwan Park (Endocrinology). Patients can view this but only your clinician can change it.",
                   style: AppText.caption(color: AppColors.textMuted),
                 ),
               ],
@@ -93,8 +93,9 @@ class MyInfoScreen extends StatelessWidget {
   }
 }
 
-/// 보호자 알림(SOS) — 보호자 등록과 알림 미리보기까지 제공합니다.
-/// 실제 발송은 백엔드 연동이 필요해 이 버전에는 포함되어 있지 않습니다.
+/// Guardian alerts (SOS) — supports registering a guardian and previewing
+/// what an alert would say. Real delivery needs a backend and isn't
+/// included in this version.
 class _GuardianSection extends StatelessWidget {
   final AppState appState;
   const _GuardianSection({required this.appState});
@@ -108,36 +109,36 @@ class _GuardianSection extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text("보호자 등록"),
+        title: const Text("Add Guardian"),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextField(controller: nameController, decoration: const InputDecoration(labelText: "이름")),
+            TextField(controller: nameController, decoration: const InputDecoration(labelText: "Name")),
             const SizedBox(height: 10),
-            TextField(controller: relationController, decoration: const InputDecoration(labelText: "관계 (예: 자녀, 배우자)")),
+            TextField(controller: relationController, decoration: const InputDecoration(labelText: "Relationship (e.g. child, spouse)")),
             const SizedBox(height: 10),
             TextField(
               controller: phoneController,
               keyboardType: TextInputType.phone,
-              decoration: const InputDecoration(labelText: "전화번호"),
+              decoration: const InputDecoration(labelText: "Phone Number"),
             ),
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("취소")),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Cancel")),
           ElevatedButton(
             onPressed: () {
               if (nameController.text.trim().isEmpty || phoneController.text.trim().isEmpty) return;
               appState.addGuardian(
                 GuardianContact(
                   name: nameController.text.trim(),
-                  relation: relationController.text.trim().isEmpty ? "보호자" : relationController.text.trim(),
+                  relation: relationController.text.trim().isEmpty ? "Guardian" : relationController.text.trim(),
                   phone: phoneController.text.trim(),
                 ),
               );
               Navigator.of(ctx).pop();
             },
-            child: const Text("등록하기"),
+            child: const Text("Add"),
           ),
         ],
       ),
@@ -149,13 +150,13 @@ class _GuardianSection extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-        title: const Text("알림 미리보기"),
+        title: const Text("Alert Preview"),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "${guardian.name}님(${guardian.relation})에게 아래와 같은 알림이 전송될 예정입니다.",
+              "${guardian.name} (${guardian.relation}) will receive an alert like this.",
               style: AppText.body(color: AppColors.textSecondary),
             ),
             const SizedBox(height: 14),
@@ -172,7 +173,7 @@ class _GuardianSection extends StatelessWidget {
                   const SizedBox(width: 10),
                   Expanded(
                     child: Text(
-                      "[HY-MATCH] ${appState.patientName}님의 혈당이 54mg/dL로 위험 범위입니다. 확인이 필요합니다.",
+                      "[HY-MATCH] ${appState.patientName}'s glucose is 54 mg/dL, a danger-range reading. Please check on them.",
                       style: AppText.body(weight: FontWeight.w600, color: AppColors.statusSevere),
                     ),
                   ),
@@ -181,13 +182,13 @@ class _GuardianSection extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              "지금은 미리보기만 제공되며, 실제 알림 발송은 아직 지원하지 않습니다.",
+              "This is a preview only — sending real alerts isn't supported yet.",
               style: AppText.caption(color: AppColors.textMuted),
             ),
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("닫기")),
+          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Close")),
         ],
       ),
     );
@@ -211,12 +212,12 @@ class _GuardianSection extends StatelessWidget {
             children: [
               const Icon(Icons.favorite_border_rounded, color: AppColors.primary, size: 20),
               const SizedBox(width: 8),
-              Expanded(child: Text("보호자 알림 (SOS)", style: AppText.sectionTitle())),
+              Expanded(child: Text("Guardian Alerts (SOS)", style: AppText.sectionTitle())),
             ],
           ),
           const SizedBox(height: 6),
           Text(
-            "저혈당·고혈당 위험 수치가 감지되면 등록된 보호자에게 알림을 보냅니다. 지금은 미리보기까지 제공됩니다.",
+            "If a dangerous low or high reading is detected, registered guardians are notified. A preview is available now.",
             style: AppText.body(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 16),
@@ -229,7 +230,7 @@ class _GuardianSection extends StatelessWidget {
                 color: AppColors.surfaceAlt,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Text("등록된 보호자가 없습니다.", style: AppText.body(color: AppColors.textMuted)),
+              child: Text("No guardians have been added yet.", style: AppText.body(color: AppColors.textMuted)),
             )
           else
             ...guardians.asMap().entries.map((entry) {
@@ -256,10 +257,11 @@ class _GuardianSection extends StatelessWidget {
                     OutlinedButton(
                       onPressed: () => _openPreviewDialog(context, guardian),
                       style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)),
-                      child: const Text("미리보기"),
+                      child: const Text("Preview"),
                     ),
                     IconButton(
                       onPressed: () => appState.removeGuardian(index),
+                      tooltip: "Remove guardian ${guardian.name}",
                       icon: const Icon(Icons.delete_outline_rounded, color: AppColors.textMuted),
                     ),
                   ],
@@ -270,11 +272,10 @@ class _GuardianSection extends StatelessWidget {
           const SizedBox(height: 4),
           SizedBox(
             width: double.infinity,
-            height: 52,
             child: OutlinedButton.icon(
               onPressed: () => _openAddGuardianDialog(context),
               icon: const Icon(Icons.person_add_alt_1_rounded),
-              label: const Text("보호자 등록하기"),
+              label: const Text("Add a Guardian"),
             ),
           ),
         ],

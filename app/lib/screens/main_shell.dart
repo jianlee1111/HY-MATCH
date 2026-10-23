@@ -52,7 +52,7 @@ class MainShell extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "시험(데모) 버전 — 실제 기기·서버와 연동되지 않았습니다. 측정값과 안내 문구는 모두 예시이며 의료 자문이 아닙니다.",
+            "Trial (demo) version — not connected to a real device or server. All readings and guidance shown are examples, not medical advice.",
             style: AppText.caption(color: AppColors.textMuted),
             textAlign: TextAlign.center,
           ),
@@ -74,23 +74,23 @@ class MainShell extends StatelessWidget {
                 onPressed: () {
                   appState.resetDemoData();
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("데모 데이터를 초기 상태로 되돌렸습니다.")),
+                    const SnackBar(content: Text("Demo data has been reset.")),
                   );
                 },
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size(0, 44),
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                 ),
-                child: const Text("초기화"),
+                child: const Text("Reset"),
               ),
             ],
           ),
           const SizedBox(height: 10),
           Row(
             children: [
-              Expanded(child: _roleButton("환자 화면", 0, appState)),
+              Expanded(child: _roleButton("Patient View", 0, appState)),
               const SizedBox(width: 8),
-              Expanded(child: _roleButton("의료진 화면", 1, appState)),
+              Expanded(child: _roleButton("Clinician View", 1, appState)),
             ],
           ),
         ],
@@ -114,7 +114,7 @@ class MainShell extends StatelessWidget {
           ),
           const SizedBox(width: 4),
           Text(
-            connected ? "센서 연결됨" : "센서 연결 안 됨",
+            connected ? "Sensor Connected" : "Sensor Disconnected",
             style: TextStyle(color: color, fontSize: 12, fontWeight: FontWeight.w700),
           ),
         ],
@@ -124,26 +124,36 @@ class MainShell extends StatelessWidget {
 
   Widget _roleButton(String title, int roleIndex, AppState appState) {
     bool isSelected = appState.currentRoleMode == roleIndex;
-    return GestureDetector(
-      onTap: () => appState.setRoleMode(roleIndex),
-      child: Container(
-        constraints: const BoxConstraints(minHeight: kMinTouchTarget),
-        alignment: Alignment.center,
-        padding: const EdgeInsets.symmetric(horizontal: 8),
-        decoration: BoxDecoration(
-          color: isSelected ? AppColors.primary : AppColors.surfaceAlt,
+    return Semantics(
+      button: true,
+      selected: isSelected,
+      label: title,
+      excludeSemantics: true,
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(10),
+        child: InkWell(
           borderRadius: BorderRadius.circular(10),
-          border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
-        ),
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style: TextStyle(
-            color: isSelected ? AppColors.onPrimary : AppColors.textSecondary,
-            fontWeight: FontWeight.w700,
-            fontSize: 13,
+          onTap: () => appState.setRoleMode(roleIndex),
+          child: Container(
+            constraints: const BoxConstraints(minHeight: kMinTouchTarget),
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            decoration: BoxDecoration(
+              color: isSelected ? AppColors.primary : AppColors.surfaceAlt,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
+            ),
+            child: Text(
+              title,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                color: isSelected ? AppColors.onPrimary : AppColors.textSecondary,
+                fontWeight: FontWeight.w700,
+                fontSize: 13,
+              ),
+            ),
           ),
         ),
       ),
@@ -164,7 +174,7 @@ class MainShell extends StatelessWidget {
           const SizedBox(width: 8),
           Expanded(
             child: Text(
-              "현재 상태: ${status.label} (${appState.currentGlucose.toInt()} mg/dL) — 대응 방법 확인하기",
+              "Current status: ${status.label} (${appState.currentGlucose.toInt()} mg/dL) — see what to do",
               style: TextStyle(color: status.color, fontWeight: FontWeight.w700, fontSize: 14),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
@@ -179,13 +189,13 @@ class MainShell extends StatelessWidget {
 
   Widget _buildSidebar(BuildContext context, AppState appState) {
     final navItems = [
-      {'icon': Icons.home_outlined, 'label': '홈'},
-      {'icon': Icons.water_drop_outlined, 'label': '측정'},
-      {'icon': Icons.show_chart, 'label': '추세'},
-      {'icon': Icons.notifications_none, 'label': '알림'},
-      {'icon': Icons.apple_outlined, 'label': '식품표'},
-      {'icon': Icons.camera_alt_outlined, 'label': '펜가이드'},
-      {'icon': Icons.person_outline, 'label': '내정보'},
+      {'icon': Icons.home_outlined, 'label': 'Home'},
+      {'icon': Icons.water_drop_outlined, 'label': 'Measure'},
+      {'icon': Icons.show_chart, 'label': 'Trend'},
+      {'icon': Icons.notifications_none, 'label': 'Alerts'},
+      {'icon': Icons.apple_outlined, 'label': 'Food Guide'},
+      {'icon': Icons.camera_alt_outlined, 'label': 'Pen Guide'},
+      {'icon': Icons.person_outline, 'label': 'My Info'},
     ];
 
     return Container(
@@ -195,6 +205,7 @@ class MainShell extends StatelessWidget {
         itemCount: navItems.length,
         itemBuilder: (context, index) {
           bool isSelected = (appState.currentRoleMode == 0) && (appState.selectedTabIndex == index);
+          final label = navItems[index]['label'] as String;
           return Container(
             margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
@@ -203,34 +214,43 @@ class MainShell extends StatelessWidget {
             ),
             child: Material(
               color: Colors.transparent,
-              child: InkWell(
-                borderRadius: BorderRadius.circular(10),
-                onTap: () {
-                  appState.setRoleMode(0);
-                  appState.setTabIndex(index);
-                },
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
-                  child: Row(
-                    children: [
-                      Icon(
-                        navItems[index]['icon'] as IconData,
-                        color: isSelected ? AppColors.primary : AppColors.textSecondary,
-                        size: 22,
-                      ),
-                      const SizedBox(width: 10),
-                      Expanded(
-                        child: Text(
-                          navItems[index]['label'] as String,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(
-                            color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
-                            fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                            fontSize: 14,
+              child: Semantics(
+                button: true,
+                selected: isSelected,
+                label: label,
+                excludeSemantics: true,
+                child: InkWell(
+                  borderRadius: BorderRadius.circular(10),
+                  onTap: () {
+                    appState.setRoleMode(0);
+                    appState.setTabIndex(index);
+                  },
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(minHeight: kMinTouchTarget),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                      child: Row(
+                        children: [
+                          Icon(
+                            navItems[index]['icon'] as IconData,
+                            color: isSelected ? AppColors.primary : AppColors.textSecondary,
+                            size: 22,
                           ),
-                        ),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              label,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
+                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
+                                fontSize: 14,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
