@@ -52,7 +52,7 @@ These two CSVs total 90 rows across only 3 simulated sessions. They demonstrate 
 | `읽기방식_v1.csv` | ADC reading method comparison (direct / monitor-PD / slope-ratio) by theoretical error |
 | `통합모델_v1.csv`, `통합모델_v1.md` | Combined-layer error projection; states directly that the trained model has not yet been run against this data ("the team's algorithm has not been connected to this pipeline yet") |
 
-All of these come from Fisher-information calculations and Monte Carlo noise draws on the physics model — not from running the trained neural network.
+All of these come from Fisher-information calculations and Monte Carlo noise draws on the physics model, not from running the trained neural network.
 
 ## `external/` — third-party pretraining data
 
