@@ -1,6 +1,6 @@
 # ai_model/data
 
-This folder holds the physics/simulation outputs behind the glucose estimation model, plus two small example datasets and one external pretraining dataset. **Nothing generated in-house here is real sensor or clinical measurement data** — it's all simulation, Monte Carlo sampling, or analytical (Fisher-information) error modeling. See "Known limitations" below.
+This folder holds the physics/simulation outputs behind the glucose estimation model, plus two small example datasets and one external pretraining dataset. **Nothing generated in-house here is real sensor or clinical measurement data** It's all simulation, Monte Carlo sampling, or analytical (Fisher-information) error modeling. See "Known limitations" below.
 
 Files are grouped into subfolders by sensor modality, matching the numbering already used in the simulation folder map (01 EM, 02 NIR, 03 hardware noise, 06 pressure, 07 analysis/specs).
 
@@ -16,7 +16,7 @@ Files are grouped into subfolders by sensor modality, matching the numbering alr
 
 | File | What it is | Rows × cols |
 |---|---|---|
-| `NIR_계수표_v1.csv` | NIR absorbance (1310/1370/1625 nm) sensitivity per +100 mg/dL glucose, +1 °C, +1 mm thickness, ×1.2 scattering, +0.02 water fraction — separate rows for phantom and earlobe geometry | 12 × 4 (+2 header rows) |
+| `NIR_계수표_v1.csv` | NIR absorbance (1310/1370/1625 nm) sensitivity per +100 mg/dL glucose, +1 °C, +1 mm thickness, ×1.2 scattering, +0.02 water fraction, separating rows for phantom and earlobe geometry | 12 × 4 (+2 header rows) |
 | `광자수송_v1.csv` | Monte Carlo / diffusion-model photon transport: per-wavelength sensitivity to glucose, temperature, thickness, water, scattering, across multiple source–detector geometries and two anisotropy values (g = 0.9, 0.7) | ~480 × 9 |
 | `벤치예측_v1.md` | Bench-LED (1300/1450/1650 nm) predicted absorbance and variation; notes the current bench LEDs don't match the model's target wavelengths, so the model can't be validated against bench data yet | — |
 
@@ -40,9 +40,9 @@ Files are grouped into subfolders by sensor modality, matching the numbering alr
 |---|---|---|
 | `예시_frames_v1.csv` | Example per-frame output in the proposed model input format: `A_1310/1370/1625`, `S21_dB_f1–f6`, `S21_deg_f1–f6`, `ntc_dT_C`, `fsr_N`, plus a `glucose_mgdl` label, across 3 sessions × 30 frames | 90 × 37 |
 | `예시_frames_flag_v1.csv` | Same frames, with an added physics-fit residual/mismatch-flag pass (`glucose_hat_mgdl`, `resid_Q`, `flag_model_mismatch`, etc.) | 90 × 47 |
-| `알고리즘_입력형식_기본안_v1.md` | The proposal document behind the format above — explicitly states this is simulation output, not real measurement, and that the 6 `phys` model inputs are not yet defined | — |
+| `알고리즘_입력형식_기본안_v1.md` | The proposal document behind the format above, explicitly stating this is simulation output, not real measurement, and that the 6 `phys` model inputs are not yet defined | — |
 
-These two CSVs total 90 rows across only 3 simulated sessions. They demonstrate the intended format — they are not large or varied enough to train the model on.
+These two CSVs total 90 rows across only 3 simulated sessions. They demonstrate the intended format. They are not large or varied enough to train the model on.
 
 ## `reports/` — design-comparison / error-budget reports (not sample data)
 
@@ -65,8 +65,8 @@ If a PhysioNet D1NAMO dataset is added later, it goes here too.
 
 ## Known limitations
 
-- No real sensor measurements exist for the `em/`, `nir/`, `noise/`, and `pressure/` tables, or for the `examples/` frames — all of it is simulation or analytical modeling.
-- A model trained only on `em/`, `nir/`, `noise/`, `pressure/`, and `examples/` should be treated as a pretraining/initialization step, not a final model — it will need fine-tuning and validation against real measurements before deployment.
+- No real sensor measurements exist for the `em/`, `nir/`, `noise/`, and `pressure/` tables, or for the `examples/` frames . All of it is simulation or analytical modeling.
+- A model trained only on `em/`, `nir/`, `noise/`, `pressure/`, and `examples/` should be treated as a pretraining/initialization step, not a final model. It will need fine-tuning and validation against real measurements before deployment.
 - The 6 `phys` input parameters the training notebook (`colab_training_pipeline.ipynb`) expects are **not defined anywhere in this data**.
 - Even the physics model itself hasn't been checked against real measurements yet (see `벤치예측_v1.md`, `회로대조_v1.md`).
 - The trained model (`glucose_model.tflite` / `MultimodalGlucoseModel`) has never been run against any file in this folder.
