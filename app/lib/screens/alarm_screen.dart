@@ -6,7 +6,9 @@ class AlarmScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -18,7 +20,7 @@ class AlarmScreen extends StatelessWidget {
 
           _alarmCard("Basal insulin · 12U", "Daily at 21:00", "Scheduled"),
           const SizedBox(height: 12),
-          _alarmCard("Rapid-acting insulin · 4U", "When glucose has been 150 mg/dL or higher for 3 readings in a row", "Condition-based"),
+          _alarmCard("Rapid-acting insulin · 4U", "", "Condition-based"),
           const SizedBox(height: 24),
 
           Text("Alert History", style: AppText.sectionTitle()),
@@ -26,6 +28,7 @@ class AlarmScreen extends StatelessWidget {
           _historyTile("Basal insulin dose adjustment alert", "2026-08-14 21:56", "Completed"),
           _historyTile("Basal insulin dose adjustment alert", "2026-08-13 21:56", "Completed"),
         ],
+      ),
       ),
     );
   }
@@ -51,12 +54,14 @@ class AlarmScreen extends StatelessWidget {
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
                 decoration: BoxDecoration(color: AppColors.primarySoft, borderRadius: BorderRadius.circular(8)),
-                child: Text(tag, style: const TextStyle(color: AppColors.primary, fontSize: 12, fontWeight: FontWeight.w700)),
+                child: Text(tag, style: const TextStyle(color: AppColors.primaryText, fontSize: 12, fontWeight: FontWeight.w700)),
               ),
             ],
           ),
-          const SizedBox(height: 6),
-          Text(subtitle, style: AppText.caption(color: AppColors.textSecondary)),
+          if (subtitle.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(subtitle, style: AppText.caption(color: AppColors.textSecondary)),
+          ],
           const SizedBox(height: 12),
           SizedBox(
             width: double.infinity,

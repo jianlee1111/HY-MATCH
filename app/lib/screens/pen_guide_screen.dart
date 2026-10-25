@@ -128,7 +128,7 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           style: AppText.body(),
         ),
         actions: [
-          TextButton(
+          ElevatedButton(
             onPressed: () => Navigator.of(ctx).pop(),
             child: const Text("Got it"),
           ),
@@ -149,7 +149,9 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -189,12 +191,6 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
                     label: Text(_isAnalyzing ? "Analyzing" : "Take a Photo to Check"),
                   ),
                 ),
-                const SizedBox(height: 10),
-                Text(
-                  "This is a trial (demo) stage, so the recognized result may differ from the actual product. Always follow your prescribed dose and method.",
-                  textAlign: TextAlign.center,
-                  style: AppText.caption(),
-                ),
               ],
             ),
           ),
@@ -226,6 +222,7 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
             },
           ),
         ],
+      ),
       ),
     );
   }
@@ -393,7 +390,7 @@ class _StepRow extends StatelessWidget {
             height: 28,
             alignment: Alignment.center,
             decoration: const BoxDecoration(color: AppColors.primarySoft, shape: BoxShape.circle),
-            child: Text("$index", style: const TextStyle(color: AppColors.primary, fontWeight: FontWeight.w700)),
+            child: Text("$index", style: const TextStyle(color: AppColors.primaryText, fontWeight: FontWeight.w700)),
           ),
           const SizedBox(width: 12),
           Expanded(child: Text(text, style: AppText.body())),

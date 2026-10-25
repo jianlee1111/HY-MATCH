@@ -11,6 +11,7 @@ import 'food_screen.dart';
 import 'pen_guide_screen.dart';
 import 'my_info_screen.dart';
 import 'doctor_portal_screen.dart';
+import 'help_screen.dart';
 
 class MainShell extends StatelessWidget {
   const MainShell({super.key});
@@ -51,17 +52,11 @@ class MainShell extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       child: Column(
         children: [
-          Text(
-            "Trial (demo) version — not connected to a real device or server. All readings and guidance shown are examples, not medical advice.",
-            style: AppText.caption(color: AppColors.textMuted),
-            textAlign: TextAlign.center,
-          ),
-          const SizedBox(height: 8),
           Row(
             children: [
               Flexible(
                 child: Text(
-                  "HY-MATCH",
+                  "CARROT",
                   style: AppText.sectionTitle(),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -99,7 +94,7 @@ class MainShell extends StatelessWidget {
   }
 
   Widget _buildConnectionChip(bool connected) {
-    final color = connected ? AppColors.primary : AppColors.textMuted;
+    final color = connected ? AppColors.primaryText : AppColors.textMuted;
     final bg = connected ? AppColors.primarySoft : AppColors.surfaceAlt;
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
@@ -140,9 +135,9 @@ class MainShell extends StatelessWidget {
             alignment: Alignment.center,
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.primary : AppColors.surfaceAlt,
+              color: isSelected ? AppColors.primaryText : AppColors.surfaceAlt,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
+              border: Border.all(color: isSelected ? AppColors.primaryText : AppColors.border),
             ),
             child: Text(
               title,
@@ -193,58 +188,65 @@ class MainShell extends StatelessWidget {
       {'icon': Icons.water_drop_outlined, 'label': 'Measure'},
       {'icon': Icons.show_chart, 'label': 'Trend'},
       {'icon': Icons.notifications_none, 'label': 'Alerts'},
-      {'icon': Icons.apple_outlined, 'label': 'Food Guide'},
+      {'icon': Icons.rice_bowl, 'label': 'Food Guide'},
       {'icon': Icons.camera_alt_outlined, 'label': 'Pen Guide'},
       {'icon': Icons.person_outline, 'label': 'My Info'},
+      {'icon': Icons.help_outline_rounded, 'label': 'Help'},
     ];
 
     return Container(
-      width: 148,
+      width: 172,
       color: AppColors.surface,
       child: ListView.builder(
+        padding: const EdgeInsets.symmetric(vertical: 8),
         itemCount: navItems.length,
         itemBuilder: (context, index) {
           bool isSelected = (appState.currentRoleMode == 0) && (appState.selectedTabIndex == index);
           final label = navItems[index]['label'] as String;
           return Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
             decoration: BoxDecoration(
-              color: isSelected ? AppColors.primarySoft : Colors.transparent,
-              borderRadius: BorderRadius.circular(10),
+              color: isSelected ? AppColors.primarySoft : AppColors.surfaceAlt,
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: isSelected ? AppColors.primary : AppColors.border,
+                width: isSelected ? 2 : 1.4,
+              ),
             ),
             child: Material(
               color: Colors.transparent,
+              borderRadius: BorderRadius.circular(12),
               child: Semantics(
                 button: true,
                 selected: isSelected,
                 label: label,
                 excludeSemantics: true,
                 child: InkWell(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(12),
                   onTap: () {
                     appState.setRoleMode(0);
                     appState.setTabIndex(index);
                   },
                   child: ConstrainedBox(
-                    constraints: const BoxConstraints(minHeight: kMinTouchTarget),
+                    constraints: const BoxConstraints(minHeight: 64),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 10),
+                      padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 14),
                       child: Row(
                         children: [
                           Icon(
                             navItems[index]['icon'] as IconData,
                             color: isSelected ? AppColors.primary : AppColors.textSecondary,
-                            size: 22,
+                            size: 26,
                           ),
-                          const SizedBox(width: 10),
+                          const SizedBox(width: 12),
                           Expanded(
                             child: Text(
                               label,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
                                 color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
-                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w500,
-                                fontSize: 14,
+                                fontWeight: isSelected ? FontWeight.w700 : FontWeight.w600,
+                                fontSize: 16,
                               ),
                             ),
                           ),
@@ -277,6 +279,8 @@ class MainShell extends StatelessWidget {
         return const PenGuideScreen();
       case 6:
         return const MyInfoScreen();
+      case 7:
+        return const HelpScreen();
       default:
         return const HomeScreen();
     }

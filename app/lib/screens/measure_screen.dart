@@ -81,12 +81,6 @@ class _MeasureScreenState extends State<MeasureScreen> {
                       textAlign: TextAlign.center,
                       style: AppText.body(color: AppColors.textSecondary),
                     ),
-                    const SizedBox(height: 8),
-                    Text(
-                      "Analyzed on-device using the ear-clip sensor's 7-channel signal.",
-                      textAlign: TextAlign.center,
-                      style: AppText.caption(color: AppColors.textMuted),
-                    ),
                     const SizedBox(height: 32),
                     _isMeasuring
                         ? const CircularProgressIndicator(color: AppColors.primary)

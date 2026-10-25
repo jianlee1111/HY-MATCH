@@ -10,7 +10,9 @@ class MyInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
 
-    return SingleChildScrollView(
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +69,7 @@ class MyInfoScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "Set by Dr. Jeonghwan Park (Endocrinology). Patients can view this but only your clinician can change it.",
+                  "Set by Dr. Jeonghwan Park (Endocrinology).",
                   style: AppText.caption(color: AppColors.textMuted),
                 ),
               ],
@@ -77,6 +79,7 @@ class MyInfoScreen extends StatelessWidget {
 
           _GuardianSection(appState: appState),
         ],
+      ),
       ),
     );
   }
@@ -125,7 +128,7 @@ class _GuardianSection extends StatelessWidget {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Cancel")),
+          OutlinedButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Cancel")),
           ElevatedButton(
             onPressed: () {
               if (nameController.text.trim().isEmpty || phoneController.text.trim().isEmpty) return;
@@ -188,7 +191,7 @@ class _GuardianSection extends StatelessWidget {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Close")),
+          OutlinedButton(onPressed: () => Navigator.of(ctx).pop(), child: const Text("Close")),
         ],
       ),
     );
@@ -215,11 +218,6 @@ class _GuardianSection extends StatelessWidget {
               Expanded(child: Text("Guardian Alerts (SOS)", style: AppText.sectionTitle())),
             ],
           ),
-          const SizedBox(height: 6),
-          Text(
-            "If a dangerous low or high reading is detected, registered guardians are notified. A preview is available now.",
-            style: AppText.body(color: AppColors.textSecondary),
-          ),
           const SizedBox(height: 16),
 
           if (guardians.isEmpty)
@@ -243,26 +241,39 @@ class _GuardianSection extends StatelessWidget {
                   color: AppColors.surfaceAlt,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Row(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text("${guardian.name} · ${guardian.relation}", style: AppText.bodyStrong()),
-                          Text(guardian.phone, style: AppText.caption(color: AppColors.textMuted)),
-                        ],
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Text(
+                            "${guardian.name} · ${guardian.relation}",
+                            style: AppText.bodyStrong(),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 1,
+                          ),
+                        ),
+                        IconButton(
+                          onPressed: () => appState.removeGuardian(index),
+                          tooltip: "Remove guardian ${guardian.name}",
+                          icon: const Icon(Icons.delete_outline_rounded, color: AppColors.textMuted),
+                        ),
+                      ],
+                    ),
+                    Text(
+                      guardian.phone,
+                      style: AppText.caption(color: AppColors.textMuted),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                    ),
+                    const SizedBox(height: 10),
+                    SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: () => _openPreviewDialog(context, guardian),
+                        child: const Text("Preview"),
                       ),
-                    ),
-                    OutlinedButton(
-                      onPressed: () => _openPreviewDialog(context, guardian),
-                      style: OutlinedButton.styleFrom(minimumSize: const Size(0, 44)),
-                      child: const Text("Preview"),
-                    ),
-                    IconButton(
-                      onPressed: () => appState.removeGuardian(index),
-                      tooltip: "Remove guardian ${guardian.name}",
-                      icon: const Icon(Icons.delete_outline_rounded, color: AppColors.textMuted),
                     ),
                   ],
                 ),

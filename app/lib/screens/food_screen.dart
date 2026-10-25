@@ -6,17 +6,14 @@ class FoodScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Food Exchange Guide", style: AppText.title()),
-          const SizedBox(height: 4),
-          Text(
-            "Foods within the same exchange unit have a similar effect on blood glucose and calories, so you can swap them freely.",
-            style: AppText.body(color: AppColors.textSecondary),
-          ),
           const SizedBox(height: 20),
 
           Container(
@@ -62,6 +59,7 @@ class FoodScreen extends StatelessWidget {
             ),
           )
         ],
+      ),
       ),
     );
   }

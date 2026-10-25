@@ -29,13 +29,13 @@ class AppState extends ChangeNotifier {
   int _selectedTabIndex = 0;
   int get selectedTabIndex => _selectedTabIndex;
 
-  // Medical Portal Doctor view tab index (0: 개요, 1: 추세, 2: 처방/계획, 3: 이행률)
+  // Medical Portal Doctor view tab index (0: Overview, 1: Trend, 2: Plan, 3: Adherence)
   int _doctorSubTabIndex = 0;
   int get doctorSubTabIndex => _doctorSubTabIndex;
 
   // Patient Info
-  String patientName = "김민지";
-  String diabetesType = "2형";
+  String patientName = "Minji Kim";
+  String diabetesType = "Type 2";
   String birthDate = "1985-03-12";
   String regDate = "2026-07-01";
   double targetLow = 80.0;
@@ -72,8 +72,8 @@ class AppState extends ChangeNotifier {
   int vegUnit = 0;
   int fatUnit = 0;
 
-  // BLE 기기 연결 상태 — 실제 스캔/페어링 로직은 아직 없고,
-  // 측정 화면에서 측정을 한 번 시작하면 true로 표시됩니다(데모).
+  // BLE device connection state — there's no real scan/pairing logic yet;
+  // this flips to true once the user starts a measurement (demo only).
   bool _isDeviceConnected = false;
   bool get isDeviceConnected => _isDeviceConnected;
 
@@ -82,9 +82,12 @@ class AppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  // 보호자 알림(SOS) — 지금은 보호자 등록과 알림 미리보기까지만 제공합니다.
-  // 실제 푸시 발송은 백엔드(FCM 등)가 필요해 아직 구현되어 있지 않습니다.
-  final List<GuardianContact> _guardians = [];
+  // Guardian alerts (SOS) — for now this only supports registering a
+  // guardian and previewing what an alert would say. Real push delivery
+  // needs a backend (e.g. FCM) and isn't implemented yet.
+  final List<GuardianContact> _guardians = [
+    GuardianContact(name: "Jiho Kim", relation: "Son", phone: "010-1234-5678"),
+  ];
   List<GuardianContact> get guardians => List.unmodifiable(_guardians);
 
   void addGuardian(GuardianContact guardian) {

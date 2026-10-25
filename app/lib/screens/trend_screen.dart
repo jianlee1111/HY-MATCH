@@ -16,29 +16,20 @@ class TrendScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Glucose Trend", style: AppText.title()),
-                    const SizedBox(height: 4),
-                    Text(
-                      "Target range ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
-                      overflow: TextOverflow.ellipsis,
-                      style: AppText.body(color: AppColors.textSecondary),
-                    ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 8),
-              OutlinedButton(
-                onPressed: () {},
-                child: const Text("View as Table"),
-              ),
-            ],
+          Text("Glucose Trend", style: AppText.title()),
+          const SizedBox(height: 10),
+          SizedBox(
+            width: double.infinity,
+            child: OutlinedButton(
+              onPressed: () {},
+              child: const Text("View as Table"),
+            ),
+          ),
+          const SizedBox(height: 10),
+          Text(
+            "Target range ${appState.targetLow.toInt()}–${appState.targetHigh.toInt()} mg/dL",
+            overflow: TextOverflow.ellipsis,
+            style: AppText.body(color: AppColors.textSecondary),
           ),
           const SizedBox(height: 20),
 
@@ -128,9 +119,9 @@ class TrendScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
       decoration: BoxDecoration(
-        color: isSelected ? AppColors.primary : AppColors.surface,
+        color: isSelected ? AppColors.primaryText : AppColors.surface,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: isSelected ? AppColors.primary : AppColors.border),
+        border: Border.all(color: isSelected ? AppColors.primaryText : AppColors.border),
       ),
       child: Text(
         label,

@@ -1,6 +1,7 @@
-// 혈당 수치 -> (라벨, 색상, 아이콘) 매핑을 한 곳에서 관리합니다.
-// 색상만으로 상태를 구분하지 않고 항상 아이콘 + 텍스트를 함께 쓰기 위한 목적이며,
-// 홈 화면 히어로 카드, 상단 경고 배너, 추세 화면 범례가 모두 이 매핑을 공유합니다.
+// Maps a glucose value -> (label, color, icon) in one place.
+// The goal is to never rely on color alone to show status — color +
+// icon + text are always shown together. The home hero card, the top
+// warning banner, and the trend screen legend all share this mapping.
 import 'package:flutter/material.dart';
 import 'app_theme.dart';
 
@@ -27,7 +28,7 @@ class GlucoseStatus {
     if (value < severeLowThreshold) {
       return const GlucoseStatus._(
         GlucoseLevel.severeLow,
-        '중증 저혈당',
+        'Severe Low',
         AppColors.statusSevere,
         AppColors.statusSevereSoft,
         Icons.emergency_rounded,
@@ -36,7 +37,7 @@ class GlucoseStatus {
     if (value < targetLow) {
       return const GlucoseStatus._(
         GlucoseLevel.low,
-        '저혈당',
+        'Low',
         AppColors.statusLow,
         AppColors.statusLowSoft,
         Icons.arrow_downward_rounded,
@@ -45,7 +46,7 @@ class GlucoseStatus {
     if (value > targetHigh) {
       return const GlucoseStatus._(
         GlucoseLevel.high,
-        '고혈당',
+        'High',
         AppColors.statusHigh,
         AppColors.statusHighSoft,
         Icons.arrow_upward_rounded,
@@ -53,7 +54,7 @@ class GlucoseStatus {
     }
     return const GlucoseStatus._(
       GlucoseLevel.normal,
-      '정상 범위',
+      'In Range',
       AppColors.statusNormal,
       AppColors.statusNormalSoft,
       Icons.check_circle_rounded,

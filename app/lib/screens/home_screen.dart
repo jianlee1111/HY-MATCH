@@ -18,14 +18,14 @@ class HomeScreen extends StatelessWidget {
     final inRange = history.where((r) => r.value >= appState.targetLow && r.value <= appState.targetHigh).length;
     final tirPercent = history.isEmpty ? 0 : ((inRange / history.length) * 100).round();
 
-    return SingleChildScrollView(
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text("Hello, ${appState.patientName}", style: AppText.title()),
-          const SizedBox(height: 4),
-          Text("Check your latest reading and today's guidance.", style: AppText.body(color: AppColors.textSecondary)),
           const SizedBox(height: 20),
 
           // Hero Card
@@ -99,11 +99,23 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 10),
-                      Text("Your after-meal glucose is in range", style: AppText.sectionTitle()),
-                      const SizedBox(height: 4),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          const Icon(Icons.arrow_downward_rounded, color: AppColors.statusNormal, size: 28),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Text(
+                              "Under 180 mg/dL",
+                              style: AppText.title().copyWith(fontSize: 24),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 6),
                       Text(
-                        "It's normal for glucose to rise somewhat after eating. This is within the after-meal target (under 180 mg/dL), so no action is needed right now.",
-                        style: AppText.body(color: AppColors.textSecondary),
+                        "No action is needed",
+                        style: AppText.sectionTitle(color: AppColors.statusNormal).copyWith(fontSize: 20),
                       ),
                     ],
                   ),
@@ -170,11 +182,6 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text("Meal Log", style: AppText.sectionTitle()),
-                const SizedBox(height: 4),
-                Text(
-                  "Logging meal times lets the app tell fasting readings from after-meal readings automatically, for more accurate guidance.",
-                  style: AppText.body(color: AppColors.textSecondary),
-                ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 8,
@@ -201,6 +208,7 @@ class HomeScreen extends StatelessWidget {
           ),
         ],
       ),
+      ),
     );
   }
 
@@ -212,7 +220,7 @@ class HomeScreen extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         border: Border.all(color: AppColors.primary.withValues(alpha: 0.25)),
       ),
-      child: Text(text, style: const TextStyle(color: AppColors.primary, fontSize: 13, fontWeight: FontWeight.w700)),
+      child: Text(text, style: const TextStyle(color: AppColors.primaryText, fontSize: 13, fontWeight: FontWeight.w700)),
     );
   }
 
