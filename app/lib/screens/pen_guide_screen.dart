@@ -2,10 +2,12 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
+import '../data/pen_info.dart';
 import '../services/app_state.dart';
 import '../services/pen_classifier_service.dart';
 import '../theme/app_theme.dart';
 import '../theme/glucose_status.dart';
+import 'pen_info_screen.dart';
 
 class PenGuideScreen extends StatefulWidget {
   const PenGuideScreen({super.key});
@@ -76,7 +78,50 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
       _isAnalyzing = false;
     });
 
-    _runSafetyCheck(result);
+    _confirmRecognition(result);
+  }
+
+  /// Camera recognition can be wrong, so always ask the user to confirm
+  /// before acting on it — manual selection from the list below skips
+  /// this, since picking from the list is already an explicit choice.
+  void _confirmRecognition(PenRecognitionResult result) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Row(
+          children: [
+            const Icon(Icons.help_outline_rounded, color: AppColors.primary, size: 26),
+            const SizedBox(width: 10),
+            const Expanded(child: Text("Is this correct?")),
+          ],
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text("We recognized this pen as:", style: AppText.body(color: AppColors.textSecondary)),
+            const SizedBox(height: 8),
+            Text(result.productName, style: AppText.title()),
+            const SizedBox(height: 4),
+            Text(result.profileLabel, style: AppText.body(color: AppColors.textSecondary)),
+          ],
+        ),
+        actions: [
+          OutlinedButton(
+            onPressed: () => Navigator.of(ctx).pop(),
+            child: const Text("No, I'll choose from the list"),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.of(ctx).pop();
+              _runSafetyCheck(result);
+            },
+            child: const Text("Yes, that's correct"),
+          ),
+        ],
+      ),
+    );
   }
 
   void _selectManualPen(int index) {
@@ -107,7 +152,9 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
     if (needsWarning) {
       _showSafetyAlert(appState.currentGlucose);
     } else {
-      _showTutorialSheet(result);
+      Navigator.of(context).push(
+        MaterialPageRoute(builder: (context) => PenInfoScreen(result: result)),
+      );
     }
   }
 
@@ -134,16 +181,6 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
           ),
         ],
       ),
-    );
-  }
-
-  void _showTutorialSheet(PenRecognitionResult result) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: AppColors.surface,
-      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-      builder: (ctx) => _TutorialSheet(result: result),
     );
   }
 
@@ -197,26 +234,39 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
 
           const SizedBox(height: 24),
           Text("Or Choose From the List", style: AppText.sectionTitle()),
+          const SizedBox(height: 4),
+          Text(
+            "Each color below is a different insulin type.",
+            style: AppText.body(color: AppColors.textSecondary),
+          ),
           const SizedBox(height: 12),
+          _buildCategoryLegend(),
+          const SizedBox(height: 16),
 
           GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 1.6,
+              childAspectRatio: 1.5,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
             ),
             itemCount: _manualPens.length,
             itemBuilder: (context, index) {
+              final profile = _manualPens[index].value;
               return OutlinedButton(
                 onPressed: () => _selectManualPen(index),
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: profile.softColor,
+                  side: BorderSide(color: profile.color, width: 2),
+                ),
                 child: Text(
                   _manualPens[index].key,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w700),
                 ),
               );
             },
@@ -291,111 +341,43 @@ class _PenGuideScreenState extends State<PenGuideScreen> {
       ),
     );
   }
-}
 
-class _TutorialSheet extends StatelessWidget {
-  final PenRecognitionResult result;
-  const _TutorialSheet({required this.result});
-
-  static const List<String> _steps = [
-    "Disinfect the injection site (abdomen, thigh, arm, etc.) with an alcohol swab.",
-    "Remove the pen cap, attach a new needle straight on, then remove its protective cap.",
-    "Dial up to your prescribed dose (in Units).",
-    "Pinch the skin gently, insert the needle at 90 degrees, and press the button all the way down.",
-    "Hold for about 10 seconds, then slowly withdraw the needle.",
-    "Rotate injection sites slightly each time — avoid repeating the same spot.",
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
-        child: SingleChildScrollView(
-          child: Column(
+  Widget _buildCategoryLegend() {
+    const categories = [
+      InsulinActionProfile.longActing,
+      InsulinActionProfile.rapidActing,
+      InsulinActionProfile.intermediateActing,
+      InsulinActionProfile.premixed,
+    ];
+    return Wrap(
+      spacing: 10,
+      runSpacing: 10,
+      children: categories.map((profile) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+          decoration: BoxDecoration(
+            color: profile.softColor,
+            borderRadius: BorderRadius.circular(10),
+            border: Border.all(color: profile.color, width: 1.4),
+          ),
+          child: Row(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Center(
-                child: Container(
-                  width: 40,
-                  height: 4,
-                  decoration: BoxDecoration(color: AppColors.border, borderRadius: BorderRadius.circular(2)),
-                ),
+              Container(
+                width: 14,
+                height: 14,
+                decoration: BoxDecoration(shape: BoxShape.circle, color: profile.color),
               ),
-              const SizedBox(height: 16),
-              Text(result.productName, style: AppText.title()),
-              const SizedBox(height: 4),
-              Text("${result.profileLabel} insulin · how to use it", style: AppText.body(color: AppColors.textSecondary)),
-              const SizedBox(height: 16),
-
-              // Placeholder for a video tutorial.
-              // Once a real video asset is ready, replace this area with a
-              // video_player (or chewie) widget. See the README section
-              // "Adding a video tutorial" for details.
-              AspectRatio(
-                aspectRatio: 16 / 9,
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceAlt,
-                    borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: AppColors.border),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Icon(Icons.play_circle_outline_rounded, size: 40, color: AppColors.textMuted),
-                      const SizedBox(height: 6),
-                      Text("Video tutorial coming soon", style: AppText.caption()),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(height: 20),
-
-              Text("Injection Steps", style: AppText.sectionTitle()),
-              const SizedBox(height: 12),
-              ..._steps.asMap().entries.map((e) => _StepRow(index: e.key + 1, text: e.value)),
-
-              const SizedBox(height: 8),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => Navigator.of(context).pop(),
-                  child: const Text("Got it"),
-                ),
+              const SizedBox(width: 8),
+              Text(
+                profile.categoryLabel,
+                style: TextStyle(color: AppColors.textPrimary, fontWeight: FontWeight.w700, fontSize: 14),
               ),
             ],
           ),
-        ),
-      ),
+        );
+      }).toList(),
     );
   }
 }
 
-class _StepRow extends StatelessWidget {
-  final int index;
-  final String text;
-  const _StepRow({required this.index, required this.text});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 14),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 28,
-            height: 28,
-            alignment: Alignment.center,
-            decoration: const BoxDecoration(color: AppColors.primarySoft, shape: BoxShape.circle),
-            child: Text("$index", style: const TextStyle(color: AppColors.primaryText, fontWeight: FontWeight.w700)),
-          ),
-          const SizedBox(width: 12),
-          Expanded(child: Text(text, style: AppText.body())),
-        ],
-      ),
-    );
-  }
-}
