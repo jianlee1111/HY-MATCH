@@ -17,8 +17,6 @@ dependencies:
   cupertino_icons: ^1.0.6
   image_picker: ^1.1.2
   image: ^4.2.0
-  flutter_tts: ^4.2.5
-  video_player: ^2.14.1
 
 dev_dependencies:
   flutter_test:
@@ -30,4 +28,5 @@ flutter:
   assets:
     - assets/glucose_model.tflite
     - assets/insulin_classifier.tflite
-    - assets/pen_tutorial/
+    - assets/pen_tutorial/ 
+

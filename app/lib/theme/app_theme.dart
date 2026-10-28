@@ -87,23 +87,6 @@ class AppColors {
   // alone to read as more urgent than the brand color.
   static const statusSevere = Color(0xFFD12222);
   static const statusSevereSoft = Color(0xFFFCE8E8);
-
-  // Insulin-pen action-type category colors (Pen Guide screen only).
-  // These exist so a pen's button border/icon can be color-coded by
-  // category at a glance, with a legend shown above the buttons — they
-  // are decorative/non-text accents (icon + border), so the WCAG 1.4.11
-  // non-text bar of 3:1 applies, verified >=3.3:1 against every
-  // background used below. Hues are spread far from each other and from
-  // `primary`/the status colors so none of the two palettes is
-  // confusable with the other (GB2).
-  static const penLongActing = Color(0xFF572BD9); // indigo
-  static const penLongActingSoft = Color(0xFFE1DAF7);
-  static const penRapidActing = Color(0xFF1C8C83); // teal
-  static const penRapidActingSoft = Color(0xFFDAF7F5);
-  static const penIntermediateActing = Color(0xFFAD2BD9); // purple-magenta
-  static const penIntermediateActingSoft = Color(0xFFF0DAF7);
-  static const penPremixed = Color(0xFFD92B57); // rose
-  static const penPremixedSoft = Color(0xFFF7DAE1);
 }
 
 class AppText {
