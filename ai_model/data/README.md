@@ -74,3 +74,7 @@ If a PhysioNet D1NAMO dataset is added later, it goes here too.
 ## Migration note
 
 This structure replaces a flat layout where all files sat directly in `ai_model/data/`. When moving files, use `git mv` so history is preserved, and update any `write_*_md_v1.py` / `run_*.py` script paths that reference the old flat locations.
+
+##Image Datasets for Insuline Classifier
+https://drive.google.com/drive/folders/13qFQmkpndXWWBgLKajeXvye8jAWajXOr?usp=drive_link
+Consists of images captured directly form varying background and viewpoints, alongside imaged collected via google images 
